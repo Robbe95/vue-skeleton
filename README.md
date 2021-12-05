@@ -1,8 +1,8 @@
 # Clone without GIT
 ```
 npx degit Robbe95/vue-skeleton my-project-name
-cd my-vitesse-app
-pnpm i
+cd my-project-name
+npm i
 ```
 
 

@@ -1,0 +1,35 @@
+{
+  "name": "tabletop-api",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "production": "vite build --mode production",
+    "staging": "vite build --mode staging",
+    "development": "vite build --mode development"
+  },
+  "dependencies": {
+    "@vueuse/core": "^7.1.2",
+    "axios": "^0.24.0",
+    "pinia": "^2.0.6",
+    "vue": "^3.2.16",
+    "vue-i18n": "^9.2.0-beta.23",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.12.0",
+    "@types/node": "^16.11.11",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "eslint": "^7.32.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "typescript": "^4.4.3",
+    "unplugin-auto-import": "^0.5.1",
+    "unplugin-vue-components": "^0.17.4",
+    "vite": "^2.6.4",
+    "vite-plugin-windicss": "^1.5.4",
+    "vue-tsc": "^0.3.0",
+    "windicss": "^3.2.1"
+  }
+}

@@ -1,6 +1,6 @@
-# clone without GIT
+# Clone without GIT
 ```
-npx degit antfu/vitesse my-vitesse-app
+npx degit Robbe95/vue-skeleton my-project-name
 cd my-vitesse-app
 pnpm i
 ```

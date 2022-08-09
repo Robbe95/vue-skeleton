@@ -1,3 +1,4 @@
+import { Routes } from './routeTypes.d'
 export default [
   {
     path: '/',
@@ -5,7 +6,7 @@ export default [
     children: [
       {
         component: () => import('../pages/Index.vue'),
-        name: 'index',
+        name: Routes.INDEX,
         path: '',
       },
     ],

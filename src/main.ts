@@ -2,9 +2,10 @@ import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
+import { createHead } from '@vueuse/head'
+import routes from './router/routes'
 import App from './App.vue'
 import 'virtual:windi.css'
-import routes from './router/routes'
 
 import en from './locales/en.json'
 import nl from './locales/nl.json'
@@ -27,6 +28,7 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(pinia)
+  .use(createHead())
   .use(i18n)
   .use(router)
   .mount('#app')

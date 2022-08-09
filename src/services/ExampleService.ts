@@ -1,8 +1,7 @@
-import http from '../http.js'
-
+import axios from 'axios'
 export default {
   async getExample(page: number) {
-    http.get(`example?page=${page}`).then((response: any) => {
+    axios.get(`example?page=${page}`).then((response: any) => {
       return response
     }).catch((error: any) => {
       console.error(error)

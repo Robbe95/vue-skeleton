@@ -1,6 +1,5 @@
-<script setup>
-import { useExampleStore } from '@/stores/ExampleStore'
-
+<script setup lang="ts">
+const test = ref()
 </script>
 
 <template>

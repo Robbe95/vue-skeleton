@@ -3,7 +3,7 @@ const test = ref()
 </script>
 
 <template>
-  <div>
+  <div class="btn btn-primary">
     Dit is een test component
   </div>
 </template>

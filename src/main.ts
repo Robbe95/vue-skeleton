@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import routes from './router/routes'
 import App from './App.vue'
-import 'virtual:windi.css'
+import 'uno.css'
 
 import en from './locales/en.json'
 import nl from './locales/nl.json'

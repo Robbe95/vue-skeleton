@@ -11,6 +11,7 @@
     "development": "vite build --mode development"
   },
   "dependencies": {
+    "@unocss/inspector": "^0.45.13",
     "@unocss/reset": "^0.45.13",
     "@vueuse/core": "^9.1.1",
     "@vueuse/head": "^0.7.9",

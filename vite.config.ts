@@ -3,8 +3,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import SvgTransformer from './src/plugins/svg-transformer/svgTransformer'
 import Unocss from 'unocss/vite'
+import SvgTransformer from './src/plugins/svg-transformer/svgTransformer'
 
 // https://vitejs.dev/config/
 export default defineConfig({

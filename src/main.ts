@@ -6,6 +6,7 @@ import { createHead } from '@vueuse/head'
 import routes from './router/routes'
 import App from './App.vue'
 import 'uno.css'
+import '@unocss/reset/tailwind.css'
 
 import en from './locales/en.json'
 import nl from './locales/nl.json'

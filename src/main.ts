@@ -8,7 +8,7 @@ import App from './App.vue'
 
 import en from './locales/en.json'
 import nl from './locales/nl.json'
-import './assets/style/tailwind.css';
+import './assets/styles/tailwind.css';
 
 const pinia = createPinia()
 

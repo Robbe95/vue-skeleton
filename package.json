@@ -8,24 +8,31 @@
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "production": "vite build --mode production",
     "staging": "vite build --mode staging",
-    "development": "vite build --mode development"
+    "development": "vite build --mode development",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
     "@vueuse/core": "^9.6.0",
     "@vueuse/head": "^1.0.19",
     "axios": "^1.2.0",
     "pinia": "^2.0.27",
+    "sass": "^1.57.1",
+    "scss": "^0.2.4",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.33.1",
+    "@histoire/plugin-vue": "^0.12.4",
     "@types/node": "^18.11.10",
     "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.13",
     "eslint": "8.28",
     "eslint-plugin-promise": "^6.1.1",
+    "histoire": "^0.12.4",
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",

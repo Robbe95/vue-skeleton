@@ -13,9 +13,16 @@
       "esnext",
       "dom"
     ],
-    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "baseUrl": ".",
+    "allowJs": false,
   },
   "include": [
+    "env.d.ts",
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.d.ts",

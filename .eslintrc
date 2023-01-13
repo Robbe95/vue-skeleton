@@ -1,5 +1,16 @@
 {
   "extends": [
     "@antfu"
-  ]
+  ],
+  "rules": {
+    "vue/custom-event-name-casing": [
+      "error",
+      "camelCase",
+      {
+        "ignores": [
+          "/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u"
+        ]
+      }
+    ]
+  }
 }

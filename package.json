@@ -11,7 +11,9 @@
     "development": "vite build --mode development",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
-    "story:preview": "histoire preview"
+    "story:preview": "histoire preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@headlessui-float/vue": "^0.10.1",

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     HstVue(),
   ],
-  outDir: '.histoire/dist',
+  outDir: 'histoire/dist',
   setupFile: './histoire.setup.ts',
   theme: {
     title: 'Wisemen',

@@ -8,7 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddIcon: typeof import('./src/components/icons/AddIcon.vue')['default']
-    Arrow: typeof import('./src/components/icons/Arrow.vue')['default']
     ArrowDownIcon: typeof import('./src/components/icons/ArrowDownIcon.vue')['default']
     CheckmarkIcon: typeof import('./src/components/icons/CheckmarkIcon.vue')['default']
     ChevronDownIcon: typeof import('./src/components/icons/ChevronDownIcon.vue')['default']

@@ -10,7 +10,6 @@ const model3 = ref<number>(0)
 <template>
   <Story
     title="Forms/Input/Slider"
-    :layout="{ type: 'grid' }"
   >
     <Variant title="Default">
       <FormSlider v-model="model" />

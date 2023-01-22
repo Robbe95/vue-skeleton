@@ -1,4 +1,12 @@
 import { Routes } from './routeTypes.d'
+
+interface Route {
+  path: string
+  component: () => Promise<unknown>
+  children?: Route[]
+  name?: Routes
+}
+
 export default [
   {
     path: '/',
@@ -11,4 +19,4 @@ export default [
       },
     ],
   },
-]
+] satisfies Route[]

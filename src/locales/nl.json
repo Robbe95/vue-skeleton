@@ -1,5 +1,8 @@
 {
   "label": {
     "optional": "Optioneel"
+  },
+  "labels": {
+    "no_results": "Geen resultaten"
   }
 }

@@ -9,7 +9,6 @@ const handleClick = () => {
 <template>
   <Story
     title="App/Buttons"
-    :layout="{ type: 'grid' }"
   >
     <Variant title="Default">
       <AppButton @component:click="handleClick">

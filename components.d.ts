@@ -7,9 +7,21 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddIcon: typeof import('./src/components/icons/AddIcon.vue')['default']
     Arrow: typeof import('./src/components/icons/Arrow.vue')['default']
+    ArrowDownIcon: typeof import('./src/components/icons/ArrowDownIcon.vue')['default']
+    CheckmarkIcon: typeof import('./src/components/icons/CheckmarkIcon.vue')['default']
+    ChevronDownIcon: typeof import('./src/components/icons/ChevronDownIcon.vue')['default']
+    ChevronRightIcon: typeof import('./src/components/icons/ChevronRightIcon.vue')['default']
+    CloseIcon: typeof import('./src/components/icons/CloseIcon.vue')['default']
+    EditIcon: typeof import('./src/components/icons/EditIcon.vue')['default']
+    InfoIcon: typeof import('./src/components/icons/InfoIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchIcon: typeof import('./src/components/icons/SearchIcon.vue')['default']
+    SettingsIcon: typeof import('./src/components/icons/SettingsIcon.vue')['default']
     TestComponent: typeof import('./src/components/TestComponent.vue')['default']
+    TrashIcon: typeof import('./src/components/icons/TrashIcon.vue')['default']
+    WarningIcon: typeof import('./src/components/icons/WarningIcon.vue')['default']
   }
 }

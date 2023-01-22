@@ -10,7 +10,6 @@ const model3 = ref()
 <template>
   <Story
     title="Forms/Input/Field"
-    :layout="{ type: 'grid' }"
   >
     <Variant title="Default">
       <FormInputField v-model="model" />

@@ -102,7 +102,7 @@ onUnmounted(() => {
         :disabled="isDisabled"
         :type="type"
         min="0"
-        class="relative rounded w-full h-10 px-4 placeholder:text-green-middle"
+        class="relative w-full px-4 py-2 rounded"
         :placeholder="placeholder"
         :readonly="isReadOnly"
         @blur="emits('blur')"
@@ -111,7 +111,7 @@ onUnmounted(() => {
       <div
         v-if="unit"
         :class="[borderColor]"
-        class="bg-white rounded px-3 flex items-center text-green-dark border-l rounded-l-none min-w-max"
+        class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
       >
         {{ unit }}
       </div>

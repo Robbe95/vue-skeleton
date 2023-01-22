@@ -1,6 +1,9 @@
 {
   "label": {
-    "optional": "Optioneel"
+    "optional": "Optioneel",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "confirm_text": "Weet u zeker dat u door wilt gaan met deze actie?"
   },
   "labels": {
     "no_results": "Geen resultaten"

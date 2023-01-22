@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AppModal from './AppModal.vue'
-import AppButton from '@/modules/ui/components/app/buttons/AppButton.vue'
 const modalOpen1 = ref(false)
 const handleClick = () => {
   modalOpen1.value = true

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import AppIconButton from './AppIconButton.vue'
-import CloseIcon from '@/components/icons/CloseIcon.vue'
 </script>
 
 <template>
   <Story
-    title="App/IconButtons"
+    title="App/Buttons/AppIconButton"
   >
     <Variant title="Default">
       <AppIconButton class="bg-danger-100 text-danger-500">

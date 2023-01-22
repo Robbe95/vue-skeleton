@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
-import { computed, provide } from 'vue'
-import AppLoader from '../../../app/loaders/AppLoader.vue'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/input/useFormSelectContext'
 import { SelectGroupContext } from '@/modules/ui/composables/forms/input/useFormSelectContext'
-import TransitionExpand from '@/modules/ui/components/transitions/TransitionExpand.vue'
 
 interface Props {
   modelValue: any

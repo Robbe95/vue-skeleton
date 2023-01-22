@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import FormSelect from './FormSelect.vue'
-import FormSelectInput from './FormSelectInput.vue'
-import FormSelectOption from './FormSelectOption.vue'
-
 const options1 = ['one', 'two', 'three', 'four', 'five']
 const selectedOption1 = ref<string>('one')
 const search1 = ref<string>('')

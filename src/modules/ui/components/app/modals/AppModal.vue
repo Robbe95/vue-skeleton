@@ -7,7 +7,6 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import CloseIcon from '@/components/icons/CloseIcon.vue'
-import AppIconButton from '@/modules/ui/components/app/buttons/AppIconButton.vue'
 interface Props {
   isOpen: boolean
 

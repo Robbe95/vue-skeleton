@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { toRefs } from 'vue'
-
 interface Props {
   isDisabled?: boolean
   isLoading?: boolean
@@ -25,7 +23,7 @@ const handleClick = () => {
 
 <template>
   <button
-    class="md:px-8 px-3 py-2 rounded whitespace-nowrap transform transition duration-200 hover:shadow-main border overflow-hidden"
+    class="px-3 py-2 overflow-hidden transition duration-200 transform border rounded md:px-8 whitespace-nowrap hover:shadow-main"
     :class="{
       'bg-opacity-70 cursor-not-allowed': isDisabled || isLoading,
       'bg-primary-500 text-white border border-transparent': type === 'primary',
@@ -39,7 +37,7 @@ const handleClick = () => {
     </div>
     <div
       :class="[isLoading ? 'opacity-100' : 'opacity-0']"
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+      class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
     >
       <div class="w-10 h-2.5 inline-block relative">
         <div

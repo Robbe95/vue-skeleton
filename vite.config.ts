@@ -10,6 +10,8 @@ export default defineConfig({
     vue(),
     Components({
       dts: true,
+      dirs: ['src/components', 'src/modules'],
+
     }),
     AutoImport({
       dts: true,
@@ -17,7 +19,6 @@ export default defineConfig({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/, /\.vue\?vue/, // .vue
         /\.md$/, // .md
-
       ],
       imports: [
         'vue',
@@ -40,4 +41,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  
 })

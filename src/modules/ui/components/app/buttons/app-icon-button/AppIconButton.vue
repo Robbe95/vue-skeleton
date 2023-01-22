@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 interface Props {
   isButton?: boolean
   size?: 'sm' | 'md' | 'lg'

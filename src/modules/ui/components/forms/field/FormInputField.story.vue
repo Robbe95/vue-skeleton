@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import FormInputGroup from '../group/FormInputGroup.vue'
-import FormInputField from './FormInputField.vue'
-
 const model = ref()
 const model2 = ref()
 const model3 = ref()

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onKeyStroke, useElementBounding, useFocus, useMouse, useMousePressed } from '@vueuse/core'
-import { computed, ref, watch } from 'vue'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 import { useFormInputGroupContext } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
 
@@ -193,17 +192,17 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     <label class="text-primary-500" @click="handleLabelClick">
       <slot />
     </label>
-    <div class="py-5 px-4 border border-primary-500 rounded">
-      <div ref="slider" class="flex flex-row items-center justify-center relative">
-        <div class="bg-primary-500 h-1 rounded-full" :style="`width: ${leftSliderWidth}px`">
+    <div class="px-4 py-5 border rounded border-primary-500">
+      <div ref="slider" class="relative flex flex-row items-center justify-center">
+        <div class="h-1 rounded-full bg-primary-500" :style="`width: ${leftSliderWidth}px`">
           <button id="sliderButton" ref="sliderButton" class="slider-button border-[0.25rem] rounded-full border-primary-500 bg-white h-4 w-4 absolute z-10 top-1/2 -translate-y-1/2 focus:border-primary-500" :style="sliderButtonStyle" />
         </div>
-        <div class="bg-gray-500/50 h-1 rounded-full" :style="`width: ${rightSliderWidth - disabledValueSliderWidth}px`" />
+        <div class="h-1 rounded-full bg-gray-500/50" :style="`width: ${rightSliderWidth - disabledValueSliderWidth}px`" />
         <div class="border-t-[2px] border-dashed border-primary-500" :style="`width: ${disabledValueSliderWidth}px`" />
       </div>
     </div>
     <div v-if="percentProgress || valueProgress" class="pb-4">
-      <div ref="progressElement" class=" text-xs px-2 absolute text-primary-500" :style="`left: ${leftSliderWidth}px`">
+      <div ref="progressElement" class="absolute px-2 text-xs text-primary-500" :style="`left: ${leftSliderWidth}px`">
         <div>
           <span v-if="percentProgress" class="flanders-medium">
             {{ Math.round((model / maxAmount) * 100) }}%
@@ -220,7 +219,7 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
       :class="{
         'opacity-0': isProgressOverMaxLabel,
       }"
-      class="w-full flex justify-end text-xs absolute right-0 bottom-0 transition-opacity"
+      class="absolute bottom-0 right-0 flex justify-end w-full text-xs transition-opacity"
     >
       <div ref="maxLabelElement">
         {{ maxAmount }}{{ valueMeasurement }}
@@ -228,4 +227,3 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     </div>
   </div>
 </template>
-

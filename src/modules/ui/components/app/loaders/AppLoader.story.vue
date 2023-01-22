@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppLoader from './AppLoader.vue'
 </script>
 
 <template>

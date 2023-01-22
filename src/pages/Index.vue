@@ -14,6 +14,10 @@ useHead({
 
 <template>
   <div>
-    <TestComponent />
+    <AppConfirmButton>
+      <AppButton>
+        Test
+      </AppButton>
+    </AppConfirmButton>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import './src/assets/styles/tailwind.css' // Import global CSS
-
+import './src/assets/styles/transitions.scss' // Import global CSS
 import { createPinia } from 'pinia'
 import { defineSetupVue3 } from '@histoire/plugin-vue'
 import { createI18n } from 'vue-i18n'

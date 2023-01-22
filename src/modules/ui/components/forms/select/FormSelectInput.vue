@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { ComboboxButton, ComboboxInput } from '@headlessui/vue'
-import AppLoader from '../../../app/loaders/AppLoader.vue'
-import SearchIcon from '@/components/icons/SearchIcon.vue'
-import ChevronDownIcon from '@/components/icons/ChevronDownIcon.vue'
 import { useSelectContext } from '@/modules/ui/composables/forms/input/useFormSelectContext'
 
 interface Props {

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ComboboxOption } from '@headlessui/vue'
-import { computed, useSlots } from 'vue'
 import { useSelectContext } from '@/modules/ui/composables/forms/input/useFormSelectContext'
-import CheckmarkIcon from '@/components/icons/CheckmarkIcon.vue'
+
 interface Props {
   value: any
 }

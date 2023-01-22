@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import FormInputGroup from '../group/FormInputGroup.vue'
-import FormSlider from './FormSlider.vue'
-
 const model = ref<number>(0)
 const model2 = ref<number>(0)
 const model3 = ref<number>(0)

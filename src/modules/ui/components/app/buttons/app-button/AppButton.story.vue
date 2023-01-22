@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AppButton from './AppButton.vue'
-
 const handleClick = () => {
   console.error('click')
 }
@@ -8,7 +6,7 @@ const handleClick = () => {
 
 <template>
   <Story
-    title="App/Buttons"
+    title="App/Buttons/AppButton"
   >
     <Variant title="Default">
       <AppButton @component:click="handleClick">

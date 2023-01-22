@@ -9,10 +9,12 @@ import App from './App.vue'
 import en from './locales/en.json'
 import nl from './locales/nl.json'
 import './assets/styles/tailwind.css'
+import './assets/styles/transitions.scss'
 
 const pinia = createPinia()
 
 const i18n = createI18n({
+  legacy: false,
   locale: 'nl', // set locale
   fallbackLocale: 'nl', // set fallback locale
   messages: {

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 interface Props {
   isOptional: boolean
 }
@@ -15,7 +13,7 @@ const { t } = useI18n()
     <label class="text-sm">
       <slot />
     </label>
-    <p v-if="isOptional" class="text-gray-300 text-xs">
+    <p v-if="isOptional" class="text-xs text-gray-300">
       {{ t('label.optional') }}
     </p>
   </div>

@@ -3,6 +3,7 @@
 
 <template>
   <router-view />
+  <AppSnackbarContainer />
 </template>
 
 <style>

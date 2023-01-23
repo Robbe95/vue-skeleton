@@ -21,6 +21,9 @@ declare module '@vue/runtime-core' {
     'AppLoader.story': typeof import('./src/modules/ui/components/app/loaders/AppLoader.story.vue')['default']
     AppModal: typeof import('./src/modules/ui/components/app/modals/AppModal.vue')['default']
     'AppModal.story': typeof import('./src/modules/ui/components/app/modals/AppModal.story.vue')['default']
+    AppSnackbar: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.vue')['default']
+    'AppSnackbar.story': typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.story.vue')['default']
+    AppSnackbarContainer: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbarContainer.vue')['default']
     ArrowDownIcon: typeof import('./src/components/icons/ArrowDownIcon.vue')['default']
     CheckmarkIcon: typeof import('./src/components/icons/CheckmarkIcon.vue')['default']
     ChevronDownIcon: typeof import('./src/components/icons/ChevronDownIcon.vue')['default']
@@ -51,6 +54,7 @@ declare module '@vue/runtime-core' {
     TestComponent: typeof import('./src/components/TestComponent.vue')['default']
     TransitionExpand: typeof import('./src/modules/ui/components/transitions/TransitionExpand.vue')['default']
     TrashIcon: typeof import('./src/components/icons/TrashIcon.vue')['default']
+    UseSnackbar: typeof import('./src/modules/ui/composables/app/snackbar/useSnackbar.vue')['default']
     WarningIcon: typeof import('./src/components/icons/WarningIcon.vue')['default']
   }
 }

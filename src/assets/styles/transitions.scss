@@ -12,3 +12,19 @@
     opacity: 0 !important;
   }
 }
+
+.snackbar-move, /* apply transition to moving elements */
+.snackbar-enter-active,
+.snackbar-leave-active {
+  transition: all 0.5s ease;
+}
+
+.snackbar-enter-from,
+.snackbar-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.snackbar-leave-active {
+  position: absolute;
+}

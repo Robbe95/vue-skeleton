@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onKeyStroke, useElementBounding, useFocus, useMouse, useMousePressed } from '@vueuse/core'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
-import { useFormInputGroupContext } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
+import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 
 interface Props {
   min?: number

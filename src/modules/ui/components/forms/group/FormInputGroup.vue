@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { FormInputGroupStateDefinition, Option } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
-import { FormInputGroupContext } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
+import type { FormInputGroupStateDefinition, Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
+import { FormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 
 interface Props {
   disabled?: boolean

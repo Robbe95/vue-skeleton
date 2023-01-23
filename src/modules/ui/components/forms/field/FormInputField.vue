@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Option } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
-import { useFormInputGroupContext } from '@/modules/ui/composables/forms/input/useFormInputGroupContext'
+import type { Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
+import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 
 interface Props {

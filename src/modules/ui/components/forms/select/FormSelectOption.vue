@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ComboboxOption } from '@headlessui/vue'
-import { useSelectContext } from '@/modules/ui/composables/forms/input/useFormSelectContext'
+import { useSelectContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 
 interface Props {
   value: any

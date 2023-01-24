@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     'AppLoader.story': typeof import('./src/modules/ui/components/app/loaders/AppLoader.story.vue')['default']
     AppModal: typeof import('./src/modules/ui/components/app/modals/AppModal.vue')['default']
     'AppModal.story': typeof import('./src/modules/ui/components/app/modals/AppModal.story.vue')['default']
+    AppNewSnackbar: typeof import('./src/modules/ui/components/app/snackbar/AppNewSnackbar.vue')['default']
     AppSnackbar: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.vue')['default']
     'AppSnackbar.story': typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.story.vue')['default']
     AppSnackbarContainer: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbarContainer.vue')['default']

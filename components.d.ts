@@ -10,6 +10,11 @@ declare module '@vue/runtime-core' {
     AddIcon: typeof import('./src/components/icons/AddIcon.vue')['default']
     AppButton: typeof import('./src/modules/ui/components/app/buttons/app-button/AppButton.vue')['default']
     'AppButton.story': typeof import('./src/modules/ui/components/app/buttons/app-button/AppButton.story.vue')['default']
+    AppCollapse: typeof import('./src/modules/ui/components/app/collapse/AppCollapse.vue')['default']
+    'AppCollapse.story': typeof import('./src/modules/ui/components/app/collapse/AppCollapse.story.vue')['default']
+    AppCollapseButton: typeof import('./src/modules/ui/components/app/collapse/AppCollapseButton.vue')['default']
+    AppCollapseGroup: typeof import('./src/modules/ui/components/app/collapse/AppCollapseGroup.vue')['default']
+    AppCollapsePanel: typeof import('./src/modules/ui/components/app/collapse/AppCollapsePanel.vue')['default']
     AppConfirmButton: typeof import('./src/modules/ui/components/app/buttons/app-confirm-button/AppConfirmButton.vue')['default']
     'AppConfirmButton.story': typeof import('./src/modules/ui/components/app/buttons/app-confirm-button/AppConfirmButton.story.vue')['default']
     AppDropdownButton: typeof import('./src/modules/ui/components/app/buttons/app-dropdown-button/AppDropdownButton.vue')['default']
@@ -59,6 +64,7 @@ declare module '@vue/runtime-core' {
     TestComponent: typeof import('./src/components/TestComponent.vue')['default']
     TransitionExpand: typeof import('./src/modules/ui/components/transitions/TransitionExpand.vue')['default']
     TrashIcon: typeof import('./src/components/icons/TrashIcon.vue')['default']
+    UseCollapseGroup: typeof import('./src/modules/ui/composables/app/collapse/useCollapseGroup.vue')['default']
     WarningIcon: typeof import('./src/components/icons/WarningIcon.vue')['default']
   }
 }

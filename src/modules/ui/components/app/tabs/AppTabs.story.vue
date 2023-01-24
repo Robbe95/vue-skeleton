@@ -4,7 +4,7 @@
 
 <template>
   <Story
-    title="App/AppTabs"
+    title="App/Tabs/AppTabs"
   >
     <Variant title="Default">
       <AppTabs>

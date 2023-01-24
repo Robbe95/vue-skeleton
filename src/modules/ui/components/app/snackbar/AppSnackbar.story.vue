@@ -15,7 +15,7 @@ const handleClick = (type: 'success' | 'error' | 'warning' | 'info', position: S
 
 <template>
   <Story
-    title="App/Snackbar"
+    title="App/Snackbars/AppSnackbar"
   >
     <Variant title="Default">
       <div class="flex gap-1">

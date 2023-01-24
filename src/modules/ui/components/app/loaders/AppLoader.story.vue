@@ -3,7 +3,7 @@
 
 <template>
   <Story
-    title="App/Loaders"
+    title="App/Loaders/AppLoader"
   >
     <Variant title="Default">
       <AppLoader class="w-16 h-16" />

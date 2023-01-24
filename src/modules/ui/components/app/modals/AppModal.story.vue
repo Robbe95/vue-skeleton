@@ -7,7 +7,7 @@ const handleClick = () => {
 
 <template>
   <Story
-    title="App/Modals"
+    title="App/Modals/AppModal"
   >
     <Variant title="Default">
       <AppButton @component:click="handleClick">

@@ -55,7 +55,6 @@ declare module '@vue/runtime-core' {
     TestComponent: typeof import('./src/components/TestComponent.vue')['default']
     TransitionExpand: typeof import('./src/modules/ui/components/transitions/TransitionExpand.vue')['default']
     TrashIcon: typeof import('./src/components/icons/TrashIcon.vue')['default']
-    UseSnackbar: typeof import('./src/modules/ui/composables/app/snackbar/useSnackbar.vue')['default']
     WarningIcon: typeof import('./src/components/icons/WarningIcon.vue')['default']
   }
 }

@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import CloseIcon from '@/components/icons/CloseIcon.vue'
 import type { Snackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
-import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
 
 interface Props {
   snackbar: Snackbar
 }
 
 const props = defineProps<Props>()
-
-const { removeSnackbar } = useSnackbar()
-
-onMounted(() => {
-  setTimeout(() => {
-    removeSnackbar(props.snackbar)
-  }, props.snackbar.time)
-})
-
+const emit = defineEmits<{
+  (event: 'close'): void
+}>()
 const classes = computed(() => {
   switch (props.snackbar.type) {
     case 'success':
@@ -42,6 +35,10 @@ const textColor = computed(() => {
       return 'text-secondary-500'
   }
 })
+
+const closeSnackbar = () => {
+  emit('close')
+}
 </script>
 
 <template>
@@ -50,9 +47,26 @@ const textColor = computed(() => {
       {{ snackbar.message }}
     </div>
     <div>
-      <button @click="removeSnackbar(snackbar)">
+      <button @click="closeSnackbar">
         <CloseIcon class="h-3 " :class="textColor" />
       </button>
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+.scale-bounce-transition {
+  &-enter-active,
+  &-leave-active {
+    transition:
+      cubic-bezier(.8, .16, 0, 1.3) 0.5s transform,
+      0.2s opacity;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: scale(0);
+    opacity: 0 !important;
+  }
+}
+</style>

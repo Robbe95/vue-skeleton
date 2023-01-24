@@ -32,8 +32,6 @@ const handleClick = (type: 'success' | 'error' | 'warning' | 'info', position: S
           Add error snackbar
         </AppButton>
       </div>
-
-      <AppSnackbarContainer />
     </Variant>
   </Story>
 </template>

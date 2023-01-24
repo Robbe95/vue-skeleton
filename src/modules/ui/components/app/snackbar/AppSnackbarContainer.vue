@@ -1,28 +1,35 @@
 <script setup lang="ts">
-import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
+import type { SnackbarContainerState } from '@/modules/ui/composables/app/snackbar/useSnackbar'
 
-const { snackbars, currentPosition } = useSnackbar()
+const snackbarContainer = inject('snackbarContainer') as SnackbarContainerState
+const clearSnackbar = inject('clearSnackbar') as (container: SnackbarContainerState, snackbarUuid: string) => void
 
-const cssPosition = computed(() => {
-  switch (currentPosition.value) {
-    case 'top-left':
-      return 'top-4 left-4'
-    case 'top-right':
-      return 'top-4 right-4'
-    case 'bottom-left':
-      return 'bottom-4 left-4'
-    case 'bottom-right':
-      return 'bottom-4 right-4'
-  }
-})
+const snackbars = computed(() => snackbarContainer.snackbars)
 </script>
 
 <template>
-  <div class="fixed flex flex-col gap-1" :class="cssPosition">
-    <TransitionGroup name="snackbar">
-      <AppSnackbar v-for="snackbar in snackbars" :key="snackbar.id" :snackbar="snackbar">
-        {{ snackbar.message }}
-      </AppSnackbar>
-    </TransitionGroup>
-  </div>
+  <TransitionGroup name="snackbar">
+    <AppSnackbar
+      v-for="snackbar in snackbars.value" :key="snackbar.uuid"
+      :snackbar="snackbar" @close="clearSnackbar(snackbarContainer, snackbar.uuid)"
+    />
+  </Transitiongroup>
 </template>
+
+<style scoped>
+.snackbar-move, /* apply transition to moving elements */
+.snackbar-enter-active,
+.snackbar-leave-active {
+  transition: all 0.5s ease;
+}
+
+.snackbar-enter-from,
+.snackbar-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.snackbar-leave-active {
+  position: absolute;
+}
+</style>

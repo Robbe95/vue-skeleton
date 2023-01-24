@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
-import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useNewSnackbar'
+import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
 
-const { renderSnackbar } = useSnackbar()
+const { addSnackbar } = useSnackbar()
 useHead({
   title: 'Test',
   meta: [
@@ -15,11 +15,11 @@ useHead({
 })
 
 const onClick = () => {
-  renderSnackbar({ message: 'Dit is een test', type: 'success' })
+  addSnackbar({ message: 'Dit is een test', type: 'success' })
 }
 
 const onClick2 = () => {
-  renderSnackbar({ message: 'Dit is een 2', type: 'info', position: 'top-right' })
+  addSnackbar({ message: 'Dit is een 2', type: 'info', position: 'top-right' })
 }
 </script>
 

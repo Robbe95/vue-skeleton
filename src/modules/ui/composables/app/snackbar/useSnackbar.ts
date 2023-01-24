@@ -1,6 +1,9 @@
+import type { App, Ref } from 'vue'
+import { generateUuid } from '@/helpers/uuid/generateUuid'
+import AppSnackbarContainer from '@/modules/ui/components/app/snackbar/AppSnackbarContainer.vue'
 export type SnackbarLocation = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 export interface Snackbar {
-  id: string
+  uuid: string
   message: string
   type: 'success' | 'error' | 'warning' | 'info'
   time: number
@@ -13,24 +16,107 @@ export interface AddSnackbarArgs {
   position?: SnackbarLocation
 }
 
-const snackbars = ref<Snackbar[]>([])
-const currentPosition = ref<SnackbarLocation>('top-right')
+export interface SnackbarContainerState {
+  container: HTMLElement
+  render?: App<Element>
+  div: HTMLElement
+  snackbars: Ref<Snackbar[]>
+}
+
+export interface SnackbarState {
+  uuid: string
+  snackbar: App<Element>
+}
+
+const snackbarContainers: SnackbarContainerState[] = []
+
 export const useSnackbar = () => {
-  const addSnackbar = ({ message, type, position, time = 5000 }: AddSnackbarArgs) => {
-    const id = Math.random().toString(36).substr(2, 9)
-    snackbars.value.push({ id, message, type, time })
-    if (position)
-      currentPosition.value = position
+  const positionToCss = (element: HTMLElement, position: SnackbarLocation) => {
+    switch (position) {
+      case 'top-left':
+        element.style.top = '4px'
+        element.style.left = '4px'
+        break
+      case 'top-right':
+        element.style.top = '4px'
+        element.style.right = '4px'
+        break
+      case 'bottom-left':
+        element.style.bottom = '4px'
+        element.style.left = '4px'
+        break
+      case 'bottom-right':
+        element.style.bottom = '4px'
+        element.style.right = '4px'
+        break
+    }
   }
 
-  const removeSnackbar = (toBeRemoved: Snackbar) => {
-    snackbars.value = snackbars.value.filter(snackbar => snackbar.id !== toBeRemoved.id)
+  const clearSnackbar = (container: SnackbarContainerState, snackbarUuid: string) => {
+    const snackbar = container.snackbars.value.find(snackbar => snackbar.uuid === snackbarUuid)
+    if (snackbar) {
+      container.snackbars.value.splice(container.snackbars.value.indexOf(snackbar), 1)
+      if (container.snackbars.value.length === 0) {
+        setTimeout(() => {
+          container.container.remove()
+          container.render?.unmount()
+          snackbarContainers.splice(snackbarContainers.indexOf(container), 1)
+        }, 500)
+      }
+    }
+  }
+
+  const renderContainer = (position: SnackbarLocation) => {
+    const container = document.createElement('div')
+    container.id = position
+    container.style.position = 'fixed'
+    container.style.zIndex = '9999'
+    container.style.display = 'flex'
+    container.style.flexDirection = 'column'
+    container.style.gap = '0.25rem'
+
+    positionToCss(container, position)
+    document.body.appendChild(container)
+    let relevantContainer = snackbarContainers.find(container => container.container.id === position)
+    if (!relevantContainer) {
+      relevantContainer = {
+        container,
+        div: document.createElement('div'),
+        snackbars: ref<Snackbar[]>([]),
+      } as SnackbarContainerState
+      snackbarContainers.push(relevantContainer as SnackbarContainerState)
+    }
+
+    const instance = createApp({
+      render: () => h(AppSnackbarContainer),
+    })
+
+    relevantContainer.render = instance
+    instance.provide('snackbarContainer', relevantContainer)
+    instance.provide('clearSnackbar', clearSnackbar)
+
+    instance.mount(container)
+
+    return relevantContainer
+  }
+
+  const addSnackbar = ({ message, type, time = 5000, position = 'bottom-left' }: AddSnackbarArgs) => {
+    const relevantContainer = snackbarContainers.find(container => container.container.id === position) || renderContainer(position)
+
+    const newSnackbarUuid = generateUuid()
+    relevantContainer.snackbars.value.push({
+      uuid: newSnackbarUuid,
+      message,
+      type,
+      time,
+    })
+
+    setTimeout(() => {
+      clearSnackbar(relevantContainer, newSnackbarUuid)
+    }, time)
   }
 
   return {
-    snackbars,
     addSnackbar,
-    removeSnackbar,
-    currentPosition,
   }
 }

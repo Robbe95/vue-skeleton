@@ -24,12 +24,7 @@ const onClick2 = () => {
 </script>
 
 <template>
-  <div>
-    <button @click="onClick">
-      Test
-    </button>
-    <button @click="onClick2">
-      Test
-    </button>
+  <div class="p-40">
+    <AppTabs />
   </div>
 </template>

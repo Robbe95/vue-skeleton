@@ -7,6 +7,7 @@ specifiers:
   '@histoire/plugin-vue': ^0.12.4
   '@testing-library/vue': ^6.6.1
   '@types/node': ^18.11.18
+  '@vee-validate/zod': ^4.7.3
   '@vitejs/plugin-vue': ^4.0.0
   '@vueuse/core': ^9.11.1
   '@vueuse/head': ^1.0.22
@@ -23,6 +24,7 @@ specifiers:
   typescript: ^4.9.4
   unplugin-auto-import: ^0.12.1
   unplugin-vue-components: ^0.22.12
+  vee-validate: ^4.7.3
   vite: ^4.0.4
   vitest: ^0.27.3
   vue: ^3.2.45
@@ -34,12 +36,14 @@ specifiers:
 dependencies:
   '@headlessui-float/vue': 0.10.1_vue@3.2.45
   '@headlessui/vue': 1.7.7_vue@3.2.45
+  '@vee-validate/zod': 4.7.3_vee-validate@4.7.3+zod@3.20.2
   '@vueuse/core': 9.11.1_vue@3.2.45
   '@vueuse/head': 1.0.22_vue@3.2.45
   axios: 1.2.3
   pinia: 2.0.29_typescript@4.9.4+vue@3.2.45
   sass: 1.57.1
   scss: 0.2.4
+  vee-validate: 4.7.3_vue@3.2.45
   vue: 3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -978,6 +982,16 @@ packages:
       '@unhead/schema': 1.0.17
       hookable: 5.4.2
       vue: 3.2.45
+    dev: false
+
+  /@vee-validate/zod/4.7.3_vee-validate@4.7.3+zod@3.20.2:
+    resolution: {integrity: sha512-81yqHk9fbrZy+BaU6SEevEmJlABl6UCZ0Tv3/zY6T9wosubV7/uErf4Gw3Rpi2GFUpSQKYlD3dLSt1rzndrf+Q==}
+    peerDependencies:
+      vee-validate: ^4.4.0
+      zod: ^3.1.0
+    dependencies:
+      vee-validate: 4.7.3_vue@3.2.45
+      zod: 3.20.2
     dev: false
 
   /@vitejs/plugin-vue/4.0.0_vite@4.0.4+vue@3.2.45:
@@ -4708,6 +4722,15 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /vee-validate/4.7.3_vue@3.2.45:
+    resolution: {integrity: sha512-1MwHLOzCrabSeChySZVVMamWStcucM1hHxapoebY9mJ7KWOvncMG19a7AlPl38zpE9pcD+G3CHKLvviGmTl5BQ==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      vue: 3.2.45
+    dev: false
 
   /vite-node/0.26.0_@types+node@18.11.18+sass@1.57.1:
     resolution: {integrity: sha512-nLtHWCv6reONl1oFsKhQ/LT7n3UNLpvVARAJlmGrQV6qSElht/9AdN41Pa+WSkw2Winh682UzM0Yw0GNlfqejw==}

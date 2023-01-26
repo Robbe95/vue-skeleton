@@ -22,7 +22,7 @@ const formObject = ref(
   },
 )
 
-const { errors } = useForm(schema, formObject)
+const { errors, combined } = useForm(schema, formObject)
 </script>
 
 <template>
@@ -31,5 +31,6 @@ const { errors } = useForm(schema, formObject)
     <FormInputField v-model="formObject.email" />
     <FormInputField v-model="formObject.address.street" />
     <FormInputField v-model="formObject.address.number" type="number" />
+    {{ combined }}
   </div>
 </template>

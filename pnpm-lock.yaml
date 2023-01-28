@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@antfu/eslint-config': ^0.34.1
+  '@floating-ui/dom': ^1.1.1
   '@headlessui-float/vue': ^0.10.1
   '@headlessui/vue': ^1.7.7
   '@histoire/plugin-vue': ^0.12.4
@@ -34,6 +35,7 @@ specifiers:
   zod: ^3.20.2
 
 dependencies:
+  '@floating-ui/dom': 1.1.1
   '@headlessui-float/vue': 0.10.1_vue@3.2.45
   '@headlessui/vue': 1.7.7_vue@3.2.45
   '@vee-validate/zod': 4.7.3_vee-validate@4.7.3+zod@3.20.2
@@ -508,6 +510,12 @@ packages:
 
   /@floating-ui/dom/1.1.0:
     resolution: {integrity: sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==}
+    dependencies:
+      '@floating-ui/core': 1.1.0
+    dev: false
+
+  /@floating-ui/dom/1.1.1:
+    resolution: {integrity: sha512-TpIO93+DIujg3g7SykEAGZMDtbJRrmnYRCNYSjJlvIbGhBjRSNTLVbNeDQBrzy9qDgUbiWdc7KA0uZHZ2tJmiw==}
     dependencies:
       '@floating-ui/core': 1.1.0
     dev: false

@@ -9,10 +9,13 @@ import {
 import CloseIcon from '@/components/icons/CloseIcon.vue'
 interface Props {
   isOpen: boolean
+  noStyling?: boolean
 
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  noStyling: false,
+})
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
@@ -48,7 +51,9 @@ const emit = defineEmits<{
             leave-to="opacity-0 scale-0"
           >
             <DialogPanel
-              class="relative p-8 text-left bg-white rounded shadow-main lg:px-24"
+              :class="{
+                'relative p-8 text-left bg-white rounded shadow-main lg:px-24': !noStyling,
+              }"
             >
               <DialogTitle
                 as="h3"
@@ -56,16 +61,18 @@ const emit = defineEmits<{
               >
                 <slot name="title" />
               </DialogTitle>
-              <div class="mt-2">
-                <p>
-                  <slot name="content" />
-                </p>
+              <div
+                :class="{
+                  'mt-2': !noStyling,
+                }"
+              >
+                <slot name="content" />
               </div>
 
               <div class="mt-4">
                 <slot name="footer" />
               </div>
-              <AppIconButton class="absolute bg-danger-100 text-danger-500 top-4 right-4" @click="emit('close')">
+              <AppIconButton v-if="!noStyling" class="absolute bg-danger-100 text-danger-500 top-4 right-4" @click="emit('close')">
                 <CloseIcon />
               </AppIconButton>
             </DialogPanel>

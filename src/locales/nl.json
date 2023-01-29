@@ -7,5 +7,8 @@
   },
   "labels": {
     "no_results": "Geen resultaten"
+  },
+  "errors": {
+    "invalid_type": "Het type is fout."
   }
 }

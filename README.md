@@ -2,18 +2,39 @@
 ```
 npx degit Robbe95/vue-skeleton my-project-name
 cd my-project-name
-npm i
+pnpm i
 ```
 
 
-# Vue 3 + Typescript + Vite
+# Startup
+Setup .env.development, .env.staging, .env.production files.
+Histoire setup with story:dev
+Start development sterver with dev command
+```
+pnpm dev
+pnpm story:dev
+```
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Structure
+Module based layout.
+Each feature has it's own folder in the modules folder, which contains all the scaffolding needed for that feature
+/modules/empty contains an empty scaffolding to copy.
+/modules/ui contains UI components.
+/modules/example contains a small example of the structure and api calls using Zod.
+/modules/auth contains a basic login form.
 
-## Recommended IDE Setup
+# Models
+Instead of types, declare everything with a Zod object in the models folder. 
+Infer it's type and export it too.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
-
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+# Features
+Auto imports on: components / vue / vue-router / pinia / vue-i18n / vitest / axios.
+Tailwind
+Histoire
+Vue i18n
+TS
+VueUse
+VueUse Head
+Headless / Floating UI
+Zod
+@antfu/eslint-config as linter

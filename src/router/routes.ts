@@ -1,5 +1,5 @@
-import { Routes } from './routeTypes.d'
-
+import { Routes } from './routes.type'
+import exampleRouter from '@/modules/example/router/example.router'
 interface Route {
   path: string
   component: () => Promise<unknown>
@@ -17,6 +17,7 @@ export default [
         name: Routes.INDEX,
         path: '',
       },
+      ...exampleRouter,
     ],
   },
 ] satisfies Route[]

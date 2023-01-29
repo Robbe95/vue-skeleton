@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
     ChevronRightIcon: typeof import('./src/components/icons/ChevronRightIcon.vue')['default']
     CloseIcon: typeof import('./src/components/icons/CloseIcon.vue')['default']
     EditIcon: typeof import('./src/components/icons/EditIcon.vue')['default']
+    ExampleApiView: typeof import('./src/modules/example/pages/ExampleApiView.vue')['default']
     FormCheckbox: typeof import('./src/modules/ui/components/forms/checkbox/FormCheckbox.vue')['default']
     'FormCheckbox.story': typeof import('./src/modules/ui/components/forms/checkbox/FormCheckbox.story.vue')['default']
     FormCheckboxGroup: typeof import('./src/modules/ui/components/forms/checkbox/FormCheckboxGroup.vue')['default']

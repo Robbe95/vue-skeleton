@@ -1,13 +1,10 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import type { Route } from './routes.type'
 import { Routes } from './routes.type'
 import exampleRouter from '@/modules/example/router/example.router'
-interface Route {
-  path: string
-  component: () => Promise<unknown>
-  children?: Route[]
-  name?: Routes
-}
+import authRouter from '@/modules/auth/router/auth.router'
 
-export default [
+const routes = [
   {
     path: '/',
     component: () => import('../layouts/Main.vue'),
@@ -18,6 +15,14 @@ export default [
         path: '',
       },
       ...exampleRouter,
+      ...authRouter,
     ],
   },
 ] satisfies Route[]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export default router

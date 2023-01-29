@@ -1,32 +1,15 @@
 import { createApp } from 'vue'
-import { createI18n } from 'vue-i18n'
-import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
-import routes from './router/routes'
+
+import router from './router/router'
+import i18n from './plugins/i18n'
 import App from './App.vue'
 
-import en from './locales/en.json'
-import nl from './locales/nl.json'
 import './assets/styles/tailwind.css'
 import './assets/styles/transitions.scss'
 
 const pinia = createPinia()
-
-const i18n = createI18n({
-  legacy: false,
-  locale: 'nl', // set locale
-  fallbackLocale: 'nl', // set fallback locale
-  messages: {
-    nl,
-    en,
-  },
-})
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
 
 const app = createApp(App)
 app.use(pinia)

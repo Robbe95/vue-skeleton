@@ -3,8 +3,8 @@ import { Routes } from '@/router/routes.type'
 
 export default [
   {
-    component: () => import('../pages/ExampleApiPage.vue'),
-    name: Routes.EXAMPLE_INDEX,
-    path: 'example',
+    component: () => import('../pages/LoginPage.vue'),
+    name: Routes.LOGIN,
+    path: 'login',
   },
 ] satisfies Route[]

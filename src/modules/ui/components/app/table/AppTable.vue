@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTableContext } from '@/modules/ui/composables/app/table/useTable'
+import { useTableContext } from '@/modules/ui/composables/app/table/useTableContext'
 
 interface Props {
   hasPagination?: boolean
@@ -19,7 +19,7 @@ const hasGlobalFilter = computed(() => {
 const filter = computed({
   get: () => context?.filters.find(filter => filter.field === 'global')?.value,
   set: (value) => {
-    const relevantFilter = context.filters.find(filter => filter.field === 'global')
+    const relevantFilter = context?.filters.find(filter => filter.field === 'global')
     if (relevantFilter && value !== undefined)
       relevantFilter.value = value
   },
@@ -29,14 +29,22 @@ const isFilterEnabled = computed(() => {
   return context?.filters.find(filter => filter.field === 'global')?.isEnabled
 })
 const setFilterEnabled = (enabled: boolean): void => {
-  const relevantFilter = context.filters.find(filter => filter.field === 'global')
+  const relevantFilter = context?.filters.find(filter => filter.field === 'global')
   if (relevantFilter)
     relevantFilter.isEnabled = enabled
 }
 
-const paginationData = computed(() => {
-  return context?.pagination
+const currentPage = computed(() => {
+  return context?.pagination.currentPage.value
 })
+
+const pageOptions = computed(() => {
+  return context?.pagination.paginationOptions.value
+})
+
+const setPage = (page: number): void => {
+  context?.pagination.setPage(page)
+}
 </script>
 
 <template>
@@ -59,11 +67,11 @@ const paginationData = computed(() => {
       </table>
     </div>
     <AppPagination
-      v-if="hasPagination"
+      v-if="hasPagination && pageOptions && currentPage"
       class="mt-1"
-      :current-option="paginationData.currentPage.value"
-      :options="paginationData.paginationOptions.value"
-      @page:set="paginationData.setPage"
+      :current-option="currentPage"
+      :options="pageOptions"
+      @page:set="setPage"
     />
   </div>
 </template>

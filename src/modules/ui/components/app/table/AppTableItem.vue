@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FormInputField from '../../forms/field/FormInputField.vue'
-import { useTableContext } from '@/modules/ui/composables/app/table/useTable'
+import { useTableContext } from '@/modules/ui/composables/app/table/useTableContext'
 interface Props {
   isHeader?: boolean
 }
@@ -18,18 +18,18 @@ const headerKey = getCurrentInstance()?.vnode.key as string
 const sortableRows = computed(() => context?.sortableRows)
 const currentSort = computed(() => context?.currentSort)
 const isSortable = computed(() => {
-  return sortableRows?.value.includes(headerKey)
+  return sortableRows?.value?.includes(headerKey)
 })
 const sort = (): void => {
   if (isSortable.value)
-    context.sort(headerKey)
+    context?.sort(headerKey)
 }
 
 // Filter
 const filter = computed({
   get: () => context?.filters.find(filter => filter.field === headerKey)?.value,
   set: (value) => {
-    const relevantFilter = context.filters.find(filter => filter.field === headerKey)
+    const relevantFilter = context?.filters.find(filter => filter.field === headerKey)
     if (relevantFilter && value !== undefined)
       relevantFilter.value = value
   },
@@ -39,7 +39,7 @@ const isFilterEnabled = computed(() => {
   return context?.filters.find(filter => filter.field === headerKey)?.isEnabled
 })
 const setFilterEnabled = (enabled: boolean): void => {
-  const relevantFilter = context.filters.find(filter => filter.field === headerKey)
+  const relevantFilter = context?.filters.find(filter => filter.field === headerKey)
   if (relevantFilter)
     relevantFilter.isEnabled = enabled
 }
@@ -55,7 +55,7 @@ const isFilterable = computed(() => {
       <div class="flex flex-row items-start justify-between h-full gap-2">
         <slot />
         <AppIconButton v-if="isSortable" @component:click="sort">
-          <SortAscendingIcon v-if="currentSort.field === headerKey && currentSort.direction === 'asc'" />
+          <SortAscendingIcon v-if="currentSort?.field === headerKey && currentSort.direction === 'asc'" />
           <SortDescendingIcon v-else />
         </AppIconButton>
       </div>

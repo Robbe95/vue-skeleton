@@ -1,7 +1,8 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { Ref } from 'vue'
 
 import type { PaginationNumber } from '../pagination/usePagination'
 import { usePagination } from '../pagination/usePagination'
+import { TableContext } from './useTableContext'
 
 export type Key<T> = keyof T
 
@@ -43,18 +44,6 @@ export interface Filter<T> {
   value: string
   isEnabled: boolean
 }
-export const TableContext = Symbol('TableContext') as InjectionKey<TableStateDefinition>
-
-export const useTableContext = (): TableStateDefinition => {
-  const context = inject(TableContext, null)
-  if (context === null) {
-    const err = new Error('No useTableContext provided.)')
-    console.error(err)
-    throw err
-  }
-
-  return context
-}
 
 export const useTable = <T extends Record<string, any>>(data: T[], options: TableOptions<T> = ({ rowsPerPage: 10 })): {
   tableData: Ref<T[]>
@@ -68,6 +57,7 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
   setPage: (page: number) => void
   paginationOptions: Ref<PaginationNumber[]>
   paginatedData: Ref<T[]>
+  provideData: () => void
 } => {
   const tableData = ref(data)
 
@@ -171,21 +161,24 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     setPage,
   } = usePagination(filteredData, { rowsPerPage: options.rowsPerPage })
 
-  provide(TableContext, {
-    sort,
-    filters: filters.value ?? [],
-    sortableRows: options.sortableRows ?? [],
-    currentSort: currentSort.value,
-    pagination: {
-      rowsPerPage: options.rowsPerPage,
-      setPage,
-      currentPage,
-      nextPage,
-      previousPage,
-      paginationOptions,
-    },
-  })
+  const provideData = (): void => {
+    provide(TableContext, {
+      sort,
+      filters: filters.value ?? [],
+      sortableRows: options.sortableRows ?? [],
+      currentSort: currentSort.value,
+      pagination: {
+        rowsPerPage: options.rowsPerPage,
+        setPage,
+        currentPage,
+        nextPage,
+        previousPage,
+        paginationOptions,
+      },
+    })
+  }
 
+  provideData()
   return {
     tableHeaders,
     tableData,
@@ -198,6 +191,7 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     filters,
     paginatedData,
     setPage,
+    provideData,
 
   }
 }

@@ -1,4 +1,6 @@
-import type { InjectionKey } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
+
+import type { PaginationNumber } from '../pagination/usePagination'
 import { usePagination } from '../pagination/usePagination'
 
 export type Key<T> = keyof T
@@ -14,6 +16,16 @@ export interface TableStateDefinition {
   sort(header: string): void
   sortableRows: Key<any>[]
   currentSort: CurrentSort<any>
+  pagination: PaginationControls
+}
+
+export interface PaginationControls {
+  rowsPerPage: number
+  currentPage: Ref<number>
+  nextPage(): void
+  previousPage(): void
+  setPage(page: number): void
+  paginationOptions: ComputedRef<PaginationNumber[]>
 }
 
 export interface FilterableRow<T> {
@@ -138,13 +150,6 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
 
   setupFilters()
 
-  provide(TableContext, {
-    sort,
-    filters: filters.value ?? [],
-    sortableRows: options.sortableRows ?? [],
-    currentSort: currentSort.value,
-  })
-
   const {
     currentPage,
     nextPage,
@@ -153,6 +158,21 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     paginationOptions,
     setPage,
   } = usePagination(filteredData, { rowsPerPage: options.rowsPerPage })
+
+  provide(TableContext, {
+    sort,
+    filters: filters.value ?? [],
+    sortableRows: options.sortableRows ?? [],
+    currentSort: currentSort.value,
+    pagination: {
+      rowsPerPage: options.rowsPerPage,
+      setPage,
+      currentPage,
+      nextPage,
+      previousPage,
+      paginationOptions,
+    },
+  })
 
   return {
     tableHeaders,
@@ -165,6 +185,7 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     paginationOptions,
     filters,
     paginatedData,
+    data,
     setPage,
   }
 }

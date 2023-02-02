@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { useTableContext } from '@/modules/ui/composables/app/table/useTable'
 
+interface Props {
+  hasPagination?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  hasPagination: false,
+})
+
 const { t } = useI18n()
 const context = useTableContext()
 
@@ -25,6 +33,10 @@ const setFilterEnabled = (enabled: boolean) => {
   if (relevantFilter)
     relevantFilter.isEnabled = enabled
 }
+
+const paginationData = computed(() => {
+  return context?.pagination
+})
 </script>
 
 <template>
@@ -46,5 +58,12 @@ const setFilterEnabled = (enabled: boolean) => {
         </tbody>
       </table>
     </div>
+    <AppPagination
+      v-if="hasPagination"
+      class="mt-1"
+      :current-option="paginationData.currentPage.value"
+      :options="paginationData.paginationOptions.value"
+      @page:set="paginationData.setPage"
+    />
   </div>
 </template>

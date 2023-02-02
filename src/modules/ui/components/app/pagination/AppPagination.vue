@@ -37,9 +37,9 @@ const calculateNewPosition = () => {
   calculatedPostion.value = `left: ${getCurrentPosition.left}px`
 }
 
-watch(() => props.currentOption, () => {
+watch(() => [props.currentOption, props.options], () => {
   nextTick(() => calculateNewPosition())
-})
+}, { deep: true })
 
 onMounted(() => {
   calculateNewPosition()
@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex gap-2 items-center justify-center">
+  <div class="flex gap-2 items-center justify-end">
     <AppPaginationItem is-active :style="calculatedPostion" class="absolute transition-all z-50">
       {{ currentOption }}
     </AppPaginationItem>

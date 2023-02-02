@@ -3,7 +3,6 @@ import { useHead } from '@vueuse/head'
 import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
 import { data } from '@/helpers/example-data/tableData'
 import { useTable } from '@/modules/ui/composables/app/table/useTable'
-const { addSnackbar } = useSnackbar()
 useHead({
   title: 'Test',
   meta: [
@@ -15,9 +14,10 @@ useHead({
 
 })
 
-const { tableHeaders, currentTableData } = useTable(data, {
-  sortableRows: ['address', 'name'],
-  rowsPerPage: 2,
+const { tableHeaders, filteredData } = useTable(data, {
+  sortableRows: ['postalZip', 'postalZip', 'email'],
+  filterableRows: [{ field: 'email', type: 'input' }, { field: 'phone', type: 'input' }],
+  rowsPerPage: 10,
 })
 </script>
 
@@ -33,7 +33,7 @@ const { tableHeaders, currentTableData } = useTable(data, {
           </AppTableRow>
         </template>
         <template #body>
-          <AppTableRow v-for="tableRow in currentTableData" :key="tableRow.name">
+          <AppTableRow v-for="tableRow in filteredData" :key="tableRow.name">
             <AppTableItem v-for="tableItem in tableRow" :key="tableItem">
               {{ tableItem }}
             </AppTableItem>

@@ -6,6 +6,7 @@ export interface RandomData {
   email: string
   country: string
   address: string
+  otherStuff?: string
 }
 
 export const data: RandomData[] = [
@@ -17,6 +18,7 @@ export const data: RandomData[] = [
     email: 'pellentesque.eget@google.com',
     country: 'Turkey',
     address: '565-3304 Mollis Av.',
+    otherStuff: 'test',
   },
   {
     phone: '(810) 530-1266',

@@ -26,7 +26,6 @@ export const useSelectContext = (component: string) => {
 
   if (context === null) {
     const err = new Error(`<${component} /> is missing a parent <FormSelect /> component.`)
-    console.error(err)
     throw err
   }
 

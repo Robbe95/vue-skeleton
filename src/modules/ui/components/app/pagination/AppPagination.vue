@@ -2,6 +2,7 @@
 import type { PaginationNumber } from '@/modules/ui/composables/app/pagination/usePagination'
 interface Props {
   options: PaginationNumber[]
+  currentOption: number
 }
 
 const props = defineProps<Props>()
@@ -16,11 +17,50 @@ const setPage = (page: PaginationNumber) => {
   if (typeof page === 'number')
     emit('page:set', page)
 }
+
+const currentSelectionPosition = computed(() => {
+  return props.options.findIndex(option => typeof option === 'number')
+})
+
+watch(currentSelectionPosition, (position) => {
+  if (position === 0)
+    emit('page:prev')
+  if (position === props.options.length - 1)
+    emit('page:next')
+})
+const calculatedPostion = ref<string>()
+
+const calculateNewPosition = () => {
+  const getCurrentPosition = document.querySelector('.current-item')?.getBoundingClientRect()
+  if (getCurrentPosition === undefined)
+    return
+  calculatedPostion.value = `left: ${getCurrentPosition.left}px`
+}
+
+watch(() => props.currentOption, () => {
+  nextTick(() => calculateNewPosition())
+})
+
+onMounted(() => {
+  calculateNewPosition()
+})
 </script>
 
 <template>
-  <div class="flex gap-12">
-    <AppPaginationItem v-for="option in options" :key="option" :value="option" @component:click="setPage(option)">
+  <div class="flex gap-2 items-center justify-center">
+    <AppPaginationItem is-active :style="calculatedPostion" class="absolute transition-all z-50">
+      {{ currentOption }}
+    </AppPaginationItem>
+    <AppPaginationItem
+      v-for="option in options"
+      :key="option"
+      :class="{
+        'current-item': currentOption === option,
+      }"
+      :is-dots="option === '...'"
+      :value="option"
+      @component:click="setPage(option)"
+    >
       {{ option }}
     </AppPaginationItem>
   </div>

@@ -6,7 +6,7 @@ export interface PaginationOptions {
 export type PaginationNumber = number | '...'
 export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationOptions = { rowsPerPage: 10 }) => {
   const data = ref(inputData) as Ref<T[]>
-  const currentPage = ref(0)
+  const currentPage = ref(1)
   const rowsPerPage = ref(options.rowsPerPage)
   const rowsAmount = ref(0)
   const maxPage = computed(() => {
@@ -70,7 +70,7 @@ export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationO
   })
 
   const paginatedData = computed<T[]>(() => {
-    const start = currentPage.value * rowsPerPage.value
+    const start = (currentPage.value - 1) * rowsPerPage.value
     const end = start + rowsPerPage.value
     return data.value?.slice(start, end)
   })

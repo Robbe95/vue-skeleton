@@ -24,7 +24,7 @@ const filterableRows = ref<FilterableRow<RandomData>[]>(
     { field: 'global', type: 'input' },
   ],
 )
-const { tableHeaders, paginatedData, paginationOptions, setPage } = useTable(tableData.value, {
+const { tableHeaders, paginatedData, paginationOptions, setPage, currentPage } = useTable(tableData.value, {
   sortableRows: sortableRows.value,
   filterableRows: filterableRows.value,
   rowsPerPage: 10,
@@ -59,7 +59,9 @@ const changeData = (): void => {
           </AppTableRow>
         </template>
       </AppTable>
-      <AppPagination :options="paginationOptions" @page:set="setPage" />
+      <div class="w-full items-center justify-center">
+        <AppPagination class="mt-1" :current-option="currentPage" :options="paginationOptions" @page:set="setPage" />
+      </div>
     </div>
   </div>
 </template>

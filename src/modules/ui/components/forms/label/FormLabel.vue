@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  isOptional: boolean
+  isOptional?: boolean
 }
 
 withDefaults(defineProps<Props>(), { isOptional: false })

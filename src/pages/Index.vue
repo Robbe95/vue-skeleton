@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
-import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
+import type { RandomData } from '@/helpers/example-data/tableData'
 import { data } from '@/helpers/example-data/tableData'
+import type { FilterableRow, Key } from '@/modules/ui/composables/app/table/useTable'
 import { useTable } from '@/modules/ui/composables/app/table/useTable'
 useHead({
   title: 'Test',
@@ -14,15 +15,33 @@ useHead({
 
 })
 
-const { tableHeaders, filteredData } = useTable(data, {
-  sortableRows: ['postalZip', 'postalZip', 'email'],
-  filterableRows: [{ field: 'email', type: 'input' }, { field: 'phone', type: 'input' }],
+const tableData = ref<RandomData[]>(data)
+const sortableRows = ref<Key<RandomData>[]>(['postalZip', 'postalZip', 'email'])
+const filterableRows = ref<FilterableRow<RandomData>[]>(
+  [
+    { field: 'email', type: 'input' },
+    { field: 'phone', type: 'input' },
+    { field: 'global', type: 'input' },
+  ],
+)
+const { tableHeaders, paginatedData, paginationOptions, setPage } = useTable(tableData.value, {
+  sortableRows: sortableRows.value,
+  filterableRows: filterableRows.value,
   rowsPerPage: 10,
 })
+
+const changeData = (): void => {
+  tableData.value[0].name = 'Changed'
+  tableData.value[0].otherStuff = 'Changed'
+}
 </script>
 
 <template>
   <div class="p-4">
+    {{ paginationOptions }}
+    <button @click="changeData">
+      Change some stuff
+    </button>
     <div>
       <AppTable>
         <template #header>
@@ -33,13 +52,14 @@ const { tableHeaders, filteredData } = useTable(data, {
           </AppTableRow>
         </template>
         <template #body>
-          <AppTableRow v-for="tableRow in filteredData" :key="tableRow.name">
+          <AppTableRow v-for="tableRow in paginatedData" :key="tableRow.name">
             <AppTableItem v-for="tableItem in tableRow" :key="tableItem">
               {{ tableItem }}
             </AppTableItem>
           </AppTableRow>
         </template>
       </AppTable>
+      <AppPagination :options="paginationOptions" @page:set="setPage" />
     </div>
   </div>
 </template>

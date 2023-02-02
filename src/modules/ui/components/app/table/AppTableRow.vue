@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  isHeader: boolean
+  isHeader?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(),

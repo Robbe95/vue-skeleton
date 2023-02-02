@@ -1,6 +1,7 @@
 import type { InjectionKey } from 'vue'
+import { usePagination } from '../pagination/usePagination'
 
-type Key<T> = keyof T
+export type Key<T> = keyof T
 
 interface TableOptions<T> {
   rowsPerPage: number
@@ -16,7 +17,7 @@ export interface TableStateDefinition {
 }
 
 export interface FilterableRow<T> {
-  field: Key<T>
+  field: Key<T> | 'global'
   type: 'dropdown' | 'input'
 }
 
@@ -46,36 +47,28 @@ export const useTableContext = () => {
 export const useTable = <T extends Record<string, any>>(data: T[], options: TableOptions<T> = ({ rowsPerPage: 10 })) => {
   const tableData = ref(data)
 
+  const fillEmptyData = () => {
+    const emptyData = tableData.value[0]
+    const emptyDataKeys = Object.keys(emptyData)
+    tableData.value = tableData.value.map((row) => {
+      emptyDataKeys.forEach((key) => {
+        if (row[key] === undefined)
+          row[key as keyof T] = '' as any
+      })
+      return row
+    })
+  }
+
+  watch(() => data, () => {
+    fillEmptyData()
+  }, { deep: true })
+
+  fillEmptyData()
+
   const tableHeaders = computed<Key<T>[]>(() => data.reduce((acc: Key<T>[], curr: T) => [...new Set([...acc, ...Object.keys(curr)])], []))
   const rowsAmount = computed(() => tableData.value.length)
 
-  const currentPage = ref(0)
-  const rowsPerPage = ref(options.rowsPerPage)
   const currentSort = ref<CurrentSort<T>>({ field: null, direction: 'asc' })
-
-  const currentTableData = computed(() => {
-    const start = currentPage.value * rowsPerPage.value
-    const end = start + rowsPerPage.value
-    return tableData.value.slice(start, end)
-  })
-
-  const nextPage = () => {
-    if (currentPage.value < rowsAmount.value / rowsPerPage.value - 1)
-      currentPage.value++
-  }
-
-  const previousPage = () => {
-    if (currentPage.value > 0)
-      currentPage.value--
-  }
-
-  const paginationOptions = computed(() => {
-    const options = []
-    for (let i = 1; i <= rowsAmount.value / rowsPerPage.value; i++)
-      options.push(i)
-
-    return options
-  })
 
   const sort = (key: Key<T>) => {
     if (currentSort.value.field === key) {
@@ -116,21 +109,31 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
   }
 
   const filteredData = computed(() => {
+    let filteredData = tableData.value.filter((row) => {
+      const globalFilter = filters.value.find(filter => filter.field === 'global')
+      if (!globalFilter?.isEnabled)
+        return true
+      if (globalFilter.type === 'input')
+        return Object.values(row).some(value => value.toString().toLowerCase().includes(globalFilter.value?.toLowerCase()))
+      else if (globalFilter.type === 'dropdown')
+        return Object.values(row).includes((value: any) => value === globalFilter.value?.toLowerCase())
+      return false
+    })
     if (filters.value.length > 0) {
-      return tableData.value.filter((row) => {
-        return filters.value.every((filter) => {
+      filteredData = filteredData.filter((row) => {
+        return filters.value.filter(filter => filter.field !== 'global').every((filter) => {
           if (!filter.isEnabled)
             return true
           if (filter.type === 'dropdown')
             return row[filter.field as keyof T] === filter.value
           else if (filter.type === 'input')
-            return row[filter.field as keyof T].toLowerCase().includes(filter.value.toLowerCase())
+            return row[filter.field as keyof T]?.toLowerCase().includes(filter.value?.toLowerCase())
 
           return false
         })
       })
     }
-    return tableData.value
+    return filteredData
   })
 
   setupFilters()
@@ -142,16 +145,26 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     currentSort: currentSort.value,
   })
 
+  const {
+    currentPage,
+    nextPage,
+    previousPage,
+    paginatedData,
+    paginationOptions,
+    setPage,
+  } = usePagination(filteredData, { rowsPerPage: options.rowsPerPage })
+
   return {
     tableHeaders,
     tableData,
     filteredData,
     rowsAmount,
     currentPage,
-    currentTableData,
     nextPage,
     previousPage,
     paginationOptions,
     filters,
+    paginatedData,
+    setPage,
   }
 }

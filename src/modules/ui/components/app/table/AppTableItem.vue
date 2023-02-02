@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import FormInputField from '../../forms/field/FormInputField.vue'
 import { useTableContext } from '@/modules/ui/composables/app/table/useTable'
+interface Props {
+  isHeader?: boolean
+}
 const props = withDefaults(defineProps<Props>(),
   {
     isHeader: false,
@@ -8,9 +11,6 @@ const props = withDefaults(defineProps<Props>(),
 )
 const { t } = useI18n()
 const context = useTableContext()
-interface Props {
-  isHeader: boolean
-}
 
 const headerKey = getCurrentInstance()?.vnode.key as string
 

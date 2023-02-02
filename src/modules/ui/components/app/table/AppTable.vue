@@ -1,12 +1,50 @@
+<script setup lang="ts">
+import { useTableContext } from '@/modules/ui/composables/app/table/useTable'
+
+const { t } = useI18n()
+const context = useTableContext()
+
+const hasGlobalFilter = computed(() => {
+  return !!context?.filters.find(filter => filter.field === 'global')
+})
+
+const filter = computed({
+  get: () => context?.filters.find(filter => filter.field === 'global')?.value,
+  set: (value) => {
+    const relevantFilter = context.filters.find(filter => filter.field === 'global')
+    if (relevantFilter && value !== undefined)
+      relevantFilter.value = value
+  },
+})
+
+const isFilterEnabled = computed(() => {
+  return context?.filters.find(filter => filter.field === 'global')?.isEnabled
+})
+const setFilterEnabled = (enabled: boolean) => {
+  const relevantFilter = context.filters.find(filter => filter.field === 'global')
+  if (relevantFilter)
+    relevantFilter.isEnabled = enabled
+}
+</script>
+
 <template>
-  <div class="relative overflow-x-auto rounded-lg">
-    <table class="w-full text-sm text-left table-fixed">
-      <thead class="text-xs text-white uppercase bg-gray-700">
-        <slot name="header" />
-      </thead>
-      <tbody>
-        <slot name="body" />
-      </tbody>
-    </table>
+  <div>
+    <div class="flex justify-end mb-2 items-center">
+      <FormInputField v-if="hasGlobalFilter" v-model="filter" :placeholder="t('label.filter')" />
+      <AppIconButton @component:click="setFilterEnabled(!isFilterEnabled)">
+        <FilterIcon v-if="isFilterEnabled" />
+        <NoFilterIcon v-else />
+      </AppIconButton>
+    </div>
+    <div class="relative overflow-x-auto rounded-lg">
+      <table class="w-full text-sm text-left table-fixed">
+        <thead class="text-xs text-white uppercase bg-gray-700">
+          <slot name="header" />
+        </thead>
+        <tbody>
+          <slot name="body" />
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>

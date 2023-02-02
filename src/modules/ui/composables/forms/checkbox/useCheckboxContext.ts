@@ -13,7 +13,7 @@ export interface CheckboxStateDefinition {
 
 export const CheckboxGroupContext = Symbol('CheckboxGroupContext') as InjectionKey<CheckboxStateDefinition>
 
-export const useCheckboxContext = () => {
+export const useCheckboxContext = (): CheckboxStateDefinition | null => {
   const context = inject(CheckboxGroupContext, null)
   return context
 }

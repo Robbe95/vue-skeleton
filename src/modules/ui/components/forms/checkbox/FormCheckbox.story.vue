@@ -12,7 +12,7 @@ const options = [
 const displayFunction = (value: {
   value: string
   label: string
-}) => {
+}): string => {
   return value.label
 }
 </script>

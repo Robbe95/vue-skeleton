@@ -4,7 +4,7 @@ import { useSnackbar } from '@/modules/ui/composables/app/snackbar/useSnackbar'
 
 const { addSnackbar } = useSnackbar()
 
-const handleClick = (type: 'success' | 'error' | 'warning' | 'info', position: SnackbarLocation) => {
+const handleClick = (type: 'success' | 'error' | 'warning' | 'info', position: SnackbarLocation): void => {
   addSnackbar({
     message: 'lorem ipsum',
     type,

@@ -36,7 +36,7 @@ const textColor = computed(() => {
   }
 })
 
-const closeSnackbar = () => {
+const closeSnackbar = (): void => {
   emit('close')
 }
 </script>

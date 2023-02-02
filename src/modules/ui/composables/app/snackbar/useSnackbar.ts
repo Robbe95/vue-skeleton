@@ -30,8 +30,10 @@ export interface SnackbarState {
 
 const snackbarContainers: SnackbarContainerState[] = []
 
-export const useSnackbar = () => {
-  const positionToCss = (element: HTMLElement, position: SnackbarLocation) => {
+export const useSnackbar = (): {
+  addSnackbar: (args: AddSnackbarArgs) => void
+} => {
+  const positionToCss = (element: HTMLElement, position: SnackbarLocation): void => {
     switch (position) {
       case 'top-left':
         element.style.top = '4px'
@@ -52,7 +54,7 @@ export const useSnackbar = () => {
     }
   }
 
-  const clearSnackbar = (container: SnackbarContainerState, snackbarUuid: string) => {
+  const clearSnackbar = (container: SnackbarContainerState, snackbarUuid: string): void => {
     const snackbar = container.snackbars.value.find(snackbar => snackbar.uuid === snackbarUuid)
     if (snackbar) {
       container.snackbars.value.splice(container.snackbars.value.indexOf(snackbar), 1)
@@ -66,7 +68,7 @@ export const useSnackbar = () => {
     }
   }
 
-  const renderContainer = (position: SnackbarLocation) => {
+  const renderContainer = (position: SnackbarLocation): SnackbarContainerState => {
     const container = document.createElement('div')
     container.id = position
     container.style.position = 'fixed'
@@ -100,7 +102,7 @@ export const useSnackbar = () => {
     return relevantContainer
   }
 
-  const addSnackbar = ({ message, type, time = 5000, position = 'bottom-left' }: AddSnackbarArgs) => {
+  const addSnackbar = ({ message, type, time = 5000, position = 'bottom-left' }: AddSnackbarArgs): void => {
     const relevantContainer = snackbarContainers.find(container => container.container.id === position) || renderContainer(position)
 
     const newSnackbarUuid = generateUuid()

@@ -17,7 +17,7 @@ const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
 
 z.setErrorMap(customErrorMap)
 
-const setupZod = () => {
+const setupZod = (): void => {
   z.setErrorMap(customErrorMap)
 }
 

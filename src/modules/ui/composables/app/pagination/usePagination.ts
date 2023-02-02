@@ -1,10 +1,20 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 
 export interface PaginationOptions {
   rowsPerPage: number
 }
 export type PaginationNumber = number | '...'
-export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationOptions = { rowsPerPage: 10 }) => {
+export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationOptions = { rowsPerPage: 10 }): {
+  currentPage: Ref<number>
+  rowsPerPage: Ref<number>
+  rowsAmount: Ref<number>
+  nextPage: () => void
+  previousPage: () => void
+  paginationOptions: Ref<PaginationNumber[]>
+  maxPage: Ref<number>
+  paginatedData: Ref<T[]>
+  setPage: (page: number) => void
+} => {
   const data = ref(inputData) as Ref<T[]>
   const currentPage = ref(1)
   const rowsPerPage = ref(options.rowsPerPage)
@@ -24,22 +34,6 @@ export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationO
     if (page >= 0 && page <= maxPage.value)
       currentPage.value = page
   }
-
-  // const paginationOptions = computed<number[]>(() => {
-  //   const options = []
-  //   options.push(0)
-  //   for (let i = currentPage.value; i >= currentPage.value - 2; i--) {
-  //     console.log(i)
-  //     if (i > 0)
-  //       options.push(i)
-  //   }
-  //   for (let i = currentPage.value; i <= currentPage.value + 2; i++) {
-  //     if (i > 0)
-  //       options.push(i)
-  //   }
-  //   options.push(maxPage.value)
-  //   return options
-  // })
 
   const paginationOptions = computed<PaginationNumber[]>(() => {
     const delta = 2
@@ -73,7 +67,7 @@ export const usePagination = <T>(inputData: T[] | Ref<T[]>, options: PaginationO
     const start = (currentPage.value - 1) * rowsPerPage.value
     const end = start + rowsPerPage.value
     return data.value?.slice(start, end)
-  })
+  }) as ComputedRef<T[]>
 
   return {
     currentPage,

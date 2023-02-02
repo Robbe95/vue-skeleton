@@ -1,4 +1,4 @@
-export function generateUuid() { // Public Domain/MIT
+export function generateUuid(): string { // Public Domain/MIT
   let d = new Date().getTime()// Timestamp
   let d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now() * 1000)) || 0// Time in microseconds since page-load or 0 if unsupported
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

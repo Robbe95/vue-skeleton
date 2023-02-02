@@ -22,7 +22,7 @@ export interface FormInputGroupStateDefinition {
 
 export const FormInputGroupContext = Symbol('FormGroupContext') as InjectionKey<FormInputGroupStateDefinition>
 
-export const useFormInputGroupContext = () => {
+export const useFormInputGroupContext = (): FormInputGroupStateDefinition | null => {
   const context = inject(FormInputGroupContext, null)
   return context
 }

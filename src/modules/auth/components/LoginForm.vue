@@ -6,7 +6,7 @@ const { signIn, getUser } = useAuth()
 const email = ref('')
 const password = ref('')
 const user = ref<User>()
-const submit = async () => {
+const submit = async (): Promise<void> => {
   await signIn(email.value, password.value)
   user.value = await getUser()
 }

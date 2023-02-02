@@ -3,6 +3,7 @@
     "@antfu"
   ],
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "error",
     "vue/custom-event-name-casing": [
       "error",
       "camelCase",

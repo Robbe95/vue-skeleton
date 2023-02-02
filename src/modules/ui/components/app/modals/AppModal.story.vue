@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const modalOpen1 = ref(false)
-const handleClick = () => {
+const handleClick = (): void => {
   modalOpen1.value = true
 }
 </script>

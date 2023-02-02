@@ -15,7 +15,7 @@ export interface CollapseStateDefinition {
 
 export const CollapseGroupContext = Symbol('CollapseGroupContext') as InjectionKey<CollapseStateDefinition>
 
-export const useCollapseGroup = () => {
+export const useCollapseGroup = (): CollapseStateDefinition | null => {
   const context = inject(CollapseGroupContext, null)
   return context
 }

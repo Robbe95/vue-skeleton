@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const isModalOpen = ref(false)
-const openModal = () => {
+const openModal = (): void => {
   if (!props.isPreview)
     return
   isModalOpen.value = true

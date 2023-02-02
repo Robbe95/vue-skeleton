@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const handleConfirm = () => {
+const handleConfirm = (): void => {
   console.error('confirmed')
 }
 </script>

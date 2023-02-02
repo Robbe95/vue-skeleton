@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 const slots = useSlots()
 const context = useSelectContext('FormSelectOptions')
 
-const compareFunction = (a: any, b: any) => {
+const compareFunction = (a: any, b: any): boolean => {
   if (context.keyValue.value)
     return a[context.keyValue.value] === b[context.keyValue.value]
   else

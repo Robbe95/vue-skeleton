@@ -21,7 +21,7 @@ export interface SelectStateDefinition {
 
 export const SelectGroupContext = Symbol('SelectGroupContext') as InjectionKey<SelectStateDefinition>
 
-export const useSelectContext = (component: string) => {
+export const useSelectContext = (component: string): SelectStateDefinition => {
   const context = inject(SelectGroupContext, null)
 
   if (context === null) {

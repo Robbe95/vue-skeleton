@@ -1,4 +1,4 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
 import type { PaginationNumber } from '../pagination/usePagination'
 import { usePagination } from '../pagination/usePagination'
@@ -25,7 +25,7 @@ export interface PaginationControls {
   nextPage(): void
   previousPage(): void
   setPage(page: number): void
-  paginationOptions: ComputedRef<PaginationNumber[]>
+  paginationOptions: Ref<PaginationNumber[]>
 }
 
 export interface FilterableRow<T> {
@@ -45,7 +45,7 @@ export interface Filter<T> {
 }
 export const TableContext = Symbol('TableContext') as InjectionKey<TableStateDefinition>
 
-export const useTableContext = () => {
+export const useTableContext = (): TableStateDefinition => {
   const context = inject(TableContext, null)
   if (context === null) {
     const err = new Error('No useTableContext provided.)')
@@ -56,10 +56,22 @@ export const useTableContext = () => {
   return context
 }
 
-export const useTable = <T extends Record<string, any>>(data: T[], options: TableOptions<T> = ({ rowsPerPage: 10 })) => {
+export const useTable = <T extends Record<string, any>>(data: T[], options: TableOptions<T> = ({ rowsPerPage: 10 })): {
+  tableData: Ref<T[]>
+  tableHeaders: Ref<Key<T>[]>
+  rowsAmount: Ref<number>
+  filters: Ref<Filter<T>[]>
+  filteredData: Ref<T[]>
+  currentPage: Ref<number>
+  nextPage: () => void
+  previousPage: () => void
+  setPage: (page: number) => void
+  paginationOptions: Ref<PaginationNumber[]>
+  paginatedData: Ref<T[]>
+} => {
   const tableData = ref(data)
 
-  const fillEmptyData = () => {
+  const fillEmptyData = (): void => {
     const emptyData = tableData.value[0]
     const emptyDataKeys = Object.keys(emptyData)
     tableData.value = tableData.value.map((row) => {
@@ -82,7 +94,7 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
 
   const currentSort = ref<CurrentSort<T>>({ field: null, direction: 'asc' })
 
-  const sort = (key: Key<T>) => {
+  const sort = (key: Key<T>): void => {
     if (currentSort.value.field === key) {
       tableData.value.reverse()
       currentSort.value.direction = currentSort.value.direction === 'asc' ? 'desc' : 'asc'
@@ -100,12 +112,12 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     currentSort.value.field = unref(ref(key))
   }
 
-  const filters = ref<Filter<T>[]>([])
-  const setupFilters = () => {
+  const filters = ref<Filter<T>[]>([]) as Ref<Filter<T>[]>
+  const setupFilters = (): void => {
     if (options.filterableRows) {
       options.filterableRows.forEach((filter) => {
         filters.value.push({
-          field: unref(ref(filter.field)),
+          field: filter.field,
           type: filter.type,
           value: '',
           isEnabled: true,
@@ -185,7 +197,7 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     paginationOptions,
     filters,
     paginatedData,
-    data,
     setPage,
+
   }
 }

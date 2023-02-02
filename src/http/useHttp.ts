@@ -13,8 +13,13 @@ interface HttpParams<T extends ZodType> {
   data?: any
 }
 
-export const useHttp = () => {
-  const setHeader = (key: string, value: string) => {
+export const useHttp = (): {
+  get: <T extends ZodType>(params: HttpParams<T>) => Promise<z.infer<T>>
+  post: <T extends ZodType>(params: HttpParams<T>) => Promise<z.infer<T>>
+  put: <T extends ZodType>(params: HttpParams<T>) => Promise<z.infer<T>>
+  setHeader: (key: string, value: string) => void
+} => {
+  const setHeader = (key: string, value: string): void => {
     axiosInstance.defaults.headers.common[key] = value
   }
 
@@ -23,7 +28,7 @@ export const useHttp = () => {
     return parsed
   }
 
-  const get = async <T extends ZodType>({ url, schema, options }: HttpParams<T>) => {
+  const get = async <T extends ZodType>({ url, schema, options }: HttpParams<T>): Promise<z.infer<T>> => {
     const response = await axiosInstance.get(url, options)
     if (!schema)
       return response.data as z.infer<T>
@@ -31,7 +36,7 @@ export const useHttp = () => {
     return parsed as z.infer<T>
   }
 
-  const post = async <T extends ZodType>({ url, schema, options, data }: HttpParams<T>) => {
+  const post = async <T extends ZodType>({ url, schema, options, data }: HttpParams<T>): Promise<z.infer<T>> => {
     const response = await axiosInstance.post(url, data, options)
     if (!schema)
       return response.data as z.infer<T>
@@ -39,7 +44,7 @@ export const useHttp = () => {
     return parsed as z.infer<T>
   }
 
-  const put = async <T extends ZodType>({ url, schema, options, data }: HttpParams<T>) => {
+  const put = async <T extends ZodType>({ url, schema, options, data }: HttpParams<T>): Promise<z.infer<T>> => {
     const response = await axiosInstance.put(url, data, options)
     if (!schema)
       return response.data as z.infer<T>

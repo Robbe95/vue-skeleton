@@ -45,7 +45,7 @@ const sliderValue = computed({
 const propsRef = computed(() => ({ value: sliderValue.value, disabled: props.isDisabled }))
 const option = ref({ id: uuid, element: optionRef.value, propsRef: propsRef.value })
 
-const change = (value: number) => {
+const change = (value: number): void => {
   if (props.isDisabled || !context)
     return
   const newValue = context.change(option, value)
@@ -92,7 +92,7 @@ const model = computed({
   },
 })
 
-const updateValue = (value: number) => {
+const updateValue = (value: number): void => {
   if (props.isDisabled)
     return
   const remainder = value % props.step
@@ -124,7 +124,7 @@ watch(pressed, (value) => {
   }
 })
 
-const handleMouseMovement = (mouseMovement: number) => {
+const handleMouseMovement = (mouseMovement: number): void => {
   const valueRange = maxAmount.value - props.min
   const pixelsPerValue = sliderWidth.value / valueRange
   const valueDelta = mouseMovement / pixelsPerValue
@@ -173,7 +173,7 @@ const rightSliderWidth = computed(() => {
   return rightWidth
 })
 
-const handleLabelClick = () => {
+const handleLabelClick = (): void => {
   if (props.isDisabled)
     return
   sliderButton.value?.focus()

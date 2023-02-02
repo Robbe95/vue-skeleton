@@ -13,7 +13,7 @@ const emit = defineEmits<{
   (event: 'page:set', page: number): void
 }>()
 
-const setPage = (page: PaginationNumber) => {
+const setPage = (page: PaginationNumber): void => {
   if (typeof page === 'number')
     emit('page:set', page)
 }
@@ -30,7 +30,7 @@ watch(currentSelectionPosition, (position) => {
 })
 const calculatedPostion = ref<string>()
 
-const calculateNewPosition = () => {
+const calculateNewPosition = (): void => {
   const getCurrentPosition = document.querySelector('.current-item')?.getBoundingClientRect()
   if (getCurrentPosition === undefined)
     return
@@ -47,8 +47,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex gap-2 items-center justify-end">
-    <AppPaginationItem is-active :style="calculatedPostion" class="absolute transition-all z-50">
+  <div class="flex items-center justify-end gap-2">
+    <AppPaginationItem is-active :style="calculatedPostion" class="absolute z-50 transition-all">
       {{ currentOption }}
     </AppPaginationItem>
     <AppPaginationItem

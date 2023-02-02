@@ -24,18 +24,18 @@ const model = computed({
   set: (value: any) => emit('update:modelValue', value),
 })
 
-const compareFunction = (a: any, b: any) => {
+const compareFunction = (a: any, b: any): boolean => {
   if (props.keyValue)
     return a[props.keyValue] === b[props.keyValue]
   else
     return a === b
 }
 
-const removeValue = (value: any) => {
+const removeValue = (value: any): void => {
   model.value = model.value.filter((singleValue: any) => !compareFunction(singleValue, value))
 }
 
-const defaultDisplayFunction = (value: any) => value
+const defaultDisplayFunction = (value: any): any => value
 const setupApi: CheckboxStateDefinition = {
   selectedValue: model,
   compareFunction,

@@ -10,11 +10,11 @@ defineProps<Props>()
 
 const context = useSelectContext('FormSelectInput')
 
-const displayFunction = (value: any) => {
+const displayFunction = (value: any): string => {
   return context.displayFunction.value(value)
 }
 
-const handleChangeEvent = (event: Event) => {
+const handleChangeEvent = (event: Event): void => {
   context.searchValue.value = (event.target as HTMLInputElement).value
 }
 </script>
@@ -33,7 +33,7 @@ const handleChangeEvent = (event: Event) => {
         :display-value="displayFunction"
         @change="handleChangeEvent"
       />
-      <ComboboxButton class="h-auto p-2 border border-l-0 rounded rounded-l-none border-primary-500 bg-white">
+      <ComboboxButton class="h-auto p-2 bg-white border border-l-0 rounded rounded-l-none border-primary-500">
         <Transition name="fade" mode="out-in">
           <div v-if="!context.isLoading.value" class="flex-none p-[0.15rem]">
             <SearchIcon v-if="context.hasSearch.value" class="flex-none h-4" />
@@ -46,7 +46,7 @@ const handleChangeEvent = (event: Event) => {
     </div>
     <div v-else>
       <ComboboxButton
-        class="flex items-center justify-between w-full px-4 py-2 text-left border rounded border-primary-500 bg-white"
+        class="flex items-center justify-between w-full px-4 py-2 text-left bg-white border rounded border-primary-500"
       >
         <div>
           {{ displayFunction(context.selectedValue.value) }}

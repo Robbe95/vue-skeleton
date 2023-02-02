@@ -35,7 +35,7 @@ const isSelected = computed(() => {
     return !!context.selectedValue.value?.some((singleValue: any) => context.compareFunction(singleValue, props.value))
 })
 
-const handleClick = () => {
+const handleClick = (): void => {
   if (context)
     context.handleItemClicked(props.value)
 }
@@ -46,11 +46,11 @@ const handleClick = () => {
     id="switch"
     v-model="model"
     :value="value"
-    class="flex gap-2 items-center"
+    class="flex items-center gap-2"
     @click="handleClick"
   >
     <div
-      class="rounded p-2 transition-colors border border-primary-500"
+      class="p-2 transition-colors border rounded border-primary-500"
       :class="{
         'bg-white': isSelected,
         'bg-primary-100': !isSelected,

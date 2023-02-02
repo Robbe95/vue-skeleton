@@ -6,12 +6,12 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const decline = (close: Function) => {
+const decline = (close: Function): void => {
   close()
   emit('component:decline')
 }
 
-const accept = (close: Function) => {
+const accept = (close: Function): void => {
   close()
   setTimeout(() => {
     emit('component:confirm')

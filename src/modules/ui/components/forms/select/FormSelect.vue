@@ -43,14 +43,14 @@ const model = computed({
   set: (value: any) => emit('update:modelValue', value),
 })
 
-const compareFunction = (a: any, b: any) => {
+const compareFunction = (a: any, b: any): boolean => {
   if (props.keyValue)
     return a[props.keyValue] === b[props.keyValue]
   else
     return a === b
 }
 
-const removeValue = (value: any) => {
+const removeValue = (value: any): void => {
   model.value = model.value.filter((singleValue: any) => !compareFunction(singleValue, value))
 }
 
@@ -76,11 +76,11 @@ provide(SelectGroupContext, setupApi)
   <div class="w-full">
     <Combobox v-model="model" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
-        <div>
+        <div class="flex h-24 p-3 ml-4 text-gray-700 border-2 border-gray-300 shadow-md">
           <slot name="input" />
         </div>
         <ComboboxOptions>
-          <div class="bg-white border rounded border-primary-500">
+          <div class="bg-white border rounded border-primary-500 ">
             <div class="w-full p-2 rounded">
               <TransitionExpand>
                 <div v-if="isLoading" class="flex items-center justify-center w-full">

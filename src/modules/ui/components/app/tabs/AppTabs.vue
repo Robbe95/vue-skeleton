@@ -32,7 +32,7 @@ const previousTabsWidthAndHeight = computed(() => {
   return { width, height }
 })
 
-function changeTab(index: number) {
+function changeTab(index: number): void {
   selectedTab.value = index
 }
 

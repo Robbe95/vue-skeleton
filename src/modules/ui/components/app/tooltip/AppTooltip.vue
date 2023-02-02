@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 const tooltipSlot = ref()
 const element = ref<HTMLElement | undefined>()
 const tooltip = ref<HTMLElement | undefined>()
-function update() {
+function update(): void {
   if (!element.value || !tooltip.value)
     return
 
@@ -58,7 +58,7 @@ function update() {
   })
 }
 const tooltipShow = ref(false)
-function showTooltip() {
+function showTooltip(): void {
   tooltipShow.value = true
 
   nextTick(() => {
@@ -66,7 +66,7 @@ function showTooltip() {
   })
 }
 
-function hideTooltip() {
+function hideTooltip(): void {
   tooltipShow.value = false
 }
 
@@ -96,7 +96,7 @@ onMounted(() => {
         id="tooltip"
         ref="tooltip"
         :class="[tooltipSlot?.childElementCount === 0 ? 'opacity-0' : 'opacity-100']"
-        class="shadow-primary text-black rounded absolute z-50 flex min-w-max"
+        class="absolute z-50 flex text-black rounded shadow-primary min-w-max"
       >
         <div ref="tooltipSlot" class="flex items-center justify-center flex-col w-full max-w-[60ch]">
           <slot name="tooltip" />

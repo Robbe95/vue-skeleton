@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const handleClick = () => {
+const handleClick = (): void => {
   console.error('click')
 }
 </script>

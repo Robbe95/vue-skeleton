@@ -28,7 +28,7 @@ const filter = computed({
 const isFilterEnabled = computed(() => {
   return context?.filters.find(filter => filter.field === 'global')?.isEnabled
 })
-const setFilterEnabled = (enabled: boolean) => {
+const setFilterEnabled = (enabled: boolean): void => {
   const relevantFilter = context.filters.find(filter => filter.field === 'global')
   if (relevantFilter)
     relevantFilter.isEnabled = enabled
@@ -41,7 +41,7 @@ const paginationData = computed(() => {
 
 <template>
   <div>
-    <div class="flex justify-end mb-2 items-center">
+    <div class="flex items-center justify-end mb-2">
       <FormInputField v-if="hasGlobalFilter" v-model="filter" :placeholder="t('label.filter')" />
       <AppIconButton @component:click="setFilterEnabled(!isFilterEnabled)">
         <FilterIcon v-if="isFilterEnabled" />

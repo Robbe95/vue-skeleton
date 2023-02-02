@@ -59,7 +59,7 @@ const uuid = generateUuid()
 const propsRef = computed(() => ({ value: model.value as number, disabled: props.isDisabled }))
 const option: Option = ref({ id: uuid, element: element.value, propsRef: propsRef.value })
 
-const change = (value: number) => {
+const change = (value: number): void => {
   if (props.isDisabled || !context)
     return
   const newValue = context.change(option, value)

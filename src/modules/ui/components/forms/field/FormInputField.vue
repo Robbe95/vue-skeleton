@@ -28,7 +28,11 @@ const props = withDefaults(defineProps<Props>(), {
   label: undefined,
 })
 
-const emits = defineEmits(['update:modelValue', 'change', 'blur'])
+const emits = defineEmits<{
+  (event: 'update:modelValue', value: any): void
+  (event: 'change', value: any): void
+  (event: 'blur'): void
+}>()
 const slots = useSlots()
 const { placeholder, type, modelValue, isReadOnly, errorMessage, hasError, hasSuccess } = toRefs(props)
 
@@ -83,8 +87,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="element" class="relative flex flex-col gap-1">
-    <FormLabel for="input">
+  <div ref="element" class="relative">
+    <FormLabel :for="uuid">
       <slot name="label" />
       <template v-if="!slots.label">
         {{ label }}
@@ -105,12 +109,12 @@ onUnmounted(() => {
         ]"
       >
         <input
-          id="input"
+          :id="uuid"
           v-model="model"
           :disabled="isDisabled"
           :type="type"
           min="0"
-          class="relative w-full px-4 py-2 rounded"
+          class="relative w-full px-4 py-2 rounded focus:placeholder:translate-x-1 placeholder:transition-all focus:placeholder:opacity-0 placeholder:duration-300"
           :placeholder="placeholder"
           :readonly="isReadOnly"
           @blur="emits('blur')"
@@ -130,6 +134,12 @@ onUnmounted(() => {
         <slot name="back-content" />
       </div>
     </div>
+
+    <TransitionExpand :duration="0.2">
+      <p v-if="hasError">
+        <span class="text-danger-500 text-sm">{{ errorMessage }}</span>
+      </p>
+    </TransitionExpand>
 
     <!-- <FormError :error-message="errorMessage" /> -->
   </div>

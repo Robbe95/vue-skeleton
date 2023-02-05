@@ -29,6 +29,8 @@ declare module '@vue/runtime-core' {
     AppPagination: typeof import('./src/modules/ui/components/app/pagination/AppPagination.vue')['default']
     'AppPagination.story': typeof import('./src/modules/ui/components/app/pagination/AppPagination.story.vue')['default']
     AppPaginationItem: typeof import('./src/modules/ui/components/app/pagination/AppPaginationItem.vue')['default']
+    AppSidebar: typeof import('./src/modules/ui/components/app/sidebar/AppSidebar.vue')['default']
+    AppSidebarItem: typeof import('./src/modules/ui/components/app/sidebar/AppSidebarItem.vue')['default']
     AppSnackbar: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.vue')['default']
     'AppSnackbar.story': typeof import('./src/modules/ui/components/app/snackbar/AppSnackbar.story.vue')['default']
     AppSnackbarContainer: typeof import('./src/modules/ui/components/app/snackbar/AppSnackbarContainer.vue')['default']

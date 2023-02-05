@@ -122,28 +122,39 @@ export const useTable = <T extends Record<string, any>>(data: T[], options: Tabl
     }
   }
 
+  const applyFilterRow = (filter: Filter<T>, row: T): boolean => {
+    if (!filter.isEnabled)
+
+      return true
+    if (filter.type === 'dropdown')
+      return row[filter.field as keyof T] === filter.value || filter.value === ''
+    else if (filter.type === 'input')
+      return row[filter.field as keyof T]?.toLowerCase().includes(filter.value?.toLowerCase())
+
+    return false
+  }
+
+  const applyGlobalFilterRow = (filter: Filter<T>, row: T): boolean => {
+    if (!filter?.isEnabled)
+      return true
+    if (filter.type === 'input')
+      return Object.values(row).some(value => value.toString().toLowerCase().includes(filter.value?.toLowerCase()))
+    else if (filter.type === 'dropdown')
+      return Object.values(row).includes((value: any) => value === filter.value?.toLowerCase()) || filter.value === ''
+    return false
+  }
+
   const filteredData = computed(() => {
     let filteredData = tableData.value.filter((row) => {
       const globalFilter = filters.value.find(filter => filter.field === 'global')
-      if (!globalFilter?.isEnabled)
+      if (!globalFilter)
         return true
-      if (globalFilter.type === 'input')
-        return Object.values(row).some(value => value.toString().toLowerCase().includes(globalFilter.value?.toLowerCase()))
-      else if (globalFilter.type === 'dropdown')
-        return Object.values(row).includes((value: any) => value === globalFilter.value?.toLowerCase())
-      return false
+      return applyGlobalFilterRow(globalFilter, row)
     })
     if (filters.value.length > 0) {
       filteredData = filteredData.filter((row) => {
         return filters.value.filter(filter => filter.field !== 'global').every((filter) => {
-          if (!filter.isEnabled)
-            return true
-          if (filter.type === 'dropdown')
-            return row[filter.field as keyof T] === filter.value
-          else if (filter.type === 'input')
-            return row[filter.field as keyof T]?.toLowerCase().includes(filter.value?.toLowerCase())
-
-          return false
+          return applyFilterRow(filter, row)
         })
       })
     }

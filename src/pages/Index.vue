@@ -20,27 +20,6 @@ const setError = (): void => {
 
 <template>
   <div>
-    <FormInputField v-model="value" :has-error="hasError" error-message="Error message" placeholder="placeohlder" @blur="setError">
-      <template #label>
-        Label
-      </template>
-      <template #front-content>
-        <WarningIcon class="w-4" />
-      </template>
-      <template #back-content>
-        <WarningIcon class="w-4" />
-      </template>
-    </FormInputField>
-    <FormInputField v-model="value" :has-error="hasError" error-message="Error message" placeholder="placeohlder" @blur="setError">
-      <template #label>
-        Label
-      </template>
-      <template #front-content>
-        <WarningIcon class="w-4" />
-      </template>
-      <template #back-content>
-        <WarningIcon class="w-4" />
-      </template>
-    </FormInputField>
+    <FormFileUpload />
   </div>
 </template>

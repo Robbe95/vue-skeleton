@@ -59,6 +59,7 @@ declare module '@vue/runtime-core' {
     FormCheckbox: typeof import('./src/modules/ui/components/forms/checkbox/FormCheckbox.vue')['default']
     'FormCheckbox.story': typeof import('./src/modules/ui/components/forms/checkbox/FormCheckbox.story.vue')['default']
     FormCheckboxGroup: typeof import('./src/modules/ui/components/forms/checkbox/FormCheckboxGroup.vue')['default']
+    FormFileUpload: typeof import('./src/modules/ui/components/forms/file-upload/FormFileUpload.vue')['default']
     FormInputField: typeof import('./src/modules/ui/components/forms/field/FormInputField.vue')['default']
     'FormInputField.story': typeof import('./src/modules/ui/components/forms/field/FormInputField.story.vue')['default']
     FormInputGroup: typeof import('./src/modules/ui/components/forms/group/FormInputGroup.vue')['default']

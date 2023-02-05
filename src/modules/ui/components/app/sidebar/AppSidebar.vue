@@ -43,7 +43,7 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
       />
     </button>
     <div
-      class="h-screen bg-primary-500 text-white flex justify-between flex-col w-full transition-all duration-500 sticky top-0"
+      class="h-screen bg-primary-500 text-white flex justify-between flex-col w-full transition-all duration-500 sticky top-0 overflow-auto"
       :class="{
         'w-80': !minified,
         'w-32': minified,
@@ -71,14 +71,13 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
             />
           </button>
         </div>
-        <div class="w-full h-[1px] bg-white" />
-        <div class="p-4">
+        <AppDivider />
+        <div class="p-4 flex flex-col gap-2 h-full">
           <slot />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo eos iste rerum necessitatibus sapiente nulla alias eaque? Libero a accusantium temporibus, dolores quisquam facere illo tenetur, deleniti quidem nulla qui.
         </div>
       </div>
       <div>
-        <div class="w-full h-[1px] bg-white" />
+        <AppDivider />
         <div class="p-4">
           <slot name="footer" />
           Footer

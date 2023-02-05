@@ -90,28 +90,44 @@ onUnmounted(() => {
         {{ label }}
       </template>
     </FormLabel>
-    <div
-      class="flex border rounded"
-      :class="[borderColor]"
-    >
-      <input
-        id="input"
-        v-model="model"
-        :disabled="isDisabled"
-        :type="type"
-        min="0"
-        class="relative w-full px-4 py-2 rounded"
-        :placeholder="placeholder"
-        :readonly="isReadOnly"
-        @blur="emits('blur')"
-      >
+    <div class="flex ">
+      <div v-if="slots['front-content']" class="px-4 bg-gray-200 flex rounded rounded-r-none border" :class="borderColor">
+        <slot name="front-content" />
+      </div>
 
       <div
-        v-if="unit"
-        :class="[borderColor]"
-        class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
+        class="flex border rounded h-full"
+        :class="[borderColor,
+                 {
+                   'border-l-0 rounded-l-none': slots['front-content'],
+                   'border-r-0 rounded-r-none': slots['back-content'],
+                 },
+        ]"
       >
-        {{ unit }}
+        <input
+          id="input"
+          v-model="model"
+          :disabled="isDisabled"
+          :type="type"
+          min="0"
+          class="relative w-full px-4 py-2 rounded"
+          :placeholder="placeholder"
+          :readonly="isReadOnly"
+          @blur="emits('blur')"
+        >
+
+        <div
+          v-if="unit"
+          :class="[borderColor, {
+            'border-r-0 rounded-r-none': slots['back-content'],
+          }]"
+          class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
+        >
+          {{ unit }}
+        </div>
+      </div>
+      <div v-if="slots['back-content']" class="px-4 bg-gray-200 flex rounded rounded-l-none border" :class="borderColor">
+        <slot name="back-content" />
       </div>
     </div>
 

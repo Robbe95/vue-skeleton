@@ -10,12 +10,19 @@ useHead({
   ],
 
 })
+
+const value = ref('')
 </script>
 
 <template>
   <div>
-    <div>
-      // This is the content of the sidebar
-    </div>
+    <FormInputField v-model="value">
+      <template #front-content>
+        <WarningIcon class="w-4" />
+      </template>
+      <template #back-content>
+        <WarningIcon class="w-4" />
+      </template>
+    </FormInputField>
   </div>
 </template>

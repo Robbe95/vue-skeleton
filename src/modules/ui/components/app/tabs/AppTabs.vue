@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
+import { TabGroup, TabList, TabPanels } from '@headlessui/vue'
 
 const props = withDefaults(defineProps<{
   isVertical: boolean

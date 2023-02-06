@@ -24,23 +24,16 @@ const filterableRows = ref<FilterableRow<RandomData>[]>(
     { field: 'global', type: 'input' },
   ],
 )
+
 const { tableHeaders, paginatedData } = useTable(tableData.value, {
   sortableRows: sortableRows.value,
   filterableRows: filterableRows.value,
-  rowsPerPage: 10,
+  rowsPerPage: 20,
 })
-
-const changeData = (): void => {
-  tableData.value[0].name = 'Changed'
-  tableData.value[0].otherStuff = 'Changed'
-}
 </script>
 
 <template>
   <div class="p-4">
-    <button @click="changeData">
-      Change some stuff
-    </button>
     <div>
       <AppTable has-pagination>
         <template #header>

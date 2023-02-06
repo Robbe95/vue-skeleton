@@ -57,8 +57,8 @@ const setPage = (page: number): void => {
       </AppIconButton>
     </div>
     <div class="relative overflow-x-auto rounded-lg">
-      <table class="w-full text-sm text-left table-fixed">
-        <thead class="text-xs text-white uppercase bg-gray-700">
+      <table class="w-full text-sm text-left table-auto">
+        <thead class="text-xs text-white uppercase bg-gray-700 sticky top-0">
           <slot name="header" />
         </thead>
         <tbody>

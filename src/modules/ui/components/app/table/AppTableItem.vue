@@ -52,7 +52,7 @@ const isFilterable = computed(() => {
 <template>
   <Component :is="isHeader ? 'th' : 'td'" scope="col" class="px-6 py-3 h-[1px]">
     <div class="flex flex-col h-full gap-2">
-      <div class="flex flex-row items-start justify-between h-full gap-2">
+      <div class="flex flex-row items-start justify-between h-full gap-2 whitespace-nowrap">
         <slot />
         <AppIconButton v-if="isSortable" @component:click="sort">
           <SortAscendingIcon v-if="currentSort?.field === headerKey && currentSort.direction === 'asc'" />

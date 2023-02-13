@@ -19,6 +19,18 @@ const routes = [
       ...authRouter,
     ],
   },
+  {
+    path: '/sidebar',
+    component: (): Promise<Component> => import('../layouts/SidebarLayout.vue'),
+    children: [
+      {
+        component: (): Promise<Component> => import('../pages/TableExample.vue'),
+        name: Routes.EXAMPLE_TABLE,
+        path: '',
+      },
+    ],
+  },
+
 ] satisfies Route[]
 
 const router = createRouter({

@@ -8,9 +8,15 @@ withDefaults(defineProps<Props>(), { isOptional: false })
 const { t } = useI18n()
 </script>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
+
 <template>
-  <div c>
-    <label class="text-sm">
+  <div>
+    <label class="text-sm" v-bind="$attrs">
       <slot />
     </label>
     <p v-if="isOptional" class="text-xs text-gray-300">

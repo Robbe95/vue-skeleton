@@ -38,6 +38,11 @@ const filter = computed({
 const isFilterEnabled = computed(() => {
   return context?.filters.find(filter => filter.field === headerKey)?.isEnabled
 })
+
+const filterType = computed(() => {
+  return context?.filters.find(filter => filter.field === headerKey)?.type
+})
+
 const setFilterEnabled = (enabled: boolean): void => {
   const relevantFilter = context?.filters.find(filter => filter.field === headerKey)
   if (relevantFilter)
@@ -59,7 +64,14 @@ const isFilterable = computed(() => {
           <SortDescendingIcon v-else />
         </AppIconButton>
       </div>
-      <div v-if="isFilterable" class="flex items-center gap-2">
+      <div v-if="isFilterable && filterType === 'input'" class="flex items-center gap-2">
+        <FormInputField v-model="filter" :placeholder="t('label.filter')" class="w-full text-black" />
+        <AppIconButton @component:click="setFilterEnabled(!isFilterEnabled)">
+          <FilterIcon v-if="isFilterEnabled" />
+          <NoFilterIcon v-else />
+        </AppIconButton>
+      </div>
+      <div v-if="isFilterable && filterType === 'dropdown'" class="flex items-center gap-2">
         <FormInputField v-model="filter" :placeholder="t('label.filter')" class="w-full text-black" />
         <AppIconButton @component:click="setFilterEnabled(!isFilterEnabled)">
           <FilterIcon v-if="isFilterEnabled" />

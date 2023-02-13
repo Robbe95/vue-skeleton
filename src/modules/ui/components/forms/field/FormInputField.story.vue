@@ -40,6 +40,20 @@ const model3 = ref()
     <Variant title="Error">
       <FormInputField v-model="model" has-error error-message="Error message" />
     </Variant>
+    <Variant title="Front content">
+      <FormInputField v-model="model">
+        <template #front-content>
+          <WarningIcon class="w-4" />
+        </template>
+      </FormInputField>
+    </Variant>
+    <Variant title="Back content">
+      <FormInputField v-model="model">
+        <template #back-content>
+          <WarningIcon class="w-4" />
+        </template>
+      </FormInputField>
+    </Variant>
     <Variant title="Group">
       <FormInputGroup :total-value="500">
         <FormInputField v-model="model" />

@@ -28,7 +28,11 @@ const props = withDefaults(defineProps<Props>(), {
   label: undefined,
 })
 
-const emits = defineEmits(['update:modelValue', 'change', 'blur'])
+const emits = defineEmits<{
+  (event: 'update:modelValue', value: any): void
+  (event: 'change', value: any): void
+  (event: 'blur'): void
+}>()
 const slots = useSlots()
 const { placeholder, type, modelValue, isReadOnly, errorMessage, hasError, hasSuccess } = toRefs(props)
 
@@ -83,37 +87,59 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="element" class="relative flex flex-col gap-1">
-    <FormLabel for="input">
+  <div ref="element" class="relative">
+    <FormLabel :for="uuid">
       <slot name="label" />
       <template v-if="!slots.label">
         {{ label }}
       </template>
     </FormLabel>
-    <div
-      class="flex border rounded"
-      :class="[borderColor]"
-    >
-      <input
-        id="input"
-        v-model="model"
-        :disabled="isDisabled"
-        :type="type"
-        min="0"
-        class="relative w-full px-4 py-2 rounded"
-        :placeholder="placeholder"
-        :readonly="isReadOnly"
-        @blur="emits('blur')"
-      >
+    <div class="flex ">
+      <div v-if="slots['front-content']" class="px-4 bg-gray-200 flex rounded rounded-r-none border" :class="borderColor">
+        <slot name="front-content" />
+      </div>
 
       <div
-        v-if="unit"
-        :class="[borderColor]"
-        class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
+        class="flex border rounded h-full"
+        :class="[borderColor,
+                 {
+                   'border-l-0 rounded-l-none': slots['front-content'],
+                   'border-r-0 rounded-r-none': slots['back-content'],
+                 },
+        ]"
       >
-        {{ unit }}
+        <input
+          :id="uuid"
+          v-model="model"
+          :disabled="isDisabled"
+          :type="type"
+          min="0"
+          class="relative w-full px-4 py-2 rounded focus:placeholder:translate-x-1 placeholder:transition-all focus:placeholder:opacity-0 placeholder:duration-300"
+          :placeholder="placeholder"
+          :readonly="isReadOnly"
+          @blur="emits('blur')"
+        >
+
+        <div
+          v-if="unit"
+          :class="[borderColor, {
+            'border-r-0 rounded-r-none': slots['back-content'],
+          }]"
+          class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
+        >
+          {{ unit }}
+        </div>
+      </div>
+      <div v-if="slots['back-content']" class="px-4 bg-gray-200 flex rounded rounded-l-none border" :class="borderColor">
+        <slot name="back-content" />
       </div>
     </div>
+
+    <TransitionExpand :duration="0.2">
+      <p v-if="hasError">
+        <span class="text-danger-500 text-sm">{{ errorMessage }}</span>
+      </p>
+    </TransitionExpand>
 
     <!-- <FormError :error-message="errorMessage" /> -->
   </div>

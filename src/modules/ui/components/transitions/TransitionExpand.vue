@@ -1,4 +1,14 @@
 <script lang="ts" setup>
+interface Props {
+  duration?: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  duration: 0.5,
+})
+
+const durationString = computed(() => `${props.duration}s`)
+
 const enter = (element: HTMLElement): void => {
   const width = getComputedStyle(element).width
 
@@ -40,6 +50,7 @@ const leave = (element: HTMLElement): void => {
 <template>
   <transition
     name="expand"
+    class="expand-leave-active"
     @after-enter="afterEnter"
     @enter="enter"
     @leave="leave"
@@ -51,10 +62,7 @@ const leave = (element: HTMLElement): void => {
 <style scoped>
 .expand-enter-active,
 .expand-leave-active {
-  transition:
-   height 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-   opacity 0.5s;
-
+  transition: height v-bind(durationString) cubic-bezier(0.645, 0.045, 0.355, 1), opacity v-bind(durationString);
   overflow: hidden;
 }
 

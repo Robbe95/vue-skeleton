@@ -3,7 +3,7 @@ interface Props {
   infoPosition?: 'start' | 'middle' | 'end'
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   infoPosition: 'start',
 })
 
@@ -18,12 +18,12 @@ const slots = useSlots()
     }"
   >
     <div
-      class="w-full h-[1px] bg-white/50"
+      class="h-[1px] w-full bg-white/50"
       :class="{ 'w-4': infoPosition === 'start' }"
     />
     <slot />
     <div
-      class="w-full h-[1px] bg-white/50"
+      class="h-[1px] w-full bg-white/50"
       :class="{ 'w-8': infoPosition === 'end' }"
     />
   </div>

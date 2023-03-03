@@ -7,14 +7,14 @@ interface Props {
   label?: string
   value: any
 }
-const props = defineProps<Props>()
+defineProps<Props>()
 const slots = useSlots()
 </script>
 
 <template>
-  <RadioGroupOption id="radio" v-slot="{ checked }" :value="value" class="flex gap-2 items-center">
-    <div class="border-primary-500 border bg-white rounded-full h-6 w-6 flex items-center justify-center flex-none">
-      <div class="h-2 w-2 bg-primary-500 transition duration-300 rounded-full" :class="[checked ? 'scale-100' : 'scale-0']" />
+  <RadioGroupOption id="radio" v-slot="{ checked }" :value="value" class="flex items-center gap-2">
+    <div class="flex h-6 w-6 flex-none items-center justify-center rounded-full border border-primary-500 bg-white">
+      <div class="h-2 w-2 rounded-full bg-primary-500 transition duration-300" :class="[checked ? 'scale-100' : 'scale-0']" />
     </div>
     <label for="radio">
       <template v-if="!slots.default && label">

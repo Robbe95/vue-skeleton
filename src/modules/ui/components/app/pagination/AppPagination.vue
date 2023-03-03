@@ -47,6 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <div class="flex items-center justify-end gap-2">
     <AppPaginationItem is-active :style="calculatedPostion" class="absolute z-50 transition-all">
       {{ currentOption }}

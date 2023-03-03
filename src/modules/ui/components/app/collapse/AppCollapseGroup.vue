@@ -16,7 +16,7 @@ const setupApi: CollapseStateDefinition = {
   collapseItems,
   hasMaxOneOpen: ref(props.hasMaxOneOpen),
   openedCollapse: ref(null),
-  changeOpenedCollapse(id) {
+  changeOpenedCollapse() {
     // TODO: check if hasMaxOneOpen is true
   },
   registerCollapseItem(action: CollapseItem) {

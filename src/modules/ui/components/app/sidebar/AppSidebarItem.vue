@@ -4,8 +4,7 @@ interface Props {
   to?: string
   hasChildren?: boolean
 }
-
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const childrenOpen = ref(false)
 </script>
@@ -14,7 +13,7 @@ const childrenOpen = ref(false)
   <div>
     <Component
       :is="to ? RouterLink : 'button'"
-      class="w-full bg-primary-300 py-1 px-2 rounded-md hover:bg-primary-200 transition flex justify-between gap-2 items-center"
+      class="flex w-full items-center justify-between gap-2 rounded-md bg-primary-300 py-1 px-2 transition hover:bg-primary-200"
       :to="to"
       @click="childrenOpen = !childrenOpen"
     >
@@ -23,15 +22,15 @@ const childrenOpen = ref(false)
       <ChevronDownIcon
         v-else class="h-4 flex-none transition-transform duration-500"
         :class="{
-          'transform rotate-180': childrenOpen,
+          'rotate-180': childrenOpen,
         }"
       />
     </Component>
     <TransitionExpand>
       <div
-        v-if="hasChildren && childrenOpen" class="bg-primary-600 rounded-md"
+        v-if="hasChildren && childrenOpen" class="rounded-md bg-primary-600"
       >
-        <div class="p-2 flex gap-1 flex-col">
+        <div class="flex flex-col gap-1 p-2">
           <slot name="children" />
         </div>
       </div>

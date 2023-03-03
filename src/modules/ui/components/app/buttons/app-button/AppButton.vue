@@ -22,13 +22,13 @@ const handleClick = (): void => {
 </script>
 
 <template>
+  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <button
-    class="px-3 py-2 overflow-hidden transition duration-200 transform border rounded md:px-8 whitespace-nowrap hover:shadow-main"
+    class="overflow-hidden whitespace-nowrap rounded border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
     :class="{
-      'bg-opacity-70 cursor-not-allowed': isDisabled || isLoading,
-      'bg-primary-500 text-white border border-transparent': type === 'primary',
-      'bg-white text-primary-500 border border-primary-500': type === 'secondary',
-
+      'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
+      'border border-transparent bg-primary-500 text-white': type === 'primary',
+      'border border-primary-500 bg-white text-primary-500': type === 'secondary',
     }"
     @click="handleClick"
   >
@@ -37,12 +37,12 @@ const handleClick = (): void => {
     </div>
     <div
       :class="[isLoading ? 'opacity-100' : 'opacity-0']"
-      class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
     >
-      <div class="w-10 h-2.5 inline-block relative">
+      <div class="relative inline-block h-2.5 w-10">
         <div
           v-for="i in 4" :key="i"
-          class="rounded-full w-2 h-2 top-[1px] absolute orb"
+          class="orb absolute top-[1px] h-2 w-2 rounded-full"
           :class="{
             'bg-white': type === 'primary',
             'bg-primary-500': type === 'secondary',

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const test = ref()
 </script>
 
 <template>
-  <div class="w-full flex flex-row bg-red-500">
-    <div class="btn btn-primary max-w-max">
+  <div class="flex w-full flex-row bg-red-500">
+    <div>
       Dit is een test component
     </div>
   </div>

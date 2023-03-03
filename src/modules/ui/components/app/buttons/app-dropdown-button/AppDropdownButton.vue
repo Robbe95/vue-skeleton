@@ -36,10 +36,10 @@ withDefaults(defineProps<Props>(), {
       </PopoverButton>
 
       <PopoverPanel v-slot="{ close }">
-        <div v-if="hasArrow" class="absolute w-full h-full bg-white rounded shadow-main -z-10" />
+        <div v-if="hasArrow" class="absolute -z-10 h-full w-full rounded bg-white shadow-main" />
 
-        <FloatArrow v-if="hasArrow" class="absolute w-5 h-5 rotate-45 bg-white shadow-main -z-10" />
-        <div class="z-50 flex flex-col gap-2 p-2 bg-white rounded shadow-main">
+        <FloatArrow v-if="hasArrow" class="absolute -z-10 h-5 w-5 rotate-45 bg-white shadow-main" />
+        <div class="z-50 flex flex-col gap-2 rounded bg-white p-2 shadow-main">
           <slot name="panel" :close="close" />
         </div>
       </PopoverPanel>

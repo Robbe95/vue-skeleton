@@ -6,7 +6,7 @@ interface Props {
   hasMultiple?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   accept: '*',
 })
 
@@ -43,7 +43,7 @@ const dropFile = (e: DragEvent): void => {
 <template>
   <div class="container mx-auto py-20">
     <label
-      class="w-full text-secondary flex min-h-40 items-center justify-center bg-primary-100 border border-dashed border-primary-500 transition p-8 rounded-md"
+      class="flex min-h-40 w-full items-center justify-center rounded-md border border-dashed border-primary-500 bg-primary-100 p-8 text-secondary-500 transition"
       :class="{
         'border-primary-700 bg-primary-100/20': fileOverDropArea,
       }"
@@ -58,7 +58,7 @@ const dropFile = (e: DragEvent): void => {
       </div>
       <div v-else>
         <img
-          :src="files[0].url" :alt="files[0].name" class="object-contain bg-contain w-full h-full overflow-hidden max-h-80 rounded-md"
+          :src="files[0].url" :alt="files[0].name" class="h-full max-h-80 w-full overflow-hidden rounded-md bg-contain object-contain"
         >
       </div>
 
@@ -67,12 +67,12 @@ const dropFile = (e: DragEvent): void => {
       :id="uploadUuid"
       type="file"
       :accept="accept"
-      class="w-0 h-0 overflow-hidden"
+      class="h-0 w-0 overflow-hidden"
       @change="handleFileChange"
     >
-    <div v-if="hasMultiple" class="flex gap-1 flex-wrap">
+    <div v-if="hasMultiple" class="flex flex-wrap gap-1">
       <img
-        v-for="file in files" :key="file.url" :src="file.url" :alt="file.name" class="w-32 h-32 object-cover"
+        v-for="file in files" :key="file.url" :src="file.url" :alt="file.name" class="h-32 w-32 object-cover"
       >
     </div>
   </div>

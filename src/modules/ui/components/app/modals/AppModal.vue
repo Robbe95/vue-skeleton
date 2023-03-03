@@ -38,7 +38,7 @@ const emit = defineEmits<{
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="flex items-center justify-center min-h-full p-4 text-center"
+          class="flex min-h-full items-center justify-center p-4 text-center"
         >
           <TransitionChild
             as="template"
@@ -52,7 +52,7 @@ const emit = defineEmits<{
           >
             <DialogPanel
               :class="{
-                'relative p-8 text-left bg-white rounded shadow-main lg:px-24': !noStyling,
+                'relative rounded bg-white p-8 text-left shadow-main lg:px-24': !noStyling,
               }"
             >
               <DialogTitle
@@ -72,7 +72,7 @@ const emit = defineEmits<{
               <div class="mt-4">
                 <slot name="footer" />
               </div>
-              <AppIconButton v-if="!noStyling" class="absolute bg-danger-100 text-danger-500 top-4 right-4" @click="emit('close')">
+              <AppIconButton v-if="!noStyling" class="absolute top-4 right-4 bg-danger-100 text-danger-500" @click="emit('close')">
                 <CloseIcon />
               </AppIconButton>
             </DialogPanel>

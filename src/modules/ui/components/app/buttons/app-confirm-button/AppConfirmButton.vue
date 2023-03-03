@@ -28,7 +28,7 @@ const accept = (close: Function): void => {
       <div class="whitespace-normal">
         {{ t('label.confirm_text') }}
       </div>
-      <div class="flex gap-2 px">
+      <div class="flex gap-2">
         <AppButton @component:click="accept(close)">
           {{ t('label.confirm') }}
         </AppButton>

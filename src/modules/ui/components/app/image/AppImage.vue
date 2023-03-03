@@ -3,7 +3,6 @@ interface Props {
   src: string
   alt: string
   isPreview?: boolean
-  class?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,10 +18,15 @@ const openModal = (): void => {
 }
 </script>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
+
 <template>
   <Component :is="isPreview ? 'button' : 'div'" @click="openModal">
-    <!-- eslint-disable-next-line vue/no-parsing-error -->
-    <img :src="src" :alt="alt" :class="class">
+    <img :src="src" :alt="alt" v-bind="$attrs">
     <AppModal v-if="isPreview" :is-open="isModalOpen" no-styling @close="isModalOpen = false">
       <template #content>
         <img :src="src" :alt="alt" class="w-[75vw]">

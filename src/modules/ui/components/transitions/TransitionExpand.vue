@@ -50,7 +50,6 @@ const leave = (element: HTMLElement): void => {
 <template>
   <transition
     name="expand"
-    class="expand-leave-active"
     @after-enter="afterEnter"
     @enter="enter"
     @leave="leave"

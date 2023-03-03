@@ -4,7 +4,7 @@ import { useTableContext } from '@/modules/ui/composables/app/table/useTableCont
 interface Props {
   isHeader?: boolean
 }
-const props = withDefaults(defineProps<Props>(),
+withDefaults(defineProps<Props>(),
   {
     isHeader: false,
   },
@@ -55,9 +55,9 @@ const isFilterable = computed(() => {
 </script>
 
 <template>
-  <Component :is="isHeader ? 'th' : 'td'" scope="col" class="px-6 py-3 h-[1px]">
-    <div class="flex flex-col h-full gap-2">
-      <div class="flex flex-row items-start justify-between h-full gap-2 whitespace-nowrap">
+  <Component :is="isHeader ? 'th' : 'td'" scope="col" class="h-[1px] px-6 py-3">
+    <div class="flex h-full flex-col gap-2">
+      <div class="flex h-full flex-row items-start justify-between gap-2 whitespace-nowrap">
         <slot />
         <AppIconButton v-if="isSortable" @component:click="sort">
           <SortAscendingIcon v-if="currentSort?.field === headerKey && currentSort.direction === 'asc'" />

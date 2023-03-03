@@ -42,7 +42,7 @@ const closeSnackbar = (): void => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between gap-4 px-4 py-2 rounded w-80" :class="classes">
+  <div class="flex w-80 items-center justify-between gap-4 rounded px-4 py-2" :class="classes">
     <div>
       {{ snackbar.message }}
     </div>

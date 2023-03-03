@@ -5,7 +5,7 @@ interface Props {
   hasPagination?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   hasPagination: false,
 })
 
@@ -49,7 +49,7 @@ const setPage = (page: number): void => {
 
 <template>
   <div>
-    <div class="flex items-center justify-end mb-2">
+    <div class="mb-2 flex items-center justify-end">
       <FormInputField v-if="hasGlobalFilter" v-model="filter" :placeholder="t('label.filter')" />
       <AppIconButton @component:click="setFilterEnabled(!isFilterEnabled)">
         <FilterIcon v-if="isFilterEnabled" />
@@ -57,8 +57,8 @@ const setPage = (page: number): void => {
       </AppIconButton>
     </div>
     <div class="relative overflow-x-auto rounded-lg">
-      <table class="w-full text-sm text-left table-auto">
-        <thead class="text-xs text-white uppercase bg-gray-700 sticky top-0">
+      <table class="w-full table-auto text-left text-sm">
+        <thead class="sticky top-0 bg-gray-700 text-xs uppercase text-white">
           <slot name="header" />
         </thead>
         <tbody>

@@ -13,8 +13,9 @@ useHead({
 </script>
 
 <template>
-  <div class="sidebar-layout max-w-[100vw] overflow-hidden">
-    <AppSidebar has-hidden>
+  <!-- eslint-disable-next-line tailwindcss/no-custom-classname -->
+  <div class="grid max-w-[100vw] grid-cols-sidebar overflow-hidden">
+    <AppSidebar has-hidden class="w-80">
       <AppSidebarCategory>
         <template #title>
           Category 1
@@ -72,12 +73,3 @@ useHead({
     </div>
   </div>
 </template>
-
-<style scoped>
-.sidebar-layout {
-  display: grid;
-  grid-template-columns: auto 3fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "sidebar content";
-}
-</style>

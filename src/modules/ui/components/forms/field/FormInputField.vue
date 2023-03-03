@@ -95,16 +95,16 @@ onUnmounted(() => {
       </template>
     </FormLabel>
     <div class="flex ">
-      <div v-if="slots['front-content']" class="px-4 bg-gray-200 flex rounded rounded-r-none border" :class="borderColor">
+      <div v-if="slots['front-content']" class="flex rounded rounded-r-none border bg-gray-200 px-4" :class="borderColor">
         <slot name="front-content" />
       </div>
 
       <div
-        class="flex border rounded h-full"
+        class="flex h-full rounded border"
         :class="[borderColor,
                  {
-                   'border-l-0 rounded-l-none': slots['front-content'],
-                   'border-r-0 rounded-r-none': slots['back-content'],
+                   'rounded-l-none border-l-0': slots['front-content'],
+                   'rounded-r-none border-r-0': slots['back-content'],
                  },
         ]"
       >
@@ -114,7 +114,7 @@ onUnmounted(() => {
           :disabled="isDisabled"
           :type="type"
           min="0"
-          class="relative w-full px-4 py-2 rounded focus:placeholder:translate-x-1 placeholder:transition-all focus:placeholder:opacity-0 placeholder:duration-300"
+          class="relative w-full rounded px-4 py-2 placeholder:transition-all placeholder:duration-300 focus:placeholder:translate-x-1 focus:placeholder:opacity-0"
           :placeholder="placeholder"
           :readonly="isReadOnly"
           @blur="emits('blur')"
@@ -123,21 +123,21 @@ onUnmounted(() => {
         <div
           v-if="unit"
           :class="[borderColor, {
-            'border-r-0 rounded-r-none': slots['back-content'],
+            'rounded-r-none border-r-0': slots['back-content'],
           }]"
-          class="flex items-center px-3 bg-white border-l rounded rounded-l-none text-green-dark min-w-max"
+          class="flex min-w-max items-center rounded rounded-l-none border-l bg-white px-3 text-primary-500"
         >
           {{ unit }}
         </div>
       </div>
-      <div v-if="slots['back-content']" class="px-4 bg-gray-200 flex rounded rounded-l-none border" :class="borderColor">
+      <div v-if="slots['back-content']" class="flex rounded rounded-l-none border bg-gray-200 px-4" :class="borderColor">
         <slot name="back-content" />
       </div>
     </div>
 
     <TransitionExpand :duration="0.2">
       <p v-if="hasError">
-        <span class="text-danger-500 text-sm">{{ errorMessage }}</span>
+        <span class="text-sm text-danger-500">{{ errorMessage }}</span>
       </p>
     </TransitionExpand>
 

@@ -22,11 +22,11 @@ const component = computed(() => {
   <Component
     :is="component"
     :class="{
-      'w-7 h-7': props.size === 'sm',
-      'w-8 h-8': props.size === 'md',
-      'w-9 h-9': props.size === 'lg',
+      'h-7 w-7': props.size === 'sm',
+      'h-8 w-8': props.size === 'md',
+      'h-9 w-9': props.size === 'lg',
     }"
-    class="grid rounded-full place-items-center"
+    class="grid place-items-center rounded-full"
     @click="emit('component:click')"
   >
     <div

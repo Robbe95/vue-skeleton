@@ -33,10 +33,10 @@ const isInSearchQuery = computed(() => {
 <template>
   <ComboboxOption v-if="isInSearchQuery" v-slot="{ active }" :value="value">
     <button
-      class="flex w-full gap-2 px-2 py-1 text-left text-black transition-all bg-white border border-transparent rounded"
+      class="flex w-full gap-2 rounded border border-transparent bg-white px-2 py-1 text-left text-black transition-all"
       :class="{ 'border-primary-500 bg-primary-100': active }"
     >
-      <div v-if="context.hasMultiple.value" class="grid w-6 h-6 bg-white border rounded border-primary-500 place-items-center">
+      <div v-if="context.hasMultiple.value" class="grid h-6 w-6 place-items-center rounded border border-primary-500 bg-white">
         <Transition name="fade">
           <CheckmarkIcon v-if="isSelected" class="h-2 text-primary-500" />
         </Transition>

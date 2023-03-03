@@ -38,7 +38,7 @@ const changeData = (): void => {
 </script>
 
 <template>
-  <div class="p-4">
+  <div>
     <button @click="changeData">
       Change some stuff
     </button>

@@ -8,10 +8,10 @@ import { Tab } from '@headlessui/vue'
     as="template"
   >
     <button
-      class="w-full px-16 py-2 border rounded max-w-max" :class="
+      class="w-full max-w-max rounded border px-16 py-2" :class="
         {
-          'bg-transparent border-primary-500': selected,
-          'bg-transparent border-transparent': !selected,
+          'border-primary-500 bg-transparent': selected,
+          'border-transparent bg-transparent': !selected,
         }"
     >
       <slot />

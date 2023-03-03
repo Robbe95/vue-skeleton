@@ -87,7 +87,7 @@ onMounted(() => {
 
 <template>
   <div class="relative max-w-max">
-    <div ref="element" class="grid place-items-center max-w-max">
+    <div ref="element" class="grid max-w-max place-items-center">
       <slot name="element" />
     </div>
     <Transition name="scale-bounce-transition">
@@ -96,9 +96,9 @@ onMounted(() => {
         id="tooltip"
         ref="tooltip"
         :class="[tooltipSlot?.childElementCount === 0 ? 'opacity-0' : 'opacity-100']"
-        class="absolute z-50 flex text-black rounded shadow-primary min-w-max"
+        class="absolute z-50 flex min-w-max rounded text-black shadow-main"
       >
-        <div ref="tooltipSlot" class="flex items-center justify-center flex-col w-full max-w-[60ch]">
+        <div ref="tooltipSlot" class="flex w-full max-w-[60ch] flex-col items-center justify-center">
           <slot name="tooltip" />
         </div>
       </div>

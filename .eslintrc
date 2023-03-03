@@ -1,9 +1,11 @@
 {
   "extends": [
-    "@antfu"
+    "@antfu",
+    "plugin:tailwindcss/recommended"
   ],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
+    "tailwindcss/migration-from-tailwind-2": "off",
     "vue/custom-event-name-casing": [
       "error",
       "camelCase",
@@ -13,5 +15,13 @@
         ]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.vue"
+      ],
+      "parser": "vue-eslint-parser"
+    }
+  ]
 }

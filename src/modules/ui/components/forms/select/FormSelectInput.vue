@@ -29,16 +29,16 @@ const handleChangeEvent = (event: Event): void => {
       <ComboboxInput
         id="search"
         :placeholder="placeholder"
-        class="w-full px-4 py-2 border border-r-0 rounded rounded-r-none border-primary-500"
+        class="w-full rounded rounded-r-none border border-r-0 border-primary-500 px-4 py-2"
         :display-value="displayFunction"
         @change="handleChangeEvent"
       />
-      <ComboboxButton class="h-auto p-2 bg-white border border-l-0 rounded rounded-l-none border-primary-500">
+      <ComboboxButton class="h-auto rounded rounded-l-none border border-l-0 border-primary-500 bg-white p-2">
         <Transition name="fade" mode="out-in">
           <div v-if="!context.isLoading.value" class="flex-none p-[0.15rem]">
-            <SearchIcon v-if="context.hasSearch.value" class="flex-none h-4" />
+            <SearchIcon v-if="context.hasSearch.value" class="h-4 flex-none" />
           </div>
-          <div v-else class="flex-none h-4">
+          <div v-else class="h-4 flex-none">
             <AppLoader />
           </div>
         </Transition>
@@ -46,13 +46,13 @@ const handleChangeEvent = (event: Event): void => {
     </div>
     <div v-else>
       <ComboboxButton
-        class="flex items-center justify-between w-full px-4 py-2 text-left bg-white border rounded border-primary-500"
+        class="flex w-full items-center justify-between rounded border border-primary-500 bg-white px-4 py-2 text-left"
       >
         <div>
           {{ displayFunction(context.selectedValue.value) }}
         </div>
         <div class="h-full">
-          <ChevronDownIcon class="flex-none h-4" />
+          <ChevronDownIcon class="h-4 flex-none" />
         </div>
       </ComboboxButton>
     </div>

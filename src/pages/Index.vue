@@ -10,12 +10,6 @@ useHead({
   ],
 
 })
-
-const value = ref('')
-const hasError = ref(false)
-const setError = (): void => {
-  hasError.value = true
-}
 </script>
 
 <template>

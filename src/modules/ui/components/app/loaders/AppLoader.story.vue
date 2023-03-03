@@ -6,7 +6,7 @@
     title="App/Loaders/AppLoader"
   >
     <Variant title="Default">
-      <AppLoader class="w-16 h-16" />
+      <AppLoader class="h-16 w-16" />
     </Variant>
   </Story>
 </template>

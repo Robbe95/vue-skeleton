@@ -6,7 +6,7 @@
     title="App/Sidebar/AppSidebar"
   >
     <Variant title="Default">
-      <div class="sidebar-layout">
+      <div class="grid grid-cols-sidebar">
         <AppSidebar has-hidden>
           <AppSidebarCategory>
             <template #title>
@@ -66,7 +66,7 @@
       </div>
     </Variant>
     <Variant title="Minified">
-      <div class="sidebar-layout">
+      <div class="grid grid-cols-sidebar">
         <AppSidebar has-minified>
           <AppSidebarCategory>
             <template #title>
@@ -127,12 +127,3 @@
     </Variant>
   </Story>
 </template>
-
-<style scoped>
-.sidebar-layout {
-  display: grid;
-  grid-template-columns: auto 3fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "sidebar content";
-}
-</style>

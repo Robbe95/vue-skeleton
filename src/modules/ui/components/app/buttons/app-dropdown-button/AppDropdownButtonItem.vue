@@ -12,7 +12,7 @@ const emit = defineEmits(['component:click'])
 </script>
 
 <template>
-  <PopoverButton as="button" class="flex items-center justify-between w-full gap-2 px-2 py-1 rounded text-primary-500 hover:bg-primary-100 min-w-40" @click="emit('component:click')">
+  <PopoverButton as="button" class="flex w-full min-w-40 items-center justify-between gap-2 rounded px-2 py-1 text-primary-500 hover:bg-primary-100" @click="emit('component:click')">
     <div>
       <slot />
     </div>

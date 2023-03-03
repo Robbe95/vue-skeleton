@@ -76,20 +76,20 @@ provide(SelectGroupContext, setupApi)
   <div class="w-full">
     <Combobox v-model="model" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
-        <div class="flex h-24 p-3 ml-4 text-gray-700 border-2 border-gray-300 shadow-md">
+        <div class="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md">
           <slot name="input" />
         </div>
         <ComboboxOptions>
-          <div class="bg-white border rounded border-primary-500 ">
-            <div class="w-full p-2 rounded">
+          <div class="rounded border border-primary-500 bg-white ">
+            <div class="w-full rounded p-2">
               <TransitionExpand>
-                <div v-if="isLoading" class="flex items-center justify-center w-full">
-                  <AppLoader class="w-16 h-16" />
+                <div v-if="isLoading" class="flex w-full items-center justify-center">
+                  <AppLoader class="h-16 w-16" />
                 </div>
                 <div v-else-if="isEmpty " class="w-full">
                   {{ t('labels.no_results') }}
                 </div>
-                <div v-else class="flex flex-col w-full gap-1">
+                <div v-else class="flex w-full flex-col gap-1">
                   <slot name="options" />
                 </div>
               </TransitionExpand>
@@ -98,7 +98,7 @@ provide(SelectGroupContext, setupApi)
         </ComboboxOptions>
       </Float>
     </Combobox>
-    <div v-if="hasMultiple && hasPills" class="flex flex-wrap gap-1 mt-1">
+    <div v-if="hasMultiple && hasPills" class="mt-1 flex flex-wrap gap-1">
       <div v-for="singleValue in model" :key="keyValue ? singleValue[keyValue] : singleValue">
         <AppPill :key="singleValue" is-active class="max-w-max" has-close @component:remove="removeValue(singleValue)">
           {{ displayFunction(singleValue) }}

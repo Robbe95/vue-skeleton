@@ -3,7 +3,7 @@ interface Props {
   isHeader?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(),
+withDefaults(defineProps<Props>(),
   {
     isHeader: false,
   },
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(),
 
 <template>
   <tr
-    :class="{ 'bg-gray-600 text-white border-b border-gray-700 hover:bg-gray-400 duration-200': !isHeader }"
+    :class="{ 'border-b border-gray-700 bg-gray-600 text-white duration-200 hover:bg-gray-400': !isHeader }"
   >
     <slot />
   </tr>

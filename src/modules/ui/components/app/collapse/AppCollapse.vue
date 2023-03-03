@@ -26,19 +26,19 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 <template>
   <Disclosure v-slot="{ open }" ref="collapse" as="div" class="flex flex-col gap-1">
-    <DisclosureButton class="flex items-center justify-between w-full gap-4 px-4 py-1 rounded bg-slate-200">
+    <DisclosureButton class="flex w-full items-center justify-between gap-4 rounded bg-slate-200 px-4 py-1">
       <span>
         <slot name="button" />
       </span>
       <ChevronDownIcon
         :class="{
-          'rotate-180 transform': open,
+          'rotate-180': open,
         }"
-        class="w-5 h-5 transition text-primary-500"
+        class="h-5 w-5 text-primary-500 transition"
       />
     </DisclosureButton>
     <TransitionExpand>
-      <DisclosurePanel class="px-4 text-sm rounded bg-slate-100">
+      <DisclosurePanel class="rounded bg-slate-100 px-4 text-sm">
         <slot name="panel" />
       </DisclosurePanel>
     </TransitionExpand>

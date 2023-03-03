@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
 const minified = ref(false)
 const hidden = ref(false)
 
-const handleIconClicked = (event: MouseEvent): void => {
+const handleIconClicked = (): void => {
   if (props.hasHidden)
     hidden.value = !hidden.value
   else if (props.hasMinified)
@@ -27,10 +27,10 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
 
 <template>
   <div class="relative">
-    <div ref="hiddenHoverElement" class="absolute left-0 h-screen w-4 z-20" />
+    <div ref="hiddenHoverElement" class="absolute left-0 z-20 h-screen w-4" />
     <button
       v-if="hidden"
-      class="h-screen bg-primary-500 text-white flex justify-center flex-col transition-all duration-500 top-0 absolute overflow-hidden z-50 items-center"
+      class="absolute top-0 z-50 flex h-screen flex-col items-center justify-center overflow-hidden bg-primary-500 text-white transition-all duration-500"
       :class="{
         'w-8': !isOutside,
         'w-0': isOutside,
@@ -43,7 +43,7 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
       />
     </button>
     <div
-      class="h-screen bg-primary-500 text-white flex justify-between flex-col w-full transition-all duration-500 sticky top-0 overflow-auto"
+      class="sticky top-0 flex h-screen w-full flex-col justify-between overflow-auto bg-primary-500 text-white transition-all duration-500"
       :class="{
         'w-80': !minified,
         'w-32': minified,
@@ -52,8 +52,8 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
       }"
     >
       <div>
-        <div class="flex justify-between items-center p-4 gap-4">
-          <h2 class="font-bold text-xl ">
+        <div class="flex items-center justify-between gap-4 p-4">
+          <h2 class="text-xl font-bold ">
             <slot name="title" />
             Title
           </h2>
@@ -62,7 +62,7 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
               v-if="hasMinified"
               class="w-3"
               :class="{
-                'transform rotate-180 transition-transform': minified,
+                'rotate-180 transition-transform': minified,
               }"
             />
             <CloseIcon
@@ -72,7 +72,7 @@ const { isOutside } = useMouseInElement(hiddenHoverElement)
           </button>
         </div>
         <AppDivider />
-        <div class="p-4 flex flex-col gap-2 h-full">
+        <div class="flex h-full flex-col gap-2 p-4">
           <slot />
         </div>
       </div>

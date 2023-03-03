@@ -192,10 +192,10 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     <label class="text-primary-500" @click="handleLabelClick">
       <slot />
     </label>
-    <div class="px-4 py-5 border rounded border-primary-500">
+    <div class="rounded border border-primary-500 px-4 py-5">
       <div ref="slider" class="relative flex flex-row items-center justify-center">
         <div class="h-1 rounded-full bg-primary-500" :style="`width: ${leftSliderWidth}px`">
-          <button id="sliderButton" ref="sliderButton" class="slider-button border-[0.25rem] rounded-full border-primary-500 bg-white h-4 w-4 absolute z-10 top-1/2 -translate-y-1/2 focus:border-primary-500" :style="sliderButtonStyle" />
+          <button id="sliderButton" ref="sliderButton" class="absolute top-1/2 z-10 h-4 w-4 -translate-y-1/2 rounded-full border-[0.25rem] border-primary-500 bg-white focus:border-primary-500" :style="sliderButtonStyle" />
         </div>
         <div class="h-1 rounded-full bg-gray-500/50" :style="`width: ${rightSliderWidth - disabledValueSliderWidth}px`" />
         <div class="border-t-[2px] border-dashed border-primary-500" :style="`width: ${disabledValueSliderWidth}px`" />
@@ -204,10 +204,10 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     <div v-if="percentProgress || valueProgress" class="pb-4">
       <div ref="progressElement" class="absolute px-2 text-xs text-primary-500" :style="`left: ${leftSliderWidth}px`">
         <div>
-          <span v-if="percentProgress" class="flanders-medium">
+          <span v-if="percentProgress">
             {{ Math.round((model / maxAmount) * 100) }}%
           </span>
-          <span v-if="valueProgress" class="flanders-medium">
+          <span v-if="valueProgress">
             {{ model ?? 0 }}{{ valueMeasurement }}
           </span>
         </div>
@@ -219,7 +219,7 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
       :class="{
         'opacity-0': isProgressOverMaxLabel,
       }"
-      class="absolute bottom-0 right-0 flex justify-end w-full text-xs transition-opacity"
+      class="absolute bottom-0 right-0 flex w-full justify-end text-xs transition-opacity"
     >
       <div ref="maxLabelElement">
         {{ maxAmount }}{{ valueMeasurement }}

@@ -9,10 +9,6 @@ const props = withDefaults(defineProps<{
 })
 
 const tabButtons = ref<HTMLElement | undefined>()
-const width = computed(() => (100 / (tabButtons.value?.children.length ?? 1)).toFixed(2))
-
-onMounted(() => {
-})
 
 const selectedTab = ref(0)
 
@@ -53,11 +49,11 @@ const movingStyle = computed(() => {
       }"
       @change="changeTab"
     >
-      <TabList ref="tablist" class="p-1 bg-gray-100 rounded max-w-max">
+      <TabList ref="tablist" class="max-w-max rounded bg-gray-100 p-1">
         <div class="relative z-10">
           <div class="z-0">
             <div
-              class="absolute top-0 z-0 transition-transform bg-white rounded"
+              class="absolute top-0 z-0 rounded bg-white transition-transform"
               :style="movingStyle"
             />
           </div>

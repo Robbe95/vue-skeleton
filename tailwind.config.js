@@ -9,6 +9,15 @@ module.exports = {
       boxShadow: {
         main: '0px 10px 20px rgba(0, 0, 0, 0.05)',
       },
+      minWidth: {
+        40: '10rem',
+      },
+      minHeight: {
+        40: '10rem',
+      },
+      gridTemplateColumns: {
+        sidebar: 'auto 3fr',
+      },
       colors: {
         danger: {
           100: '#ffcccc',

@@ -3,6 +3,7 @@ export enum Routes {
   EXAMPLE_INDEX = 'example-index',
   LOGIN = 'login',
   EXAMPLE_TABLE = 'example-table',
+  EXAMPLE_FORM = 'example-form',
 }
 export interface Route {
   path: string

@@ -6,26 +6,28 @@ import { generateUuid } from '@/helpers/uuid/generateUuid'
 interface Props {
   modelValue: any
   hasSuccess?: boolean
-  hasError?: boolean
-  errorMessage?: string
   isReadOnly?: boolean
   isDisabled?: boolean
+  isTouched?: boolean
+  isDirty?: boolean
   placeholder?: string
   unit?: string
   type?: string
   label?: string
+  errors?: { _errors: string[] }
 }
 
 const props = withDefaults(defineProps<Props>(), {
   hasSuccess: false,
-  hasError: false,
-  errorMessage: undefined,
   isReadOnly: false,
   isDisabled: false,
+  isTouched: false,
+  isDirty: false,
   placeholder: undefined,
   unit: undefined,
   type: 'text',
   label: undefined,
+  errors: () => ({ _errors: [] }),
 })
 
 const emits = defineEmits<{
@@ -33,11 +35,14 @@ const emits = defineEmits<{
   (event: 'change', value: any): void
   (event: 'blur'): void
 }>()
+
 const slots = useSlots()
-const { placeholder, type, modelValue, isReadOnly, errorMessage, hasError, hasSuccess } = toRefs(props)
+const { placeholder, type, modelValue, isReadOnly, errors, hasSuccess, isTouched, isDirty } = toRefs(props)
+
+const errorShown = computed(() => errors.value._errors.length > 0 && (isTouched.value || isDirty.value))
 
 const borderColor = computed(() => {
-  if (hasError.value)
+  if (errorShown.value)
     return 'border-danger-500'
   if (hasSuccess.value)
     return 'border-success-500'
@@ -84,6 +89,7 @@ onUnmounted(() => {
   if (context)
     context.unregisterOption(uuid)
 })
+// end group logic
 </script>
 
 <template>
@@ -136,11 +142,9 @@ onUnmounted(() => {
     </div>
 
     <TransitionExpand :duration="0.2">
-      <p v-if="hasError">
-        <span class="text-sm text-danger-500">{{ errorMessage }}</span>
+      <p v-if="errorShown">
+        <span class="text-sm text-danger-500">{{ errors._errors[0] }}</span>
       </p>
     </TransitionExpand>
-
-    <!-- <FormError :error-message="errorMessage" /> -->
   </div>
 </template>

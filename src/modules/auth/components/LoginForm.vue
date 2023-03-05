@@ -3,6 +3,7 @@ import useAuth from '@/composables/auth/useAuth'
 import type { User } from '@/models/user.model'
 
 const { signIn, getUser } = useAuth()
+
 const email = ref('')
 const password = ref('')
 const user = ref<User>()

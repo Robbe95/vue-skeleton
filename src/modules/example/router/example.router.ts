@@ -8,4 +8,10 @@ export default [
     name: Routes.EXAMPLE_INDEX,
     path: 'example',
   },
+  {
+    component: (): Promise<Component> => import('../pages/ExampleFormPage.vue'),
+    name: Routes.EXAMPLE_FORM,
+    path: 'example-form',
+  },
+
 ] satisfies Route[]

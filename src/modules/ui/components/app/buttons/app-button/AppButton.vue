@@ -2,12 +2,14 @@
 interface Props {
   isDisabled?: boolean
   isLoading?: boolean
-  type: 'primary' | 'secondary'
+  isReady?: boolean
+  type?: 'primary' | 'secondary'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isLoading: false,
+  isReady: false,
   type: 'primary',
 })
 
@@ -24,7 +26,7 @@ const handleClick = (): void => {
 <template>
   <!-- eslint-disable tailwindcss/no-custom-classname -->
   <button
-    class="overflow-hidden whitespace-nowrap rounded border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
+    class="relative overflow-hidden whitespace-nowrap rounded border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
     :class="{
       'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
       'border border-transparent bg-primary-500 text-white': type === 'primary',
@@ -32,8 +34,24 @@ const handleClick = (): void => {
     }"
     @click="handleClick"
   >
-    <div :class="{ 'opacity-0': isLoading }" class="transition-opacity">
+    <div :class="{ 'opacity-30': isLoading }" class="flex items-center gap-2 transition-opacity">
       <slot />
+      <!-- <Transition>
+        <div
+          v-if="isReady"
+          :class="[isReady ? 'opacity-100' : 'opacity-0']"
+          class="text-secondary-500"
+        >
+          <svg width="17" height="13" xmlns="http://www.w3.org/2000/svg">
+            <path
+              stroke="currentColor"
+              fill="currentColor"
+              d="M15.438 0a1.505 1.505 0 0 0-1.042.474c-2.937 3-5.616 5.95-8.453 8.895L2.465 6.54a1.5 1.5 0 0 0-2.133.242A1.566 1.566 0 0 0 .57 8.954l4.55 3.709c.603.49 1.472.44 2.018-.116 3.266-3.336 6.198-6.619 9.4-9.89.45-.443.587-1.124.344-1.712A1.515 1.515 0 0 0 15.438 0Z"
+              fill-rule="nonzero"
+            />
+          </svg>
+        </div>
+      </Transition> -->
     </div>
     <div
       :class="[isLoading ? 'opacity-100' : 'opacity-0']"

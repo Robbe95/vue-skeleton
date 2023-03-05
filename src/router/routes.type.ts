@@ -1,13 +1,19 @@
-export enum Routes {
+import { AuthRoutes } from '@/modules/auth/router/auth.routes.type'
+import { ExampleRoutes } from '@/modules/example/router/example.routes.type'
+
+export enum GlobalRoutes {
   INDEX = 'index',
-  EXAMPLE_INDEX = 'example-index',
-  LOGIN = 'login',
-  EXAMPLE_TABLE = 'example-table',
-  EXAMPLE_FORM = 'example-form',
 }
+
+export const Routes = {
+  ...GlobalRoutes,
+  ...AuthRoutes,
+  ...ExampleRoutes,
+}
+
 export interface Route {
   path: string
   component: () => Promise<unknown>
   children?: Route[]
-  name?: Routes
+  name?: typeof Routes[keyof typeof Routes]
 }

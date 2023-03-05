@@ -5,10 +5,9 @@ import { conditionalArrayForm } from '../models/form.model'
 import ExampleArrayFormComponent from './ExampleArrayFormComponent.vue'
 import AppButton from '@/modules/ui/components/app/buttons/app-button/AppButton.vue'
 
-const submitForm = (values: CondionalArrayForm): null => {
+const submitForm = (values: CondionalArrayForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
-  return null
 }
 const { register, submit } = useForm(conditionalArrayForm, {
   onSubmit: submitForm,

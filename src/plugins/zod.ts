@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import i18n from '@/plugins/i18n'
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
-  // @ts-expect-error This works
   const t = i18n.global.t
   if (issue.code === z.ZodIssueCode.invalid_type)
     return { message: t('errors.invalid_type') }

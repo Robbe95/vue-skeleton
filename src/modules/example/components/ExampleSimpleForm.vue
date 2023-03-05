@@ -5,10 +5,9 @@ import { simpleForm } from '../models/form.model'
 import FormInputField from '@/modules/ui/components/forms/field/FormInputField.vue'
 import AppButton from '@/modules/ui/components/app/buttons/app-button/AppButton.vue'
 
-const submitForm = (values: SimpleForm): null => {
+const submitForm = (values: SimpleForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
-  return null
 }
 const form = useForm(simpleForm, {
   onSubmit: submitForm,

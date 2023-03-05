@@ -1,28 +1,34 @@
 <script setup lang="ts">
+import { useForm } from '@appwise/forms/index'
+import type { LoginForm } from '../models/loginForm.model'
+import { loginForm } from '../models/loginForm.model'
 import useAuth from '@/composables/auth/useAuth'
 import type { User } from '@/models/user.model'
 
 const { signIn, getUser } = useAuth()
 
-const email = ref('')
-const password = ref('')
 const user = ref<User>()
-const submit = async (): Promise<void> => {
-  await signIn(email.value, password.value)
+const submit = async (values: LoginForm): Promise<void> => {
+  await signIn(values.email, values.password)
   user.value = await getUser()
 }
+
+const form = useForm(loginForm, {
+  // @ts-expect-error: library needs return Promise<void>
+  onSubmit: submit,
+})
 </script>
 
 <template>
   <section>
     <FormInputField
-      v-model="email"
+      v-bind="form.register('email')"
       label="Email"
       type="email"
       placeholder="Email"
     />
     <FormInputField
-      v-model="password"
+      v-bind="form.register('password')"
       label="Password"
       type="password"
       placeholder="Password"

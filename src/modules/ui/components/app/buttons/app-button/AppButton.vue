@@ -18,7 +18,6 @@ const emits = defineEmits(['component:click'])
 const { isDisabled, isLoading } = toRefs(props)
 
 const handleClick = (): void => {
-  console.log('clicked')
   if (!isDisabled.value && !isLoading.value)
     emits('component:click')
 }

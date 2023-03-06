@@ -3,7 +3,8 @@ import AppButton from './AppButton.vue'
 describe('AppButton click events', () => {
   it('AppButton emits component:click', async () => {
     const button = render(AppButton)
-    await fireEvent.click(button.container.firstChild as HTMLElement)
+    const clickable = await button.findByRole('button')
+    await fireEvent.click(clickable)
     expect(button.emitted('component:click')).toBeTruthy()
     cleanup()
   })
@@ -14,7 +15,8 @@ describe('AppButton click events', () => {
         isDisabled: true,
       },
     })
-    await fireEvent.click(button.container.firstChild as HTMLElement)
+    const clickable = await button.findByRole('button')
+    await fireEvent.click(clickable)
     expect(button.emitted('component:click')).toBeFalsy()
     cleanup()
   })
@@ -25,7 +27,9 @@ describe('AppButton click events', () => {
         isLoading: true,
       },
     })
-    await fireEvent.click(button.container.firstChild as HTMLElement)
+    const clickable = await button.findByRole('button')
+    await fireEvent.click(clickable)
+
     expect(button.emitted('component:click')).toBeFalsy()
     cleanup()
   })

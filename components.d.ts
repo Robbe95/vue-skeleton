@@ -48,6 +48,8 @@ declare module '@vue/runtime-core' {
     AppTabPanel: typeof import('./src/modules/ui/components/app/tabs/AppTabPanel.vue')['default']
     AppTabs: typeof import('./src/modules/ui/components/app/tabs/AppTabs.vue')['default']
     'AppTabs.story': typeof import('./src/modules/ui/components/app/tabs/AppTabs.story.vue')['default']
+    AppText: typeof import('./src/modules/ui/components/app/text/AppText.vue')['default']
+    'AppText.story': typeof import('./src/modules/ui/components/app/text/AppText.story.vue')['default']
     AppTooltip: typeof import('./src/modules/ui/components/app/tooltip/AppTooltip.vue')['default']
     'AppTooltip.story': typeof import('./src/modules/ui/components/app/tooltip/AppTooltip.story.vue')['default']
     ArrowDownIcon: typeof import('./src/components/icons/ArrowDownIcon.vue')['default']

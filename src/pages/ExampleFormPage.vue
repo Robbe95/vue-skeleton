@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExampleArrayForm from '../components/ExampleArrayForm.vue'
+import ExampleArrayForm from '@/modules/example/components/ExampleArrayForm.vue'
 </script>
 
 <template>

@@ -3,6 +3,7 @@ module.exports = {
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
+    './nuxt.config.{js,ts}',
   ],
   theme: {
     extend: {

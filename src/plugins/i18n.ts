@@ -1,8 +1,9 @@
 import { createI18n } from 'vue-i18n'
+import { defineNuxtPlugin } from 'nuxt/app'
 import en from '@/locales/en.json'
 import nl from '@/locales/nl.json'
 
-const i18n = createI18n({
+export const i18n = createI18n({
   legacy: false,
   locale: 'nl', // set locale
   fallbackLocale: 'nl', // set fallback locale
@@ -12,4 +13,6 @@ const i18n = createI18n({
   },
 })
 
-export default i18n
+export default defineNuxtPlugin(({ vueApp }) => {
+  vueApp.use(i18n)
+})

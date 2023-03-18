@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import FormInputField from '../../forms/field/FormInputField.vue'
 import { useTableContext } from '@/modules/ui/composables/app/table/useTableContext'
+
 interface Props {
   isHeader?: boolean
 }

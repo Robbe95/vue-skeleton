@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 const emit = defineEmits<{
   (event: 'component:confirm'): void
   (event: 'component:decline'): void

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 
 interface Props {

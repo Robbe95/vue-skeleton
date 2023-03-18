@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
+import { useI18n } from 'vue-i18n'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 import { SelectGroupContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 

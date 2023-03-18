@@ -7,14 +7,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  imports: {
-    presets: [
-      'vue',
-      'vue-i18n',
-      'pinia',
-
-    ],
-  },
   components: [
     {
       path: '~/components',
@@ -25,5 +17,8 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/devtools',
+  ],
 })

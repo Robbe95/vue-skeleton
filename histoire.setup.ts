@@ -6,7 +6,6 @@ import { createI18n } from 'vue-i18n'
 
 import en from './src/locales/en.json'
 import nl from './src/locales/nl.json'
-import router from './src/router/router'
 
 export const setupVue3 = defineSetupVue3(({ app }) => {
   const pinia = createPinia()
@@ -21,5 +20,4 @@ export const setupVue3 = defineSetupVue3(({ app }) => {
   })
   app.use(pinia) // Add Pinia store
     .use(i18n)
-    .use(router)
 })

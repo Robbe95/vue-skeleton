@@ -59,6 +59,9 @@
       "vue-demi": [
         "../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/app/compat/vue-demi"
       ],
+      "pinia": [
+        "../node_modules/.pnpm/pinia@2.0.33_hmuptsblhheur2tugfgucj7gc4/node_modules/pinia/dist/pinia"
+      ],
       "@vueuse/head": [
         "../node_modules/.pnpm/@unhead+vue@1.1.22_vue@3.2.47/node_modules/@unhead/vue/dist/index"
       ],

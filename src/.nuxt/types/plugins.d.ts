@@ -6,11 +6,13 @@ type Decorate<T extends Record<string, any>> = { [K in keyof T as K extends stri
 type InjectionType<A extends Plugin> = A extends Plugin<infer T> ? Decorate<T> : unknown
 
 type NuxtAppInjections = 
+  InjectionType<typeof import("../../../node_modules/.pnpm/@pinia+nuxt@0.4.7_hmuptsblhheur2tugfgucj7gc4/node_modules/@pinia/nuxt/dist/runtime/plugin.vue3").default> &
   InjectionType<typeof import("../components.plugin").default> &
   InjectionType<typeof import("../../../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/head/runtime/plugins/unhead").default> &
   InjectionType<typeof import("../../../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/head/runtime/plugins/vueuse-head-polyfill").default> &
   InjectionType<typeof import("../../../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/pages/runtime/plugins/router").default> &
   InjectionType<typeof import("../../../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client").default> &
+  InjectionType<typeof import("../../../node_modules/.pnpm/@nuxt+devtools@0.2.5_nuxt@3.3.1+vite@4.1.4/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client").default> &
   InjectionType<typeof import("../../../node_modules/.pnpm/nuxt@3.3.1_ftlulqgqhjn43kfbkwjgypolwi/node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
   InjectionType<typeof import("../../plugins/i18n").default> &
   InjectionType<typeof import("../../plugins/zod").default>

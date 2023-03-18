@@ -1,12 +1,10 @@
 import { z } from 'zod'
 
 export const userSchema = z.object({
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  password: z.string().optional(),
-  role: z.string(),
+  type: z.string(),
+  email: z.string().email(),
+  first_name: z.string(),
+  last_name: z.string(),
 })
 
 export type User = z.infer<typeof userSchema>

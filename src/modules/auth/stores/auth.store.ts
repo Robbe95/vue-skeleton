@@ -1,6 +1,7 @@
 import type { ComputedRef, Ref } from 'vue'
 import { computed, ref, watch } from 'vue'
 import axios, { AxiosError } from 'axios'
+import { defineStore } from 'pinia'
 import type { User } from '@/models/user.model'
 import { userSchema } from '@/models/user.model'
 import type { Auth } from '@/models/auth.model'
@@ -27,30 +28,30 @@ interface Options {
   baseURL: string
 }
 
-const oAuthCookie = useCookie('oAuth')
-const options: Options = {
-  baseURL: import.meta.env.VITE_AUTH_URL,
-  clientId: import.meta.env.VITE_AUTH_CLIENT_ID,
-  clientSecret: import.meta.env.VITE_AUTH_CLIENT_SECRET,
-}
-
-const user = ref<User | null>(null)
-const isAuthenticated = computed(() => user.value !== null)
-let refreshTokenTimeout: ReturnType<typeof setTimeout> | null = null
-
-const oAuth = ref<Auth | null>((oAuthCookie.value !== undefined && oAuthCookie.value !== null)
-  ? JSON.parse(oAuthCookie.value)
-  : null,
-)
-
-watch((oAuth), (oAuth) => {
-  axios.defaults.headers.common.Authorization = oAuth === null ? '' : `Bearer ${oAuth.access_token}`
-  if (oAuth !== null)
-    oAuthCookie.value = JSON.stringify(oAuth)
-}, { immediate: true })
-
-export default (): UseAuth => {
+export const useAuthStore = defineStore('auth', (): UseAuth => {
+  const oAuthCookie = useCookie<Auth>('oAuth')
   const http = useHttp()
+
+  // TODO: set options with env variables
+  const options: Options = {
+    baseURL: 'BASEURL',
+    clientId: 'ID',
+    clientSecret: 'SECRET',
+  }
+
+  const user = ref<User | null>(null)
+  const isAuthenticated = computed(() => user.value !== null)
+  let refreshTokenTimeout: ReturnType<typeof setTimeout> | null = null
+  const oAuth = ref<Auth | null>((oAuthCookie.value !== undefined && oAuthCookie.value !== null)
+    ? oAuthCookie.value
+    : null,
+  )
+
+  watch((oAuth), (oAuth) => {
+    http.setHeader('Authorization', oAuth === null ? '' : `Bearer ${oAuth.access_token}`)
+    if (oAuth !== null)
+      oAuthCookie.value = oAuth
+  }, { immediate: true })
 
   const setRefreshTokenTimeout = (): void => {
     if (refreshTokenTimeout !== null)
@@ -177,4 +178,4 @@ export default (): UseAuth => {
     invalidateToken,
     getUser,
   }
-}
+})

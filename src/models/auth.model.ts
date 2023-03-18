@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
 export const authSchema = z.object({
-  accessToken: z.string(),
-  refreshToken: z.string(),
-  tokenType: z.string(),
-  expiresIn: z.number(),
-  expiresAt: z.number(),
+  access_token: z.string(),
+  expires_in: z.number(),
+  expires_at: z.number().nullish(),
+  refresh_token: z.string(),
+  scope: z.string().nullish(),
+  token_type: z.string(),
 })
 
 export type Auth = z.infer<typeof authSchema>

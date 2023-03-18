@@ -14,8 +14,20 @@ declare module 'nuxt/schema' {
 
       cdnURL: string,
    },
+
+   apiSecret: string,
   }
   interface PublicRuntimeConfig {
+   apiBase: string,
 
+   otherUrl: string,
+
+   apiBaseUrl: string,
+
+   googleApiKey: string,
+
+   authClientId: string,
+
+   authClientSecret: string,
   }
 }

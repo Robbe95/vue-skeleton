@@ -43,6 +43,7 @@
     "@antfu/eslint-config": "^0.36.0",
     "@histoire/plugin-vue": "^0.15.8",
     "@nuxt/devtools": "^0.2.5",
+    "@nuxtjs/tailwindcss": "^6.6.0",
     "@testing-library/vue": "^6.6.1",
     "@types/node": "^18.15.0",
     "@vitejs/plugin-vue": "^4.0.0",

@@ -11,7 +11,6 @@ export const factSchema = z.object({
   __v: z.number(),
   source: z.string(),
   updatedAt: z.string().transform(str => new Date(str)),
-  type: z.number(),
   createdAt: z.string().transform(str => new Date(str)),
   deleted: z.boolean(),
   used: z.boolean(),

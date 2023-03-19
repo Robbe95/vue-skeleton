@@ -27,7 +27,7 @@ const inlineAppConfig = {};
 
 const appConfig = defuFn(inlineAppConfig);
 
-const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"apiBase":"default_api_url","otherUrl":"default_other_url","apiBaseUrl":"https://maes.puntoo.com/platform/APIREST/V2","googleApiKey":"AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw","authClientId":"clientidweb","authClientSecret":"xkedv6THjwLTlWhp9izKEj26KeQTdnSGp28n7FPu"},"apiSecret":"123"};
+const _runtimeConfig = {"app":{"baseURL":"/","buildAssetsDir":"/_nuxt/","cdnURL":""},"nitro":{"envPrefix":"NUXT_","routeRules":{"/__nuxt_error":{"cache":false}}},"public":{"apiUrl":""}};
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _runtimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
 overrideConfig(_runtimeConfig);

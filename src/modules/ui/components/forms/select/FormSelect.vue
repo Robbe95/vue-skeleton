@@ -76,17 +76,17 @@ provide(SelectGroupContext, setupApi)
   <div class="w-full">
     <Combobox v-model="model" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
-        <div class="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md">
+        <div class="flex w-auto max-w-max text-gray-700">
           <slot name="input" />
         </div>
         <ComboboxOptions>
-          <div class="rounded border border-primary-500 bg-white ">
+          <div class="min-w-min rounded border border-primary-500 bg-white">
             <div class="w-full rounded p-2">
               <TransitionExpand>
                 <div v-if="isLoading" class="flex w-full items-center justify-center">
                   <AppLoader class="h-16 w-16" />
                 </div>
-                <div v-else-if="isEmpty " class="w-full">
+                <div v-else-if="isEmpty " class="w-full whitespace-nowrap">
                   {{ t('labels.no_results') }}
                 </div>
                 <div v-else class="flex w-full flex-col gap-1">

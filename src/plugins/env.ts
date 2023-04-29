@@ -5,8 +5,8 @@ export const envSchema = z.object({
 export const buildParseEnv = (env: NodeJS.ProcessEnv): any => {
   return {
     name: 'env-parser',
-    config(_: any, { command }: any): any {
-      if (command === 'build')
+    config(_: any, { command }: { command: 'build' | 'serve' }): any {
+      if (command === 'build' || command === 'serve')
         envSchema.parse(env)
     },
   }

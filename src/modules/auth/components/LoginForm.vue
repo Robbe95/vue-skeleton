@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useForm } from '@appwise/forms/index'
+import { useForm } from '@appwise/forms'
 import type { LoginForm } from '../models/loginForm.model'
 import { loginForm } from '../models/loginForm.model'
-import useAuth from '@/composables/auth/useAuth'
-import type { User } from '@/models/user.model'
+import { useAuthStore } from '../stores/auth.store'
+import type { User } from '../models/user.model'
 
-const { signIn, getUser } = useAuth()
+const authStore = useAuthStore()
 
 const user = ref<User>()
 const submit = async (values: LoginForm): Promise<void> => {
-  await signIn(values.email, values.password)
-  user.value = await getUser()
+  await authStore.signIn(values.email, values.password)
+  user.value = await authStore.getUser()
 }
 
 const form = useForm(loginForm, {

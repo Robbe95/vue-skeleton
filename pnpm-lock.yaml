@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@appwise/forms':
-    specifier: ^0.0.3
-    version: 0.0.3
+    specifier: ^0.0.11
+    version: 0.0.11(zod@3.21.4)
   '@floating-ui/dom':
     specifier: ^1.2.3
     version: 1.2.3
@@ -222,8 +222,10 @@ packages:
     resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
     dev: true
 
-  /@appwise/forms@0.0.3:
-    resolution: {integrity: sha512-57lujs+WH30mqxY7i2kz5t6hxJgvT7nPep55cX4k79r5frUgdMwc6gOis8udjiHpmt0HGIerdhXB5Dj7UNr4+Q==}
+  /@appwise/forms@0.0.11(zod@3.21.4):
+    resolution: {integrity: sha512-7bUey076MX7XWSV/0DWXrEQzw9Ud6ZeO+M5KPh/8vcWM/8Kjk3r0nuVlu/wzdhl4Zvmn6mzQk6woShhRwqDDrg==}
+    peerDependencies:
+      zod: ^3.21.4
     dependencies:
       zod: 3.21.4
     dev: false

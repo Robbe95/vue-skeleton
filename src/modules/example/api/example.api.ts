@@ -1,7 +1,6 @@
-import { useHttp } from '@/http/useHttp'
+import { http } from '@/http/http'
 import type { Fact } from '@/modules/example/models/facts.model'
 import { factSchema } from '@/modules/example/models/facts.model'
-const http = useHttp()
 
 export const getFacts = async (): Promise<Fact[]> => {
   const response = await http.get({

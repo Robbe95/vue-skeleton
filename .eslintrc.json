@@ -4,6 +4,7 @@
         "plugin:tailwindcss/recommended"
     ],
     "rules": {
+        "antfu/top-level-function": "off",
         "@typescript-eslint/explicit-function-return-type": "error",
         "tailwindcss/migration-from-tailwind-2": "off",
         "vue/custom-event-name-casing": [

@@ -10,6 +10,7 @@ export type CookieType = typeof cookieTypes[number]
 export const acceptedCookies = useStorage<CookieType[]>('acceptedCookies', [], undefined, { serializer: StorageSerializers.object })
 export const hasChoosenCookies = useStorage<boolean>('hasChoosenCookies', false)
 export const hasCookiesOpened = ref(false)
+
 const handleAnalyticsCookieUpdated = (accepted: boolean) => {
   useGtm()?.enable(accepted)
 }

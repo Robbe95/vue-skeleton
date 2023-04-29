@@ -12,7 +12,8 @@ const updateCookies = (): void => {
 </script>
 
 <template>
-  <div class="fixed right-4 bottom-4 border-primary-500 bg-primary-100 p-6 border rounded-lg">
+  <div
+    class="fixed right-4 bottom-4 border-primary-500 bg-primary-100 p-6 border rounded-lg md:w-auto w-[calc(100vw-2rem)]">
     <div class="flex flex-row justify-evenly gap-4 flex-wrap mb-2">
       <div v-for="cookie in cookiesConsent.cookieTypes">
         <FormCheckboxGroup v-model="tempAcceptedCookies">

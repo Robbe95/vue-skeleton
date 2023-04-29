@@ -12,6 +12,7 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom'
+import { scaleBounceTransition } from '@/transitions'
 
 interface Props {
   offset: number
@@ -90,7 +91,7 @@ onMounted(() => {
     <div ref="element" class="grid max-w-max place-items-center">
       <slot name="element" />
     </div>
-    <Transition name="scale-bounce-transition">
+    <Transition v-bind="scaleBounceTransition">
       <div
         v-if="tooltipShow"
         id="tooltip"

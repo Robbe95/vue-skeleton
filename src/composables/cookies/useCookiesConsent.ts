@@ -23,9 +23,6 @@ watch(() => acceptedCookies.value, () => {
   enableAcceptedCookies()
 })
 
-
-
-
 export const useCookiesConsent = () => {
   const updateCookies = (newAcceptedCookies: CookieType[]) => {
     hasChoosenCookies.value = true

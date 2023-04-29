@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ComboboxOption } from '@headlessui/vue'
 import { useSelectContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
+import { fadeTransition } from '@/transitions'
 
 interface Props {
   value: any
@@ -37,7 +38,7 @@ const isInSearchQuery = computed(() => {
       :class="{ 'border-primary-500 bg-primary-100': active }"
     >
       <div v-if="context.hasMultiple.value" class="grid h-6 w-6 place-items-center rounded border border-primary-500 bg-white">
-        <Transition name="fade">
+        <Transition v-bind="fadeTransition">
           <CheckmarkIcon v-if="isSelected" class="h-2 text-primary-500" />
         </Transition>
       </div>

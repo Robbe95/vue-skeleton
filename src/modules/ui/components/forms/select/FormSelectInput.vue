@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ComboboxButton, ComboboxInput } from '@headlessui/vue'
 import { useSelectContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
+import { fadeTransition } from '@/transitions'
 
 interface Props {
   placeholder: string
@@ -34,7 +35,7 @@ const handleChangeEvent = (event: Event): void => {
         @change="handleChangeEvent"
       />
       <ComboboxButton class="h-auto rounded rounded-l-none border border-l-0 border-primary-500 bg-white p-2">
-        <Transition name="fade" mode="out-in">
+        <Transition v-bind="fadeTransition" mode="out-in">
           <div v-if="!context.isLoading.value" class="flex-none p-[0.15rem]">
             <SearchIcon v-if="context.hasSearch.value" class="h-4 flex-none" />
           </div>

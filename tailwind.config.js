@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionTimingFunction: {
+        'bounce': 'cubic-bezier(.8, .16, 0, 1.3)',
+      },
       boxShadow: {
         main: '0px 10px 20px rgba(0, 0, 0, 0.05)',
       },

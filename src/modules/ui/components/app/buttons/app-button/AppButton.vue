@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { fadeTransition } from '@/transitions'
+
 interface Props {
   isDisabled?: boolean
   isLoading?: boolean
@@ -31,7 +33,8 @@ const handleClick = (): void => {
       'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
       'border border-transparent bg-primary-500 text-white': type === 'primary',
       'border border-primary-500 bg-white text-primary-500': type === 'secondary',
-    }" @click="handleClick">
+    }" @click="handleClick"
+  >
     <div :class="{ 'opacity-30': isLoading }" class="transition-opacity">
       <slot />
       <!-- <Transition>
@@ -51,17 +54,18 @@ const handleClick = (): void => {
         </div>
       </Transition> -->
     </div>
-    <Transition name="fade">
+    <Transition v-bind="fadeTransition">
       <div v-if="isLoading" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div class="relative inline-block h-2.5 w-10">
-          <div v-for="i in 4" :key="i" class="orb absolute top-[1px] h-2 w-2 rounded-full" :class="{
+          <div
+            v-for="i in 4" :key="i" class="orb absolute top-[1px] h-2 w-2 rounded-full" :class="{
               'bg-white': type === 'primary',
               'bg-primary-500': type === 'secondary',
-            }" />
+            }"
+          />
         </div>
       </div>
     </Transition>
-
   </button>
 </template>
 

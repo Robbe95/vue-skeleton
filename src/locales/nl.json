@@ -1,4 +1,9 @@
 {
+  "cookies": {
+    "accept": "Accepteer geselecteerd cookies",
+    "others": "Andere",
+    "analytics": "Analytics"
+  },
   "label": {
     "optional": "Optioneel",
     "cancel": "Annuleren",

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PaginationNumber } from '@/modules/ui/composables/app/pagination/usePagination'
+
 interface Props {
   options: PaginationNumber[]
   currentOption: number

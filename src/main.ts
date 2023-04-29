@@ -10,10 +10,12 @@ import setupZod from './plugins/zod'
 
 import './assets/styles/tailwind.css'
 import './assets/styles/transitions.scss'
+import { initializeGtm } from './plugins/gtm'
 
 const pinia = createPinia()
 setupZod()
 
+const gtm = initializeGtm(router)
 const app = createApp(App)
 app.use(pinia)
   .use(createHead())
@@ -22,4 +24,5 @@ app.use(pinia)
   .use(vue3GoogleLogin, {
     clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
   })
+  .use(gtm)
   .mount('#app')

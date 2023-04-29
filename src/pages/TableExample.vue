@@ -4,6 +4,7 @@ import type { RandomData } from '@/helpers/example-data/tableData'
 import { data } from '@/helpers/example-data/tableData'
 import type { FilterableRow, Key } from '@/modules/ui/composables/app/table/useTable'
 import { useTable } from '@/modules/ui/composables/app/table/useTable'
+
 useHead({
   title: 'Test',
   meta: [

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UseForm } from '@appwise/forms'
 import type { conditionalArrayForm } from '../models/form.model'
+
 interface Props {
   index: number
   register: UseForm<typeof conditionalArrayForm>['register']

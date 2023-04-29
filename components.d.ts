@@ -57,6 +57,7 @@ declare module '@vue/runtime-core' {
     ChevronDownIcon: typeof import('./src/components/icons/ChevronDownIcon.vue')['default']
     ChevronRightIcon: typeof import('./src/components/icons/ChevronRightIcon.vue')['default']
     CloseIcon: typeof import('./src/components/icons/CloseIcon.vue')['default']
+    CookiesConsent: typeof import('./src/components/cookies/CookiesConsent.vue')['default']
     EditIcon: typeof import('./src/components/icons/EditIcon.vue')['default']
     ExampleApiPage: typeof import('./src/modules/example/pages/ExampleApiPage.vue')['default']
     ExampleArrayForm: typeof import('./src/modules/example/components/ExampleArrayForm.vue')['default']

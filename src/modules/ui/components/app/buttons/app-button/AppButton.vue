@@ -31,10 +31,8 @@ const handleClick = (): void => {
       'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
       'border border-transparent bg-primary-500 text-white': type === 'primary',
       'border border-primary-500 bg-white text-primary-500': type === 'secondary',
-    }"
-    @click="handleClick"
-  >
-    <div :class="{ 'opacity-30': isLoading }" class="flex items-center gap-2 transition-opacity">
+    }" @click="handleClick">
+    <div :class="{ 'opacity-30': isLoading }" class="transition-opacity">
       <slot />
       <!-- <Transition>
         <div
@@ -53,21 +51,17 @@ const handleClick = (): void => {
         </div>
       </Transition> -->
     </div>
-    <div
-      :class="[isLoading ? 'opacity-100' : 'opacity-0']"
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-    >
-      <div class="relative inline-block h-2.5 w-10">
-        <div
-          v-for="i in 4" :key="i"
-          class="orb absolute top-[1px] h-2 w-2 rounded-full"
-          :class="{
-            'bg-white': type === 'primary',
-            'bg-primary-500': type === 'secondary',
-          }"
-        />
+    <Transition name="fade">
+      <div v-if="isLoading" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div class="relative inline-block h-2.5 w-10">
+          <div v-for="i in 4" :key="i" class="orb absolute top-[1px] h-2 w-2 rounded-full" :class="{
+              'bg-white': type === 'primary',
+              'bg-primary-500': type === 'secondary',
+            }" />
+        </div>
       </div>
-    </div>
+    </Transition>
+
   </button>
 </template>
 
@@ -76,38 +70,47 @@ const handleClick = (): void => {
   left: 4px;
   animation: lds-ellipsis1 0.6s infinite;
 }
+
 .orb:nth-child(2) {
   left: 4px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .orb:nth-child(3) {
   left: 16px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .orb:nth-child(4) {
   left: 28px;
   animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 @keyframes lds-ellipsis3 {
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0);
   }
 }
+
 @keyframes lds-ellipsis2 {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(12px, 0);
   }

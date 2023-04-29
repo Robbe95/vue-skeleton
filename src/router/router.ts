@@ -4,6 +4,8 @@ import type { Route } from './routes.type'
 import { Routes } from './routes.type'
 import exampleRouter from '@/modules/example/router/example.router'
 import authRouter from '@/modules/auth/router/auth.router'
+import { authMiddleware } from '@/middleware/auth.middleware'
+import { cookiesMiddleware } from '@/middleware/cookies.middleware'
 
 const routes = [
   {
@@ -36,6 +38,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+
+router.beforeEach(async (to, from, next) => {
+  authMiddleware(next)
+  cookiesMiddleware()
 })
 
 export default router

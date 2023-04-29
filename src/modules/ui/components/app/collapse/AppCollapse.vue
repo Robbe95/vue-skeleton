@@ -25,7 +25,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 </script>
 
 <template>
-  <Disclosure v-slot="{ open }" ref="collapse" as="div" class="flex flex-col gap-1">
+  <Disclosure v-slot="{ open }" as="div" class="flex flex-col gap-1">
     <DisclosureButton class="flex w-full items-center justify-between gap-4 rounded bg-slate-200 px-4 py-1">
       <span>
         <slot name="button" />

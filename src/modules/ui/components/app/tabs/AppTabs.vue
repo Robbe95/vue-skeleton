@@ -49,7 +49,7 @@ const movingStyle = computed(() => {
       }"
       @change="changeTab"
     >
-      <TabList ref="tablist" class="max-w-max rounded bg-gray-100 p-1">
+      <TabList class="max-w-max rounded bg-gray-100 p-1">
         <div class="relative z-10">
           <div class="z-0">
             <div

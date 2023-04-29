@@ -7,6 +7,7 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import CloseIcon from '@/components/icons/CloseIcon.vue'
+
 interface Props {
   isOpen: boolean
   noStyling?: boolean
@@ -72,7 +73,7 @@ const emit = defineEmits<{
               <div class="mt-4">
                 <slot name="footer" />
               </div>
-              <AppIconButton v-if="!noStyling" class="absolute top-4 right-4 bg-danger-100 text-danger-500" @click="emit('close')">
+              <AppIconButton v-if="!noStyling" class="absolute right-4 top-4 bg-danger-100 text-danger-500" @click="emit('close')">
                 <CloseIcon />
               </AppIconButton>
             </DialogPanel>

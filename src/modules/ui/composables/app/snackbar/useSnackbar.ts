@@ -1,6 +1,7 @@
 import type { App, Ref } from 'vue'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 import AppSnackbarContainer from '@/modules/ui/components/app/snackbar/AppSnackbarContainer.vue'
+
 export type SnackbarLocation = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 export interface Snackbar {
   uuid: string

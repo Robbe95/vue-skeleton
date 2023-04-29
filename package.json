@@ -18,6 +18,7 @@
   "dependencies": {
     "@appwise/forms": "^0.0.3",
     "@floating-ui/dom": "^1.2.3",
+    "@gtm-support/vue-gtm": "^2.0.0",
     "@headlessui-float/vue": "^0.10.1",
     "@headlessui/vue": "^1.7.12",
     "@intlify/unplugin-vue-i18n": "^0.9.1",

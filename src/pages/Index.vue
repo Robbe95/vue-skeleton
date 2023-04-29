@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
-import { decodeCredential } from 'vue3-google-login'
+
 useHead({
   title: 'Test',
   meta: [
@@ -13,11 +13,6 @@ useHead({
 })
 
 const isLoading = ref(false)
-const callback = (response: any): void => {
-  console.log(response)
-  const userData = decodeCredential(response.credential)
-  console.log('Handle the userData', userData)
-}
 </script>
 
 <template>
@@ -29,6 +24,5 @@ const callback = (response: any): void => {
       Dit is een button
     </AppButton>
     <FormFileUpload />
-    <GoogleLogin :callback="callback" prompt auto-login />
   </div>
 </template>

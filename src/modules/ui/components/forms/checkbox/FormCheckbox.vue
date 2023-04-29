@@ -3,6 +3,7 @@ import { computed, useSlots } from 'vue'
 import { Switch } from '@headlessui/vue'
 import CheckmarkIcon from '@/components/icons/CheckmarkIcon.vue'
 import { useCheckboxContext } from '@/modules/ui/composables/forms/checkbox/useCheckboxContext'
+
 const props = withDefaults(defineProps<{
   modelValue?: boolean
   value?: any

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
 interface Props {
   to?: string
   hasChildren?: boolean
@@ -13,7 +14,7 @@ const childrenOpen = ref(false)
   <div>
     <Component
       :is="to ? RouterLink : 'button'"
-      class="flex w-full items-center justify-between gap-2 rounded-md bg-primary-300 py-1 px-2 transition hover:bg-primary-200"
+      class="flex w-full items-center justify-between gap-2 rounded-md bg-primary-300 px-2 py-1 transition hover:bg-primary-200"
       :to="to"
       @click="childrenOpen = !childrenOpen"
     >

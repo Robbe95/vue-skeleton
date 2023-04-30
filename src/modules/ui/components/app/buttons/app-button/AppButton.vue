@@ -5,7 +5,7 @@ interface Props {
   isDisabled?: boolean
   isLoading?: boolean
   isReady?: boolean
-  type?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,8 +31,8 @@ const handleClick = (): void => {
     class="relative overflow-hidden whitespace-nowrap rounded border px-3 py-2 transition duration-200 hover:shadow-main md:px-8"
     :class="{
       'cursor-not-allowed bg-opacity-70': isDisabled || isLoading,
-      'border border-transparent bg-primary-500 text-white': type === 'primary',
-      'border border-primary-500 bg-white text-primary-500': type === 'secondary',
+      'border border-transparent bg-primary-500 text-white': variant === 'primary',
+      'border border-primary-500 bg-white text-primary-500': variant === 'secondary',
     }" @click="handleClick"
   >
     <div :class="{ 'opacity-30': isLoading }" class="transition-opacity">
@@ -59,8 +59,8 @@ const handleClick = (): void => {
         <div class="relative inline-block h-2.5 w-10">
           <div
             v-for="i in 4" :key="i" class="orb absolute top-[1px] h-2 w-2 rounded-full" :class="{
-              'bg-white': type === 'primary',
-              'bg-primary-500': type === 'secondary',
+              'bg-white': variant === 'primary',
+              'bg-primary-500': variant === 'secondary',
             }"
           />
         </div>

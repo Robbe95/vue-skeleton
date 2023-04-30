@@ -14,7 +14,7 @@ const handleClick = (): void => {
       </AppButton>
     </Variant>
     <Variant title="Secondary">
-      <AppButton type="secondary" @component:click="handleClick">
+      <AppButton variant="secondary" @component:click="handleClick">
         Click me
       </AppButton>
     </Variant>

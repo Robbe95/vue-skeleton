@@ -1,13 +1,13 @@
 <script setup lang="ts">
 interface Props {
-  as: 'title' | 'subtitle' | 'text' | 'label' | 'link'
+  variant: 'title' | 'subtitle' | 'text' | 'label' | 'link'
   numberOfLines?: 1 | 2 | 3 | 4 | 5 | 6
 }
 
 const props = defineProps<Props>()
 
 const htmlElement = computed(() => {
-  switch (props.as) {
+  switch (props.variant) {
     case 'title':
       return 'h1'
     case 'subtitle':
@@ -22,7 +22,7 @@ const htmlElement = computed(() => {
 })
 
 const textStyles = computed(() => {
-  switch (props.as) {
+  switch (props.variant) {
     case 'title':
       return 'text-2xl font-bold'
     case 'subtitle':

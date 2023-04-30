@@ -6,23 +6,23 @@ import AppText from './AppText.vue'
   <Story
     title="App/Text/AppText"
   >
-    <AppText as="title">
+    <AppText variant="title">
       Title
     </AppText>
-    <AppText as="subtitle">
+    <AppText variant="subtitle">
       Subtitle
     </AppText>
-    <AppText as="text">
+    <AppText variant="text">
       Text
     </AppText>
-    <AppText as="label">
+    <AppText variant="label">
       Label
     </AppText>
-    <AppText as="link">
+    <AppText variant="link">
       Link
     </AppText>
 
-    <AppText as="text" class="w-80" :number-of-lines="2">
+    <AppText variant="text" class="w-80" :number-of-lines="2">
       2 lines of text.
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit animi, iure eos omnis aliquid incidunt optio placeat ipsam, ad praesentium assumenda, odit veritatis fugit id beatae quam dolorem consequuntur aut.
     </AppText>

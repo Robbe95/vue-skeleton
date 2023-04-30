@@ -32,7 +32,7 @@ const accept = (close: Function): void => {
         <AppButton @component:click="accept(close)">
           {{ t('label.confirm') }}
         </AppButton>
-        <AppButton type="secondary" @component:click="decline(close)">
+        <AppButton variant="secondary" @component:click="decline(close)">
           {{ t('label.cancel') }}
         </AppButton>
       </div>

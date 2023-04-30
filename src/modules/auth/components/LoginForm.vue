@@ -14,7 +14,6 @@ const submit = async (values: LoginForm): Promise<void> => {
 }
 
 const form = useForm(loginForm, {
-  // @ts-expect-error: library needs return Promise<void>
   onSubmit: submit,
 })
 </script>

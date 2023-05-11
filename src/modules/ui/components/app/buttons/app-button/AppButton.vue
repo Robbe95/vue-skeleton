@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isLoading: false,
   isReady: false,
-  type: 'primary',
+  variant: 'primary',
 })
 
 const emits = defineEmits(['component:click'])

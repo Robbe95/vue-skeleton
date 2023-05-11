@@ -13,13 +13,19 @@ export default ({ mode }): UserConfigExport => {
   return defineConfig({
     plugins: [
       buildParseEnv(process.env),
-      vue(),
+      vue({
+        script: {
+          defineModel: true,
+          propsDestructure: true,
+        },
+      }),
       VueI18nPlugin({
         include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**'),
       }),
       Components({
         dts: true,
-        dirs: ['src/components', 'src/modules'],
+        deep: true,
+        dirs: ['./src/components', './src/modules'],
 
       }),
       AutoImport({

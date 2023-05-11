@@ -43,6 +43,7 @@ declare module '@vue/runtime-core' {
     AppTabButton: typeof import('./src/modules/ui/components/app/tabs/AppTabButton.vue')['default']
     AppTable: typeof import('./src/modules/ui/components/app/table/AppTable.vue')['default']
     'AppTable.story': typeof import('./src/modules/ui/components/app/table/AppTable.story.vue')['default']
+    AppTableCell: typeof import('./src/modules/ui/components/app/table/AppTableCell.vue')['default']
     AppTableItem: typeof import('./src/modules/ui/components/app/table/AppTableItem.vue')['default']
     AppTableRow: typeof import('./src/modules/ui/components/app/table/AppTableRow.vue')['default']
     AppTabPanel: typeof import('./src/modules/ui/components/app/tabs/AppTabPanel.vue')['default']

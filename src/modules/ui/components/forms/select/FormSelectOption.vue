@@ -1,15 +1,15 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComboboxOption } from '@headlessui/vue'
 import { useSelectContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 import { fadeTransition } from '@/transitions'
 
 interface Props {
-  value: any
+  value: T
 }
 
-const props = defineProps<Props>()
+const { value } = defineProps<Props>()
 const slots = useSlots()
-const context = useSelectContext('FormSelectOptions')
+const context = useSelectContext<T>('FormSelectOptions')
 
 const compareFunction = (a: any, b: any): boolean => {
   if (context.keyValue.value)
@@ -20,19 +20,20 @@ const compareFunction = (a: any, b: any): boolean => {
 
 const isSelected = computed(() => {
   if (context.hasMultiple.value)
-    return !!context.selectedValue.value.some((singleValue: any) => compareFunction(singleValue, props.value))
-  else return compareFunction(context.selectedValue.value, props.value)
+    return !!(context.selectedValue.value as T[]).some((singleValue: T) => compareFunction(singleValue, value))
+  else return compareFunction(context.selectedValue.value, value)
 })
 
 const isInSearchQuery = computed(() => {
   if (context.hasSearch.value && context.searchValue.value)
-    return context.displayFunction.value(props.value).toLowerCase().includes(context.searchValue.value.toLowerCase())
+    return context.displayFunction.value(value).toLowerCase().includes(context.searchValue.value.toLowerCase())
   else return true
 })
 </script>
 
 <template>
-  <ComboboxOption v-if="isInSearchQuery" v-slot="{ active }" :value="value">
+  <!-- eslint-disable-next-line vue/no-extra-parens -->
+  <ComboboxOption v-if="isInSearchQuery" v-slot="{ active }" :value="(value as any)">
     <button
       class="flex w-full gap-2 rounded border border-transparent bg-white px-2 py-1 text-left text-black transition-all"
       :class="{ 'border-primary-500 bg-primary-100': active }"
@@ -45,7 +46,7 @@ const isInSearchQuery = computed(() => {
 
       <slot v-if="slots.default" />
       <div v-else>
-        {{ context.displayFunction.value(props.value) }}
+        {{ context.displayFunction.value(value as T) }}
       </div>
     </button>
   </ComboboxOption>

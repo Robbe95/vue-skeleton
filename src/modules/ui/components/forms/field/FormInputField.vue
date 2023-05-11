@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TModel extends string | number | null">
+import { generateUuid } from '@/helpers/uuid/generateUuid'
 import type { Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
-import { generateUuid } from '@/helpers/uuid/generateUuid'
 
 interface Props {
-  modelValue: any
   hasSuccess?: boolean
   isReadOnly?: boolean
   isDisabled?: boolean
@@ -12,93 +11,93 @@ interface Props {
   isDirty?: boolean
   placeholder?: string
   unit?: string
-  type?: string
+  type?: 'number' | 'text' | 'password' | 'email' | 'tel' | 'url' | 'number'
   label?: string
   errors?: { _errors: string[] }
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  hasSuccess: false,
-  isReadOnly: false,
-  isDisabled: false,
-  isTouched: false,
-  isDirty: false,
-  placeholder: undefined,
-  unit: undefined,
-  type: 'text',
-  label: undefined,
-  errors: () => ({ _errors: [] }),
-})
+const {
+  hasSuccess = false,
+  isReadOnly = false,
+  isDisabled = false,
+  isTouched = false,
+  isDirty = false,
+  placeholder = undefined,
+  unit = undefined,
+  label = undefined,
+  errors = { _errors: [] },
+  type = 'text',
+} = defineProps<Props>()
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value: any): void
-  (event: 'change', value: any): void
-  (event: 'blur'): void
+  change: [value: TModel]
+  blur: []
 }>()
 
-const slots = useSlots()
-const { placeholder, type, modelValue, isReadOnly, errors, hasSuccess, isTouched, isDirty } = toRefs(props)
+const modelValue = defineModel<TModel>('modelValue', { required: true })
 
-const errorShown = computed(() => errors.value._errors.length > 0 && (isTouched.value || isDirty.value))
+const slots = defineSlots<{
+  label?: (props: {}) => any
+  'front-content'?: (props: {}) => any
+  'back-content'?: (props: {}) => any
+}>()
+
+const errorShown = computed(() => errors._errors.length > 0 && (isTouched || isDirty))
 
 const borderColor = computed(() => {
   if (errorShown.value)
     return 'border-danger-500'
-  if (hasSuccess.value)
+  if (hasSuccess)
     return 'border-success-500'
-  if (isReadOnly.value)
+  if (isReadOnly)
     return 'border-gray-300'
   return 'border-primary-500'
 })
 
-const model = computed({
-  get() {
-    return modelValue.value
-  },
-  set(value) {
-    emits('update:modelValue', value)
-    emits('change', value)
-  },
-})
-
 // Group logic
-const context = useFormInputGroupContext()
 const element = ref<HTMLElement>()
 const uuid = generateUuid()
-const propsRef = computed(() => ({ value: model.value as number, disabled: props.isDisabled }))
-const option: Option = ref({ id: uuid, element: element.value, propsRef: propsRef.value })
 
-const change = (value: number): void => {
-  if (props.isDisabled || !context)
-    return
-  const newValue = context.change(option, value)
-  model.value = newValue
+if (typeof modelValue.value === 'number') {
+  const context = useFormInputGroupContext()
+  const propsRef = computed(() => ({
+    value: typeof modelValue.value === 'number' ? modelValue.value : 0,
+    disabled: isDisabled,
+  }))
+  const option: Option = ref({ id: uuid, element: element.value, propsRef: propsRef.value })
+
+  const change = (value: TModel): void => {
+    if (isDisabled || !context || typeof value !== 'number')
+      return
+    const newValue = context.change(option, value) as TModel
+    modelValue.value = newValue
+  }
+
+  watch(
+    () => modelValue.value, (value) => {
+      if (typeof value === 'number')
+        change(value)
+    },
+  )
+
+  onMounted(() => {
+    if (context)
+      context.registerOption(option)
+  })
+  onUnmounted(() => {
+    if (context)
+      context.unregisterOption(uuid)
+  })
 }
-
-watch(
-  () => model.value, (value) => {
-    change(value)
-  },
-)
-
-onMounted(() => {
-  if (context)
-    context.registerOption(option)
-})
-onUnmounted(() => {
-  if (context)
-    context.unregisterOption(uuid)
-})
 // end group logic
 </script>
 
 <template>
   <div ref="element" class="relative">
     <FormLabel :for="uuid">
-      <slot name="label" />
-      <template v-if="!slots.label">
+      <slot name="label">
         {{ label }}
-      </template>
+      </slot>
     </FormLabel>
     <div class="flex ">
       <div v-if="slots['front-content']" class="flex rounded rounded-r-none border bg-gray-200 px-4" :class="borderColor">
@@ -116,7 +115,7 @@ onUnmounted(() => {
       >
         <input
           :id="uuid"
-          v-model="model"
+          v-model="modelValue"
           :disabled="isDisabled"
           :type="type"
           min="0"

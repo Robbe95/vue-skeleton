@@ -1,71 +1,73 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T, TMultiple extends boolean = false, TModel = TMultiple extends true ? T[] : T ">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 import { SelectGroupContext } from '@/modules/ui/composables/forms/select/useFormSelectContext'
 
 interface Props {
-  modelValue: any
-
-  hasMultiple: boolean
-  hasSearch: boolean
-  hasPills: boolean
-  isDisabled: boolean
-  isSearching: boolean
-  isEmpty: boolean
-  isLoading: boolean
-
-  displayFunction?: (value: any) => string
-  keyValue?: string
+  modelValue: TModel
+  hasMultiple?: TMultiple
+  hasSearch?: boolean
+  hasPills?: boolean
+  isDisabled?: boolean
+  isSearching?: boolean
+  isEmpty?: boolean
+  isLoading?: boolean
+  displayFunction?: (value: T) => string
+  keyValue?: keyof T
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const {
+  modelValue,
+  hasMultiple = Boolean(false),
+  hasSearch = false,
+  hasPills = false,
+  isDisabled = false,
+  isSearching = false,
+  isEmpty = false,
+  isLoading = false,
+  keyValue,
+  displayFunction = (value: T): string => String(value),
+} = defineProps<Props>()
 
-  hasMultiple: false,
-  hasSearch: false,
-  hasPills: false,
-  isDisabled: false,
-  isSearching: false,
-  isEmpty: false,
-  isLoading: false,
+const emit = defineEmits<{
+  'update:modelValue': [value: TModel]
+}>()
 
-  displayFunction: (value: any) => value,
+// const model = defineModel<TModel>('modelValue', { required: true })
+const model = computed({
+  get: () => modelValue,
+  set: (value: TModel) => {
+    emit('update:modelValue', value)
+  },
 })
-
-const emit = defineEmits(['update:modelValue'])
 
 const { t } = useI18n()
 
-const model = computed({
-  get: () => {
-    return props.modelValue
-  },
-  set: (value: any) => emit('update:modelValue', value),
-})
-
-const compareFunction = (a: any, b: any): boolean => {
-  if (props.keyValue)
-    return a[props.keyValue] === b[props.keyValue]
+const compareFunction = (a: T, b: T): boolean => {
+  if (keyValue)
+    return a[keyValue] === b[keyValue]
   else
     return a === b
 }
 
-const removeValue = (value: any): void => {
-  model.value = model.value.filter((singleValue: any) => !compareFunction(singleValue, value))
+const removeValue = (value: T): void => {
+  if (hasMultiple && Array.isArray(model.value))
+    model.value = model.value.filter((singleValue: T) => !compareFunction(singleValue, value)) as TModel
 }
 
-const setupApi: SelectStateDefinition = {
-  selectedValue: model,
-  keyValue: computed(() => props.keyValue),
-  displayFunction: computed(() => props.displayFunction),
+const setupApi: SelectStateDefinition<T> = {
+  selectedValue: model as Ref<T | T[]>,
+  keyValue: computed(() => keyValue),
+  displayFunction: computed(() => displayFunction),
 
-  isDisabled: computed(() => props.isDisabled),
-  isSearching: computed(() => props.isSearching),
-  isEmpty: computed(() => props.isEmpty),
-  isLoading: computed(() => props.isLoading),
+  isDisabled: computed(() => isDisabled),
+  isSearching: computed(() => isSearching),
+  isEmpty: computed(() => isEmpty),
+  isLoading: computed(() => isLoading),
 
-  hasSearch: computed(() => props.hasSearch),
-  hasMultiple: computed(() => props.hasMultiple),
+  hasSearch: computed(() => hasSearch),
+  hasMultiple: computed(() => hasMultiple),
   searchValue: ref(''),
 }
 
@@ -74,7 +76,8 @@ provide(SelectGroupContext, setupApi)
 
 <template>
   <div class="w-full">
-    <Combobox v-model="model" :multiple="hasMultiple">
+    <!-- eslint-disable vue/valid-v-model -->
+    <Combobox v-model="(model as any)" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
         <div class="flex w-auto max-w-max text-gray-700">
           <slot name="input" />
@@ -98,8 +101,8 @@ provide(SelectGroupContext, setupApi)
         </ComboboxOptions>
       </Float>
     </Combobox>
-    <div v-if="hasMultiple && hasPills" class="mt-1 flex flex-wrap gap-1">
-      <div v-for="singleValue in model" :key="keyValue ? singleValue[keyValue] : singleValue">
+    <div v-if="hasMultiple && hasPills && Array.isArray(model)" class="mt-1 flex flex-wrap gap-1">
+      <div v-for="singleValue in model" :key="keyValue ? (singleValue as any)[keyValue] : singleValue">
         <AppPill :key="singleValue" is-active class="max-w-max" has-close @component:remove="removeValue(singleValue)">
           {{ displayFunction(singleValue) }}
         </AppPill>

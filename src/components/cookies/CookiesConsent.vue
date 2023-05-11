@@ -12,7 +12,7 @@ const updateCookies = (): void => {
 
 <template>
   <div
-    class="fixed right-4 bottom-4 w-[calc(100vw-2rem)] rounded-lg border border-primary-500 bg-primary-100 p-6 md:w-auto"
+    class="fixed bottom-4 right-4 w-[calc(100vw-2rem)] rounded-lg border border-primary-500 bg-primary-100 p-6 md:w-auto"
   >
     <div class="mb-2 flex flex-row flex-wrap justify-evenly gap-4">
       <div v-for="cookie in cookiesConsent.cookieTypes" :key="cookie">

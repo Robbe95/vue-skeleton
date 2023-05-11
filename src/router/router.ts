@@ -40,7 +40,6 @@ const router = createRouter({
   routes,
 })
 
-
 router.beforeEach(async (to, from, next) => {
   authMiddleware(next)
   cookiesMiddleware()

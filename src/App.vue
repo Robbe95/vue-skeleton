@@ -20,6 +20,13 @@ const options2: Option[] = [
   { label: 'four', value: 'four3123' },
   { label: 'five', value: 'f123123ve' },
 ]
+
+const displayFunction = (value: Option | Option[]) => {
+  if (Array.isArray(value)) {
+    return value.map(value => value.label).join(', ')
+  }
+  return value.label
+}
 </script>
 
 <template>
@@ -31,20 +38,13 @@ const options2: Option[] = [
     <CookiesConsent v-if="!hasChoosenCookies || hasCookiesOpened" />
   </Transition>
   <!-- <FormSelect v-model="selectedMultiple" :display-function="(value: Option) => value" has-multiple key-value="value"> -->
-  <FormSelect
-    v-model="selectedMultiple"
-    :display-function="(value: Option) => value.label"
-    key-value="value"
-  >
-    <template #input>
-      <FormSelectInput v-model="search1" placeholder="Select" />
+  <FormSelect v-model="selectedMultiple" has-search :has-multiple="true" :display-function="displayFunction"
+    key-value="value" :items="options2">
+    <template #input="{ selectedValue }">
+      <FormSelectInput placeholder="Select" :selected-value="selectedValue" />
     </template>
-    <template #options>
-      <FormSelectOption
-        v-for="option in options2"
-        :key="option.value"
-        :value="option"
-      />
+    <template #item="{ item }">
+      <FormSelectOption :key="item.value" :value="item" />
     </template>
   </FormSelect>
 </template>

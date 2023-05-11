@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T, TMultiple extends boolean = false, TModel = TMultiple extends true ? T[] : T ">
+<script setup lang="ts" generic="T, TMultiple extends boolean, TModel = TMultiple extends true ? T[] : T ">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/select/useFormSelectContext'
@@ -13,8 +13,9 @@ interface Props {
   isSearching?: boolean
   isEmpty?: boolean
   isLoading?: boolean
-  displayFunction?: (value: T) => string
+  displayFunction?: (value: T | T[]) => string
   keyValue?: keyof T
+  items: T[]
 }
 
 const {
@@ -27,7 +28,12 @@ const {
   isEmpty = false,
   isLoading = false,
   keyValue,
-  displayFunction = (value: T): string => String(value),
+  displayFunction = (value: T | T[]): string => {
+    if (Array.isArray(value)) {
+      return value.map(value => String(value)).join(', ')
+    }
+    return String(value)
+  },
 } = defineProps<Props>()
 
 const emit = defineEmits<{
@@ -80,7 +86,7 @@ provide(SelectGroupContext, setupApi)
     <Combobox v-model="(model as any)" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
         <div class="flex w-auto max-w-max text-gray-700">
-          <slot name="input" />
+          <slot name="input" :selectedValue="model" />
         </div>
         <ComboboxOptions>
           <div class="min-w-min rounded border border-primary-500 bg-white">
@@ -89,11 +95,13 @@ provide(SelectGroupContext, setupApi)
                 <div v-if="isLoading" class="flex w-full items-center justify-center">
                   <AppLoader class="h-16 w-16" />
                 </div>
-                <div v-else-if="isEmpty " class="w-full whitespace-nowrap">
+                <div v-else-if="isEmpty" class="w-full whitespace-nowrap">
                   {{ t('labels.no_results') }}
                 </div>
                 <div v-else class="flex w-full flex-col gap-1">
-                  <slot name="options" />
+                  <template v-for="item in items" :key>
+                    <slot name="item" :item="item" />
+                  </template>
                 </div>
               </TransitionExpand>
             </div>

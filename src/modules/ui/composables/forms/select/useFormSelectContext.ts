@@ -6,7 +6,7 @@ export type SelectInput = Ref<{ id: string; element: HTMLElement | null; propsRe
 
 export interface SelectStateDefinition<T> {
   selectedValue: Ref<T | T[]>
-  displayFunction: Ref<(value: T) => string>
+  displayFunction: Ref<(value: T | T[]) => string>
   searchValue: Ref<string | undefined>
 
   keyValue: ComputedRef<keyof T | undefined>

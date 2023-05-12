@@ -6,9 +6,7 @@ interface Props {
   hasMultiple?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
-  accept: '*',
-})
+const { accept = '*' } = defineProps<Props>()
 
 const { t } = useI18n()
 

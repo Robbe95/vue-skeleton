@@ -20,6 +20,7 @@ interface Props {
 
 const {
   modelValue,
+  items,
   hasMultiple = Boolean(false),
   hasSearch = false,
   hasPills = false,
@@ -31,7 +32,6 @@ const {
   displayFunction = (value: T | T[]): string => {
     if (Array.isArray(value))
       return value.map(value => String(value)).join(', ')
-
     return String(value)
   },
 } = defineProps<Props>()

@@ -31,9 +31,11 @@ const handleChangeEvent = (event: Event): void => {
     </label>
 
     <div v-if="context.hasSearch.value" class="flex items-center justify-center text-black">
-      <ComboboxInput id="search" :placeholder="placeholder"
+      <ComboboxInput
+        id="search" :placeholder="placeholder"
         class="w-full rounded rounded-r-none border border-r-0 border-primary-500 px-4 py-2"
-        :display-value="(displayFunction as any)" @change="handleChangeEvent" />
+        :display-value="displayFunction as any" @change="handleChangeEvent"
+      />
       <ComboboxButton class="h-auto rounded rounded-l-none border border-l-0 border-primary-500 bg-white p-2">
         <Transition v-bind="fadeTransition" mode="out-in">
           <div v-if="!context.isLoading.value" class="flex-none p-[0.15rem]">
@@ -47,7 +49,8 @@ const handleChangeEvent = (event: Event): void => {
     </div>
     <div v-else>
       <ComboboxButton
-        class="flex w-full items-center justify-between rounded border border-primary-500 bg-white px-4 py-2 text-left">
+        class="flex w-full items-center justify-between rounded border border-primary-500 bg-white px-4 py-2 text-left"
+      >
         <div>
           {{ displayFunction(selectedValue as T | T[]) }}
         </div>

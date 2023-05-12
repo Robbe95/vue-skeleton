@@ -29,9 +29,9 @@ const {
   isLoading = false,
   keyValue,
   displayFunction = (value: T | T[]): string => {
-    if (Array.isArray(value)) {
+    if (Array.isArray(value))
       return value.map(value => String(value)).join(', ')
-    }
+
     return String(value)
   },
 } = defineProps<Props>()
@@ -86,7 +86,7 @@ provide(SelectGroupContext, setupApi)
     <Combobox v-model="(model as any)" :multiple="hasMultiple">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
         <div class="flex w-auto max-w-max text-gray-700">
-          <slot name="input" :selectedValue="model" />
+          <slot name="input" :selected-value="model" />
         </div>
         <ComboboxOptions>
           <div class="min-w-min rounded border border-primary-500 bg-white">
@@ -99,7 +99,7 @@ provide(SelectGroupContext, setupApi)
                   {{ t('labels.no_results') }}
                 </div>
                 <div v-else class="flex w-full flex-col gap-1">
-                  <template v-for="item in items" :key>
+                  <template v-for="item in items" :key="keyValue ? item[keyValue] : item">
                     <slot name="item" :item="item" />
                   </template>
                 </div>

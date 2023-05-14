@@ -1,4 +1,5 @@
-<script setup lang="ts" generic="TModel extends string | number | null">
+<script setup lang="ts" generic="TModel = string | number | Date">
+// type that is either a string or a number or a Date but not a combination of them
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 import type { Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'

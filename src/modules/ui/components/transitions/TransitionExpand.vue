@@ -9,40 +9,43 @@ const props = withDefaults(defineProps<Props>(), {
 
 const durationString = computed(() => `${props.duration}s`)
 
-const enter = (element: HTMLElement): void => {
-  const width = getComputedStyle(element).width
+const enter = (element: Element): void => {
+  const htmlElement: HTMLElement = element as HTMLElement
+  const width = getComputedStyle(htmlElement).width
 
-  element.style.width = width
-  element.style.position = 'absolute'
-  element.style.visibility = 'hidden'
-  element.style.height = 'auto'
+  htmlElement.style.width = width
+  htmlElement.style.position = 'absolute'
+  htmlElement.style.visibility = 'hidden'
+  htmlElement.style.height = 'auto'
 
-  const height = getComputedStyle(element).height
+  const height = getComputedStyle(htmlElement).height
 
-  element.style.width = ''
-  element.style.position = ''
-  element.style.visibility = ''
-  element.style.height = ''
+  htmlElement.style.width = ''
+  htmlElement.style.position = ''
+  htmlElement.style.visibility = ''
+  htmlElement.style.height = ''
 
-  getComputedStyle(element)
+  getComputedStyle(htmlElement)
 
   requestAnimationFrame(() => {
-    element.style.height = height
+    htmlElement.style.height = height
   })
 }
 
-const afterEnter = (element: HTMLElement): void => {
-  element.style.height = 'auto'
+const afterEnter = (element: Element): void => {
+  const htmlElement: HTMLElement = element as HTMLElement
+  htmlElement.style.height = 'auto'
 }
 
-const leave = (element: HTMLElement): void => {
-  const height = getComputedStyle(element).height
+const leave = (element: Element): void => {
+  const htmlElement: HTMLElement = element as HTMLElement
+  const height = getComputedStyle(htmlElement).height
 
-  element.style.height = height
-  getComputedStyle(element)
+  htmlElement.style.height = height
+  getComputedStyle(htmlElement)
 
   requestAnimationFrame(() => {
-    element.style.height = '0'
+    htmlElement.style.height = '0'
   })
 }
 </script>

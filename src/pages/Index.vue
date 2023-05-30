@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
+import { routeNames } from '@/router/routes.type'
 
 useHead({
   title: 'Test',
@@ -24,5 +25,11 @@ const isLoading = ref(false)
       Dit is een button
     </AppButton>
     <FormFileUpload />
+    <div class="h-[100vh]" />
+    <PrefetchLink :to="routeNames.EXAMPLE_INDEX">
+      <AppButton>
+        Go to example
+      </AppButton>
+    </PrefetchLink>
   </div>
 </template>

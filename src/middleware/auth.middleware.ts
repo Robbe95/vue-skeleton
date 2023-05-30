@@ -1,5 +1,5 @@
 import type { NavigationGuardNext } from 'vue-router/dist/vue-router'
-import { Routes } from '@/router/routes.type'
+import { routeNames } from '@/router/routes.type'
 
 export const authMiddleware = async (next: NavigationGuardNext): Promise<void> => {
   // const requiresAuth = to.meta.auth
@@ -17,6 +17,6 @@ export const authMiddleware = async (next: NavigationGuardNext): Promise<void> =
     next()
   }
   catch (error) {
-    next(Routes.LOGIN)
+    next(routeNames.LOGIN)
   }
 }

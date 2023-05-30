@@ -89,6 +89,7 @@ declare module '@vue/runtime-core' {
     LoginForm: typeof import('./src/modules/auth/components/LoginForm.vue')['default']
     LoginPage: typeof import('./src/modules/auth/pages/LoginPage.vue')['default']
     NoFilterIcon: typeof import('./src/components/icons/NoFilterIcon.vue')['default']
+    PrefetchLink: typeof import('./src/components/navigation/PrefetchLink.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchIcon: typeof import('./src/components/icons/SearchIcon.vue')['default']

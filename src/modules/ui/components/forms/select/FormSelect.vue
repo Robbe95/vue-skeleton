@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T, TMultiple = boolean, TModel = TMultiple extends true ? T[] : T ">
+<script setup lang="ts" generic="T, TModel = T extends Array<any> ? T[] : T ">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/select/useFormSelectContext'
@@ -6,7 +6,7 @@ import { SelectGroupContext } from '@/modules/ui/composables/forms/select/useFor
 
 interface Props {
   modelValue: TModel
-  hasMultiple?: TMultiple
+  hasMultiple?: TModel extends Array<any> ? true : false
   hasSearch?: boolean
   hasPills?: boolean
   isDisabled?: boolean

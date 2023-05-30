@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*:focus {
+  @apply ring-2 ring-primary-500 ring-opacity-60 ring-offset-2;
+}

@@ -31,6 +31,21 @@ const displayFunction = (value: Option | Option[]): string => {
 
 <template>
   <RouterView />
+  <AppTooltip placement="left">
+    <template #element="{ events }">
+      <AppButton v-bind="events">
+        Left
+      </AppButton>
+    </template>
+    <template #tooltip>
+      <div class="rounded bg-white p-2 shadow">
+        <p class="text-sm text-gray-800">
+          Left
+        </p>
+      </div>
+    </template>
+  </AppTooltip>
+
   <AppButton @click="hasCookiesOpened = true">
     open cookies
   </AppButton>
@@ -38,21 +53,6 @@ const displayFunction = (value: Option | Option[]): string => {
     <CookiesConsent v-if="!hasChoosenCookies || hasCookiesOpened" />
   </Transition>
   <!-- <FormSelect v-model="selectedMultiple" :display-function="(value: Option) => value" has-multiple key-value="value"> -->
-  <FormSelect
-    v-model="selectedMultiple"
-    has-search
-    :has-multiple="true"
-    :display-function="displayFunction"
-    key-value="value"
-    :items="options2"
-  >
-    <template #input="{ selectedValue }">
-      <FormSelectInput placeholder="Select" :selected-value="selectedValue" />
-    </template>
-    <template #item="{ item }">
-      <FormSelectOption :key="item.value" :value="item" />
-    </template>
-  </FormSelect>
 </template>
 
 <style></style>

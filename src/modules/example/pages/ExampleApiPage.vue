@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import { getFacts } from '../api/example.api'
-import type { Fact } from '../models/facts.model'
+import { useFacts } from '../api/example.api'
 
-const facts = ref<Fact[]>()
-const fetchPokemon = async (): Promise<void> => {
-  facts.value = await getFacts()
-  console.error(facts.value)
-}
-fetchPokemon()
+const { data: facts } = useFacts()
 </script>
 
 <template>

@@ -23,10 +23,12 @@
       </div>
     </Variant>
     <Variant title="Left">
-      <div class="flex gap-1">
+      <div class="flex h-full w-full items-center justify-center gap-1">
         <AppTooltip placement="left">
-          <template #element>
-            <AppButton>Left</AppButton>
+          <template #element="{ events }">
+            <AppButton v-bind="events">
+              Left
+            </AppButton>
           </template>
           <template #tooltip>
             <div class="rounded bg-white p-2 shadow">

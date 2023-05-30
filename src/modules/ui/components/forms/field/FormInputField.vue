@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TModel extends string | number | null">
+<script setup lang="ts" generic="TModel = string | number | null">
 import { generateUuid } from '@/helpers/uuid/generateUuid'
 import type { Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
@@ -34,7 +34,7 @@ const emits = defineEmits<{
   blur: []
 }>()
 
-const modelValue = defineModel<TModel>('modelValue', { required: true })
+const modelValue = defineModel<TModel>() as Ref<TModel>
 
 const slots = defineSlots<{
   label?: (props: {}) => any
@@ -54,7 +54,7 @@ const borderColor = computed(() => {
   return 'border-primary-500'
 })
 
-// Group logic
+// #region Group logic
 const element = ref<HTMLElement>()
 const uuid = generateUuid()
 
@@ -89,7 +89,7 @@ if (typeof modelValue.value === 'number') {
       context.unregisterOption(uuid)
   })
 }
-// end group logic
+// #endregion group logic
 </script>
 
 <template>

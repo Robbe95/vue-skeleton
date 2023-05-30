@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T, TMultiple extends boolean, TModel = TMultiple extends true ? T[] : T ">
+<script setup lang="ts" generic="T, TMultiple = boolean, TModel = TMultiple extends true ? T[] : T ">
 import { Float } from '@headlessui-float/vue'
 import { Combobox, ComboboxOptions } from '@headlessui/vue'
 import type { SelectStateDefinition } from '@/modules/ui/composables/forms/select/useFormSelectContext'
@@ -20,7 +20,8 @@ interface Props {
 
 const {
   modelValue,
-  hasMultiple = Boolean(false),
+  items,
+  hasMultiple = false,
   hasSearch = false,
   hasPills = false,
   isDisabled = false,
@@ -31,7 +32,6 @@ const {
   displayFunction = (value: T | T[]): string => {
     if (Array.isArray(value))
       return value.map(value => String(value)).join(', ')
-
     return String(value)
   },
 } = defineProps<Props>()
@@ -73,7 +73,7 @@ const setupApi: SelectStateDefinition<T> = {
   isLoading: computed(() => isLoading),
 
   hasSearch: computed(() => hasSearch),
-  hasMultiple: computed(() => hasMultiple),
+  hasMultiple: computed(() => hasMultiple as boolean),
   searchValue: ref(''),
 }
 
@@ -83,7 +83,8 @@ provide(SelectGroupContext, setupApi)
 <template>
   <div class="w-full">
     <!-- eslint-disable vue/valid-v-model -->
-    <Combobox v-model="(model as any)" :multiple="hasMultiple">
+    <!-- eslint-disable vue/no-extra-parens -->
+    <Combobox v-model="(model as any)" :multiple="(hasMultiple as boolean)">
       <Float placement="bottom-start" adaptive-width :offset="4" flip>
         <div class="flex w-auto max-w-max text-gray-700">
           <slot name="input" :selected-value="model" />

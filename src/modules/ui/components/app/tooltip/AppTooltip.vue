@@ -96,6 +96,7 @@ onMounted(() => {
         v-if="tooltipShow"
         id="tooltip"
         ref="tooltip"
+        role="tooltip"
         :class="[tooltipSlot?.childElementCount === 0 ? 'opacity-0' : 'opacity-100']"
         class="absolute z-50 flex min-w-max rounded text-black shadow-main"
       >

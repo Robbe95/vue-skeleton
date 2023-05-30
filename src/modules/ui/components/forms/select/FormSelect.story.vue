@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const options1 = ['one', 'two', 'three', 'four', 'five']
 const selectedOption1 = ref<string>('one')
-const search1 = ref<string>('')
 interface Option {
   label: string
   value: string
@@ -17,10 +16,10 @@ const options2: Option[] = [
   { label: 'five', value: 'f123123ve' },
 ]
 
-const displayFunction = (value: Option | Option[]) => {
-  if (Array.isArray(value)) {
+const displayFunction = (value: Option | Option[]): string => {
+  if (Array.isArray(value))
     return value.map(value => value.label).join(', ')
-  }
+
   return value.label
 }
 </script>
@@ -78,8 +77,10 @@ const displayFunction = (value: Option | Option[]) => {
       </FormSelect>
     </Variant>
     <Variant title="Search with objects">
-      <FormSelect v-model="selectedMultiple" has-search :has-multiple="true" :display-function="displayFunction"
-        key-value="value" :items="options2">
+      <FormSelect
+        v-model="selectedMultiple" has-search :has-multiple="true" :display-function="displayFunction"
+        key-value="value" :items="options2"
+      >
         <template #input="{ selectedValue }">
           <FormSelectInput placeholder="Select" :selected-value="selectedValue" />
         </template>

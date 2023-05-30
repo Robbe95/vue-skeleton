@@ -3,15 +3,13 @@ interface Props {
   isOptional?: boolean
 }
 
-withDefaults(defineProps<Props>(), { isOptional: false })
+const { isOptional = false } = defineProps<Props>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const { t } = useI18n()
-</script>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
 </script>
 
 <template>

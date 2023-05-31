@@ -26,7 +26,7 @@ const isLoading = ref(false)
     </AppButton>
     <FormFileUpload />
     <div class="h-[100vh]" />
-    <PrefetchLink :to="routeNames.EXAMPLE_INDEX">
+    <PrefetchLink :to="routeNames.EXAMPLE_INDEX" use-hover>
       <AppButton>
         Go to example
       </AppButton>

@@ -40,9 +40,9 @@ defineSlots<{
 }>()
 
 const tooltipSlot = ref()
-const element = ref<HTMLElement | null>(null)
-const tooltip = ref<HTMLElement | null>(null)
-const tooltipWrapper = ref<HTMLElement | null>(null)
+const element = ref<HTMLElement>()
+const tooltip = ref<HTMLElement>()
+const tooltipWrapper = ref<HTMLElement>()
 
 const { isOutside: tooltipWrapperOutside } = useMouseInElement(tooltipWrapper)
 const { isOutside: tooltipOutside } = useMouseInElement(tooltip)
@@ -128,14 +128,9 @@ const slotEvents = {
     </div>
     <Teleport to="body">
       <Transition v-bind="scaleBounceTransition">
-        <div
-          v-if="tooltipShow"
-          id="tooltip"
-          ref="tooltip"
-          role="tooltip"
+        <div v-if="tooltipShow" id="tooltip" ref="tooltip" role="tooltip"
           :class="[tooltipSlot?.childElementCount === 0 ? 'opacity-0' : 'opacity-100']"
-          class="absolute z-50 flex min-w-max rounded text-black shadow-main"
-        >
+          class="absolute z-50 flex min-w-max rounded text-black shadow-main">
           <div ref="tooltipSlot" class="flex w-full max-w-[60ch] flex-col items-center justify-center">
             <slot name="tooltip" />
           </div>

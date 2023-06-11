@@ -9,6 +9,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
     "lib": [
       "esnext",
       "dom"
@@ -19,7 +20,7 @@
       ]
     },
     "baseUrl": ".",
-    "allowJs": false,
+    "allowJs": false
   },
   "include": [
     "components.d.ts",
@@ -27,6 +28,9 @@
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

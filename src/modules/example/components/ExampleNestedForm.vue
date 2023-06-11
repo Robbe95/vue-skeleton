@@ -9,18 +9,21 @@ const submitForm = (values: NestedForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
 }
-const { register, submit } = useForm(nestedForm, {
-  onSubmit: submitForm,
+const { form, onSubmitForm } = useForm(nestedForm)
+
+onSubmitForm((data) => {
+  submitForm(data)
+  return null
 })
 </script>
 
 <template>
   <div>
-    <FormInputField v-bind="register('username')" label="Username" />
-    <FormInputField v-bind="register('address.city')" label="Stad" />
-    <FormInputField v-bind="register('address.street')" label="Straat" />
+    <FormInputField v-bind="form.register('username')" label="Username" />
+    <FormInputField v-bind="form.register('address.city')" label="Stad" />
+    <FormInputField v-bind="form.register('address.street')" label="Straat" />
 
-    <AppButton @component:click="submit">
+    <AppButton @component:click="form.submit">
       Submit
     </AppButton>
   </div>

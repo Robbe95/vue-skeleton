@@ -9,18 +9,21 @@ const submitForm = (values: CondionalForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
 }
-const { register, submit } = useForm(conditionalForm, {
-  onSubmit: submitForm,
+const { form, onSubmitForm } = useForm(conditionalForm)
+
+onSubmitForm((data) => {
+  submitForm(data)
+  return null
 })
 </script>
 
 <template>
   <div>
-    <FormInputField v-bind="register('username')" label="Username" />
-    <FormInputField v-bind="register('email')" label="email" />
-    <FormInputField v-bind="register('password')" label="password" />
+    <FormInputField v-bind="form.register('username')" label="Username" />
+    <FormInputField v-bind="form.register('email')" label="email" />
+    <FormInputField v-bind="form.register('password')" label="password" />
 
-    <AppButton @component:click="submit">
+    <AppButton @component:click="onSubmitForm">
       Submit
     </AppButton>
   </div>

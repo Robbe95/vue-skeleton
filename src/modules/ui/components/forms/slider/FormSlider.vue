@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onKeyStroke, useElementBounding, useFocus, useMouse, useMousePressed } from '@vueuse/core'
 import { generateUuid } from '@/helpers/uuid/generateUuid'
+import type { Option } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 import { useFormInputGroupContext } from '@/modules/ui/composables/forms/group/useFormInputGroupContext'
 
 interface Props {
@@ -43,7 +44,7 @@ const sliderValue = computed({
 })
 
 const propsRef = computed(() => ({ value: sliderValue.value, disabled: props.isDisabled }))
-const option = ref({ id: uuid, element: optionRef.value, propsRef: propsRef.value })
+const option = ref({ id: uuid, element: optionRef.value, propsRef: propsRef.value }) as Option
 
 const change = (value: number): void => {
   if (props.isDisabled || !context)
@@ -162,7 +163,7 @@ const disabledValueSliderWidth = computed(() => {
   const pixelsPerValue = sliderWidth.value / valueRange
   const valueDelta = (maxAmount.value - disabledAmount.value)
   const disabledWidth = valueDelta * pixelsPerValue
-  return isNaN(disabledWidth) ? 0 : disabledWidth
+  return Number.isNaN(disabledWidth) ? 0 : disabledWidth
 })
 
 const rightSliderWidth = computed(() => {
@@ -195,7 +196,11 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     <div class="rounded border border-primary-500 px-4 py-5">
       <div ref="slider" class="relative flex flex-row items-center justify-center">
         <div class="h-1 rounded-full bg-primary-500" :style="`width: ${leftSliderWidth}px`">
-          <button id="sliderButton" ref="sliderButton" class="absolute top-1/2 z-10 h-4 w-4 -translate-y-1/2 rounded-full border-[0.25rem] border-primary-500 bg-white focus:border-primary-500" :style="sliderButtonStyle" />
+          <button
+            id="sliderButton" ref="sliderButton"
+            class="absolute top-1/2 z-10 h-4 w-4 -translate-y-1/2 rounded-full border-[0.25rem] border-primary-500 bg-white focus:border-primary-500"
+            :style="sliderButtonStyle"
+          />
         </div>
         <div class="h-1 rounded-full bg-gray-500/50" :style="`width: ${rightSliderWidth - disabledValueSliderWidth}px`" />
         <div class="border-t-[2px] border-dashed border-primary-500" :style="`width: ${disabledValueSliderWidth}px`" />
@@ -215,11 +220,9 @@ const isProgressOverMaxLabel = computed(() => progressRight.value > maxLabelLeft
     </div>
 
     <div
-      v-if="maxLabel"
-      :class="{
+      v-if="maxLabel" :class="{
         'opacity-0': isProgressOverMaxLabel,
-      }"
-      class="absolute bottom-0 right-0 flex w-full justify-end text-xs transition-opacity"
+      }" class="absolute bottom-0 right-0 flex w-full justify-end text-xs transition-opacity"
     >
       <div ref="maxLabelElement">
         {{ maxAmount }}{{ valueMeasurement }}

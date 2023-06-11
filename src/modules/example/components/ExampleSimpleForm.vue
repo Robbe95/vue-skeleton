@@ -9,8 +9,12 @@ const submitForm = (values: SimpleForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
 }
-const form = useForm(simpleForm, {
-  onSubmit: submitForm,
+
+const { form, onSubmitForm } = useForm(simpleForm)
+
+onSubmitForm((data) => {
+  submitForm(data)
+  return null
 })
 </script>
 

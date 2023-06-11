@@ -5,9 +5,7 @@ const model3 = ref()
 </script>
 
 <template>
-  <Story
-    title="Forms/Input/Field"
-  >
+  <Story title="Forms/Input/Field">
     <Variant title="Default">
       <FormInputField v-model="model" />
     </Variant>
@@ -38,7 +36,7 @@ const model3 = ref()
       <FormInputField v-model="model" has-success />
     </Variant>
     <Variant title="Error">
-      <FormInputField v-model="model" has-error error-message="Error message" />
+      <FormInputField v-model="model" :errors="{ _errors: ['Error test'] }" />
     </Variant>
     <Variant title="Front content">
       <FormInputField v-model="model">

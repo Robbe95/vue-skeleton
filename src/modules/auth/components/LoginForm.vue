@@ -13,29 +13,20 @@ const submit = async (values: LoginForm): Promise<void> => {
   user.value = await authStore.getUser()
 }
 
-const form = useForm(loginForm, {
-  onSubmit: submit,
+const { form, onSubmitForm } = useForm(loginForm)
+
+onSubmitForm((data) => {
+  submit(data)
+  return null
 })
 </script>
 
 <template>
   <section>
-    <FormInputField
-      v-bind="form.register('email')"
-      label="Email"
-      type="email"
-      placeholder="Email"
-    />
-    <FormInputField
-      v-bind="form.register('password')"
-      label="Password"
-      type="password"
-      placeholder="Password"
-    />
+    <FormInputField v-bind="form.register('email')" label="Email" type="email" placeholder="Email" />
+    <FormInputField v-bind="form.register('password')" label="Password" type="password" placeholder="Password" />
     <div class="flex justify-between">
-      <AppButton
-        @click="submit"
-      >
+      <AppButton @click="submit">
         Login
       </AppButton>
     </div>

@@ -9,10 +9,6 @@ const submitForm = (values: CondionalArrayForm): void => {
   // eslint-disable-next-line no-console
   console.log(values)
 }
-const { register, submit } = useForm(conditionalArrayForm, {
-  onSubmit: submitForm,
-})
-
 const addressesAmount = ref(1)
 const add = (): void => {
   addressesAmount.value += 1
@@ -20,12 +16,20 @@ const add = (): void => {
 const remove = (): void => {
   addressesAmount.value -= 1
 }
+
+const { form, onSubmitForm } = useForm(conditionalArrayForm)
+
+onSubmitForm((data) => {
+  submitForm(data)
+  return null
+})
+
 </script>
 
 <template>
   <div>
     <div v-for="i in addressesAmount" :key="i">
-      <ExampleArrayFormComponent :index="i - 1" :register="register" />
+      <ExampleArrayFormComponent :index="i - 1" :form="form" />
     </div>
 
     <AppButton @component:click="add">
@@ -35,7 +39,7 @@ const remove = (): void => {
       remove
     </AppButton>
 
-    <AppButton @component:click="submit">
+    <AppButton @component:click="onSubmitForm">
       Submit
     </AppButton>
   </div>

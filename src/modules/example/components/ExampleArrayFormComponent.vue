@@ -4,7 +4,7 @@ import type { conditionalArrayForm } from '../models/form.model'
 
 interface Props {
   index: number
-  register: UseForm<typeof conditionalArrayForm>['register']
+  form: UseForm<typeof conditionalArrayForm>['form']
 }
 
 const props = defineProps<Props>()
@@ -13,8 +13,8 @@ const props = defineProps<Props>()
 <template>
   <div>
     Address {{ index }}
-    <FormInputField v-bind="props.register(`addresses.${index}.street`)" label="street" />
-    <FormInputField v-bind="props.register(`addresses.${index}.number`)" label="number" />
-    <FormInputField v-bind="props.register(`addresses.${index}.postcode`)" label="postcode" />
+    <FormInputField v-bind="props.form.register(`addresses.${index}.street`)" label="street" />
+    <FormInputField v-bind="props.form.register(`addresses.${index}.number`)" label="number" />
+    <FormInputField v-bind="props.form.register(`addresses.${index}.postcode`)" label="postcode" />
   </div>
 </template>

@@ -64,7 +64,7 @@ if (typeof modelValue.value === 'number') {
     value: typeof modelValue.value === 'number' ? modelValue.value : 0,
     disabled: isDisabled,
   }))
-  const option: Option = ref({ id: uuid, element: element.value, propsRef: propsRef.value })
+  const option: Option = ref({ id: uuid, element: element.value, propsRef: propsRef.value }) as Option
 
   const change = (value: TModel): void => {
     if (isDisabled || !context || typeof value !== 'number')
@@ -106,31 +106,24 @@ if (typeof modelValue.value === 'number') {
 
       <div
         class="flex h-full rounded border"
-        :class="[borderColor,
-                 {
-                   'rounded-l-none border-l-0': slots['front-content'],
-                   'rounded-r-none border-r-0': slots['back-content'],
-                 },
+        :class="[
+          borderColor,
+          {
+            'rounded-l-none border-l-0': slots['front-content'],
+            'rounded-r-none border-r-0': slots['back-content'],
+          },
         ]"
       >
         <input
-          :id="uuid"
-          v-model="modelValue"
-          :disabled="isDisabled"
-          :type="type"
-          min="0"
+          :id="uuid" v-model="modelValue" :disabled="isDisabled" :type="type" min="0"
           class="relative w-full rounded px-4 py-2 placeholder:transition-all placeholder:duration-300 focus:placeholder:translate-x-1 focus:placeholder:opacity-0"
-          :placeholder="placeholder"
-          :readonly="isReadOnly"
-          @blur="emits('blur')"
+          :placeholder="placeholder" :readonly="isReadOnly" @blur="emits('blur')"
         >
 
         <div
-          v-if="unit"
-          :class="[borderColor, {
+          v-if="unit" :class="[borderColor, {
             'rounded-r-none border-r-0': slots['back-content'],
-          }]"
-          class="flex min-w-max items-center rounded rounded-l-none border-l bg-white px-3 text-primary-500"
+          }]" class="flex min-w-max items-center rounded rounded-l-none border-l bg-white px-3 text-primary-500"
         >
           {{ unit }}
         </div>

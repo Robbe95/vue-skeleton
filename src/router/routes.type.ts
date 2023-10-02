@@ -1,6 +1,5 @@
 import type { QueryKey } from '@/http/queryKeys'
 import { AuthRoutes } from '@/modules/auth/router/auth.routes.type'
-import { ExampleRoutes } from '@/modules/example/router/example.routes.type'
 
 export enum GlobalRoutes {
   INDEX = 'index',
@@ -11,7 +10,6 @@ export enum GlobalRoutes {
 export const routeNames = {
   ...GlobalRoutes,
   ...AuthRoutes,
-  ...ExampleRoutes,
 }
 
 export interface Route {

@@ -1,5 +1,5 @@
 import { enableAcceptedCookies } from '@/composables/cookies/useCookiesConsent'
 
-export const cookiesMiddleware = (): void => {
+export function cookiesMiddleware(): void {
   enableAcceptedCookies()
 }

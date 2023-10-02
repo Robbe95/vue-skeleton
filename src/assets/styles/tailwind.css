@@ -2,6 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-*:focus {
-  @apply ring-2 ring-primary-500 ring-opacity-60 ring-offset-2;
+@layer base {
+  :root {
+    /* #region COLORS */
+    --black: 0 0% 0%;
+    --white: 0 0% 100%;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --primary: 260 77% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 267 100% 96%;
+    --secondary-foreground: 256 48% 42%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 4 86% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 77% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 34 94% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --muted: 210 20% 98%;
+    --muted-foreground: 221 13% 46%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --border: 217 16% 84%;
+    --input: 0 0% 100%;
+
+    --neutral-100: 220 22% 96%;
+    --neutral-200: 220 17% 93%;
+    --neutral-300: 216 16% 84%;
+    --neutral-400: 218 15% 65%;
+    --neutral-500: 220 13% 46%;
+    --neutral-600: 215 18% 34%;
+    --neutral-700: 217 23% 27%;
+    --neutral-800: 215 32% 17%;
+    --neutral-900: 221 43% 11%;
+
+    --ring: 264 100% 98%;
+
+    --input: 0 0% 100%;
+    --input-foreground: 221 43% 11%;
+    --input-placeholder: 220 13% 46%;
+    --input-disabled: 210 24% 98%;
+    --input-border: 216 16% 84%;
+    --input-ring: 265 89% 86%;
+    /*#endregion*/
+
+    /* #region SHADOWS */
+    --shadow-button: 0;
+    --shadow-button-hover: 0;
+
+    --shadow-card: 0;
+    --shadow-card-hover: 0;
+
+    --shadow-modal: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+    --shadow-popover: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+    /*#endregion*/
+
+
+
+    /* #region RADIUS */
+    --radius: 0.5rem;
+    --radius-modal: 0.75rem;
+    --radius-popover: 0.75rem;
+    --radius-card: 1rem;
+    --radius-button: 0.5rem;
+    --radius-full: 9999px;
+    --radius-input: 0.5rem;
+    /* #endregion */
+
+    /* #region FONT-SIZE */
+    --font-size-hero: 3rem;
+    --font-size-title: 1.5rem;
+    --font-size-subtitle: 1.25rem;
+    --font-size-heading: 1.125rem;
+    --font-size-body: 1rem;
+    --font-size-subtext: 0.875rem;
+    --font-size-caption: 0.75rem;
+
+    --font-line-height-hero: 1;
+    --font-line-height-title: 2rem;
+    --font-line-height-subtitle: 1.75rem;
+    --font-line-height-heading: 1.75rem;
+    --font-line-height-body: 1.5rem;
+    --font-line-height-subtext: 1.25rem;
+    --font-line-height-caption: 1rem;
+    /* #endregion */
+
+  }
+}
+
+@layer base {
+  * {
+    /* @apply border-border; */
+  }
+
+  body {
+    /* @apply bg-background text-foreground; */
+  }
+}
+
+/* Cant do this in tailwind, so I define it here */
+@layer components {
+  .transition-scale-bounce {
+    transition: cubic-bezier(.8, .16, 0, 1.3) 0.5s transform, 0.2s opacity
+  }
 }

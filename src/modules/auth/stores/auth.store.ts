@@ -84,7 +84,7 @@ export const useAuthStore = defineStore('auth', (): UseAuth => {
         client_id: options.clientId,
         client_secret: options.clientSecret,
       },
-      schema: authSchema,
+      responseSchema: authSchema,
     })
 
     oAuth.value = {
@@ -104,7 +104,7 @@ export const useAuthStore = defineStore('auth', (): UseAuth => {
         client_secret: options.clientSecret,
         refresh_token: oAuth.value?.refreshToken,
       },
-      schema: authSchema,
+      responseSchema: authSchema,
     })
 
     oAuth.value = {
@@ -135,7 +135,7 @@ export const useAuthStore = defineStore('auth', (): UseAuth => {
       throw new Error('Not logged in')
     const data = await http.get({
       url: `${options.baseURL}/maes/api/user`,
-      schema: userSchema,
+      responseSchema: userSchema,
     })
     user.value = data
     return data

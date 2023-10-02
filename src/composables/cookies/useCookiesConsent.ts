@@ -1,5 +1,4 @@
 import { StorageSerializers, useStorage } from '@vueuse/core'
-import { useGtm } from '@gtm-support/vue-gtm'
 
 export const cookieTypes = [
   'analytics',
@@ -11,11 +10,12 @@ export const acceptedCookies = useStorage<CookieType[]>('acceptedCookies', [], u
 export const hasChoosenCookies = useStorage<boolean>('hasChoosenCookies', false)
 export const hasCookiesOpened = ref(false)
 
-const handleAnalyticsCookieUpdated = (accepted: boolean): void => {
-  useGtm()?.enable(accepted)
+function handleAnalyticsCookieUpdated(accepted: boolean): void {
+  // TODO handle this
+  console.error('Analytics cookie updated', accepted)
 }
 
-export const enableAcceptedCookies = (): void => {
+export function enableAcceptedCookies(): void {
   handleAnalyticsCookieUpdated(acceptedCookies.value.includes('analytics'))
 }
 
@@ -23,11 +23,11 @@ watch(() => acceptedCookies.value, () => {
   enableAcceptedCookies()
 })
 
-export const useCookiesConsent = (): {
+export function useCookiesConsent(): {
   acceptedCookies: Ref<CookieType[]>
   updateCookies: (newAcceptedCookies: CookieType[]) => void
   cookieTypes: typeof cookieTypes
-} => {
+} {
   const updateCookies = (newAcceptedCookies: CookieType[]): void => {
     hasChoosenCookies.value = true
     hasCookiesOpened.value = false

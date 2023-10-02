@@ -13,7 +13,9 @@
     "drop_file": "Sleep uw foto hier."
   },
   "labels": {
-    "no_results": "Geen resultaten"
+    "no_results": "Geen resultaten",
+    "select": "Selecteer",
+    "loading": "Laden..."
   },
   "errors": {
     "invalid_type": "Het veld is verplicht.",

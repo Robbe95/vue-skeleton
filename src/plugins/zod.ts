@@ -80,7 +80,7 @@ const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
 
 z.setErrorMap(customErrorMap)
 
-const setupZod = (): void => {
+function setupZod(): void {
   z.setErrorMap(customErrorMap)
 }
 
